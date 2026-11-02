@@ -746,6 +746,10 @@
 
 <chapter number="10" style="c" sid="GEN 10"/>
 
+<para style="ms2">The Appended Table of Nations</para>
+
+<para style="mr">(10:1–32)</para>
+
 <para style="s1">The Table of Nations</para>
 
 <para style="r">(1 Chronicles 1:4–27)</para>
@@ -868,7 +872,11 @@
 
 <para style="r">(1 Chronicles 1:17–27)</para>
 
-<para style="cls"><verse number="10" style="v" sid="GEN 11:10"/>These <char style="add">are</char> the generations of Shem. </para>
+<para style="d"><verse number="10a" style="v" sid="GEN 11:10"/>These <char style="add">are</char> the generations of Shem. </para>
+
+<para style="ms1">The Written Record of Terah</para>
+
+<para style="mr">(11:10b–27a)</para>
 
 <para style="p" vid="GEN 11:10">Shem <char style="add">was</char> a son of a hundred years, and he begat Arphaxad two years after the flood. <verse eid="GEN 11:10"/></para>
 
@@ -906,9 +914,13 @@
 
 <para style="s1">Terah’s Descendants</para>
 
-<para style="cls"><verse number="27" style="v" sid="GEN 11:27"/>And these <char style="add">are</char> the generations of Terah: </para>
+<para style="d"><verse number="27a" style="v" sid="GEN 11:27"/>And these <char style="add">are</char> the generations of Terah: </para>
 
-<para style="p" vid="GEN 11:27">Terah begat Abram, Nahor, and Haran. And Haran begat Lot. <verse eid="GEN 11:27"/></para>
+<para style="ms1">The Written Record of Isaac, Abraham's Son</para>
+
+<para style="mr">(11:27b–25:19a)</para>
+
+<para style="p" vid="GEN 11:27"><verse number="27b" style="v" sid="GEN 11:27"/>Terah begat Abram, Nahor, and Haran. And Haran begat Lot. <verse eid="GEN 11:27"/></para>
 
 <para style="p"><verse number="28" style="v" sid="GEN 11:28"/>And Haran died before the face of Terah his father, in the land of his birth, in Ur of the Chaldeans. <verse eid="GEN 11:28"/></para>
 
@@ -1886,11 +1898,17 @@
 
 <para style="p"><verse number="11" style="v" sid="GEN 25:11"/>And it came to pass after the death of Abraham, that God blessed Isaac his son. And Isaac dwelt near Beer-lahai-roi. <verse eid="GEN 25:11"/></para>
 
-<para style="cls"><verse number="12" style="v" sid="GEN 25:12"/>And these <char style="add">are</char> the generations of Ishmael son of Abraham, whom Hagar the Egyptianess, maidservant of Sarah, bore to Abraham. <verse eid="GEN 25:12"/></para>
+
+
+<para style="ms2">The Appended Record of Ishmael</para>
+
+<para style="mr">(25:12–18)</para>
 
 <para style="s1">The Descendants of Ishmael</para>
 
 <para style="r">(1 Chronicles 1:28–31)</para>
+
+<para style="p"><verse number="12" style="v" sid="GEN 25:12"/>And these <char style="add">are</char> the generations of Ishmael son of Abraham, whom Hagar the Egyptianess, maidservant of Sarah, bore to Abraham. <verse eid="GEN 25:12"/></para>
 
 <para style="p"><verse number="13" style="v" sid="GEN 25:13"/>And these <char style="add">are</char> the names of the sons of Ishmael, by their names, according to their generations: Nebajoth the firstborn of Ishmael, and Kedar, and Adbeel, and Mibsam, <verse eid="GEN 25:13"/></para>
 
@@ -1908,9 +1926,13 @@
 
 <para style="r">(Malachi 1:1–5; Romans 9:6–29)</para>
 
-<para style="cls"><verse number="19" style="v" sid="GEN 25:19"/>And these <char style="add">are</char> the generations of Isaac son of Abraham: </para>
+<para style="d"><verse number="19a" style="v" sid="GEN 25:19"/>And these <char style="add">are</char> the generations of Isaac son of Abraham: </para>
 
-<para style="p" vid="GEN 25:19">Abraham begat Isaac, <verse eid="GEN 25:19"/></para>
+<para style="ms1">The Written Record of Jacob</para>
+
+<para style="mr">(25:19b–37:2a)</para>
+
+<para style="p" vid="GEN 25:19"><verse number="19b" style="v" sid="GEN 25:19"/>Abraham begat Isaac, <verse eid="GEN 25:19"/></para>
 
 <para style="p"><verse number="20" style="v" sid="GEN 25:20"/>and Isaac was a son of forty years when he took Rebekah, the daughter of Bethuel the Aramaean from Paddan-aram,<note caller="+" style="f"><char style="fr" closed="false">25.20 </char><char style="ft" closed="false"> That is, northwest Mesopotamia</char></note> the sister of Laban the Aramaean, to him as wife. <verse eid="GEN 25:20"/></para>
 
@@ -2834,7 +2856,11 @@
 
 <chapter number="36" style="c" sid="GEN 36"/>
 
-<para style="cls"><verse number="1" style="v" sid="GEN 36:1"/>And these <char style="add">are</char> the generations of Esau (he <char style="add">is</char> Edom). <verse eid="GEN 36:1"/></para>
+<para style="ms2">The Appended Record of Esau</para>
+
+<para style="mr">(36:1–43)</para>
+
+<para style="p"><verse number="1" style="v" sid="GEN 36:1"/>And these <char style="add">are</char> the generations of Esau (he <char style="add">is</char> Edom). <verse eid="GEN 36:1"/></para>
 
 <para style="s1">The Descendants of Esau</para>
 
@@ -2940,7 +2966,11 @@
 
 <para style="p"><verse number="1" style="v" sid="GEN 37:1"/>And Jacob dwelt in the land of the sojournings of his father, in the land of Canaan. <verse eid="GEN 37:1"/></para>
 
-<para style="cls"><verse number="2" style="v" sid="GEN 37:2"/>These <char style="add">are</char> the generations of Jacob: </para>
+<para style="p"><verse number="2" style="v" sid="GEN 37:2"/>These <char style="add">are</char> the generations of Jacob.</para>
+
+<para style="ms1">The Written Record of Joseph</para>
+
+<para style="mr">(37:2b–50:22a)</para>
 
 <para style="p" vid="GEN 37:2">Joseph, a son of seven <char style="add">and</char> ten years, was shepherding the flock with his brothers, and the boy was with the sons of Bilhah and the sons of Zilpah, wives of his father. And Joseph brought an evil report of them to his father. <verse eid="GEN 37:2"/></para>
 
@@ -4130,7 +4160,13 @@
 
 <para style="s1">The Death of Joseph</para>
 
-<para style="p"><verse number="22" style="v" sid="GEN 50:22"/>And Joseph dwelt in Egypt, he and the house of his father. And Joseph lived a hundred and ten years. <verse eid="GEN 50:22"/></para>
+<para style="p"><verse number="22a" style="v" sid="GEN 50:22"/>And Joseph dwelt in Egypt, he and the house of his father.</para>
+
+<para style="ms1">Colophon</para>
+
+<para style="mr">(50:22b–26)</para>
+
+<para style="p"><verse number="22b" style="v" sid="GEN 50:22"/>And Joseph lived a hundred and ten years. <verse eid="GEN 50:22"/></para>
 
 <para style="p"><verse number="23" style="v" sid="GEN 50:23"/>And Joseph saw the third <char style="add">generation</char> of Ephraim’s sons. Also, the sons of Machir, son of Manasseh, were born<note caller="+" style="f"><char style="fr" closed="false">50.23 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">brought up</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">placed at birth</char></note> on the knees of Joseph. <verse eid="GEN 50:23"/></para>
 
