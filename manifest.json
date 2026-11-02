@@ -1,0 +1,612 @@
+{
+  "id": "eng_aiv",
+  "name": "Amundson Interpretive Version",
+  "shortName": "AIV",
+  "language": "eng",
+  "status": "draft",
+  "doNotBadgeFinished": true,
+  "exportDate": "2026-11-02",
+  "usxVersion": "3.1",
+  "usfmSpec": "https://docs.usfm.bible/usfm/3.1.1/index.html",
+  "counts": {
+    "books": 66,
+    "chapters": 1189,
+    "verses": 31084
+  },
+  "books": [
+    {
+      "usfm": "GEN",
+      "name": "Genesis",
+      "shortName": "Gen",
+      "file": "usx/GEN.usx",
+      "chapters": 50,
+      "verses": 1533,
+      "sha256": "bd173f99572ca88b117eb407f58a6c3980c835470a4e80bff583bcafbb7bb7d6"
+    },
+    {
+      "usfm": "EXO",
+      "name": "Exodus",
+      "shortName": "Exod",
+      "file": "usx/EXO.usx",
+      "chapters": 40,
+      "verses": 1213,
+      "sha256": "595ffa4ceeeb3f5427d6b316fa15f82f8f9714eb815f76ce4810d848435490b9"
+    },
+    {
+      "usfm": "LEV",
+      "name": "Leviticus",
+      "shortName": "Lev",
+      "file": "usx/LEV.usx",
+      "chapters": 27,
+      "verses": 859,
+      "sha256": "3549fa498a1567d51b84b1cd225bc117c383ac6c66fafc1ab9720ffc3ca18667"
+    },
+    {
+      "usfm": "NUM",
+      "name": "Numbers",
+      "shortName": "Num",
+      "file": "usx/NUM.usx",
+      "chapters": 36,
+      "verses": 1288,
+      "sha256": "5067598c6f7107d51c6b61afcd34d4648275da81f2736b0498528245bdb339b5"
+    },
+    {
+      "usfm": "DEU",
+      "name": "Deuteronomy",
+      "shortName": "Deut",
+      "file": "usx/DEU.usx",
+      "chapters": 34,
+      "verses": 959,
+      "sha256": "5c991a0006fd60e598116d6391926b8e2af2bc4179629eb3eccaa416ec8e3c21"
+    },
+    {
+      "usfm": "JOS",
+      "name": "Joshua",
+      "shortName": "Josh",
+      "file": "usx/JOS.usx",
+      "chapters": 24,
+      "verses": 658,
+      "sha256": "06ccd6127671e9fb8ee6672f9df87d997d3cb1a23ec15314a8147fccf58871d3"
+    },
+    {
+      "usfm": "JDG",
+      "name": "Judges",
+      "shortName": "Judg",
+      "file": "usx/JDG.usx",
+      "chapters": 21,
+      "verses": 618,
+      "sha256": "5c19606ff5af488f894fb260e16469fed3bb55dec350d8e088123da9b071bcd3"
+    },
+    {
+      "usfm": "RUT",
+      "name": "Ruth",
+      "shortName": "Ruth",
+      "file": "usx/RUT.usx",
+      "chapters": 4,
+      "verses": 85,
+      "sha256": "1524c6ba5b237afbd9f8f3c0e906b4a5bd67e69ece1e4d858dca313ff9cae70e"
+    },
+    {
+      "usfm": "1SA",
+      "name": "1 Samuel",
+      "shortName": "1 Sam",
+      "file": "usx/1SA.usx",
+      "chapters": 31,
+      "verses": 810,
+      "sha256": "4884c05a57794fa29c5f1cd9529d717e54a9176f9df65ddd6ed169248c508b30"
+    },
+    {
+      "usfm": "2SA",
+      "name": "2 Samuel",
+      "shortName": "2 Sam",
+      "file": "usx/2SA.usx",
+      "chapters": 24,
+      "verses": 695,
+      "sha256": "33d1a155602c7b8250f9790fd53349a5e4d1687b5c9def39ec9ae2f936fef4a4"
+    },
+    {
+      "usfm": "1KI",
+      "name": "1 Kings",
+      "shortName": "1 Kgs",
+      "file": "usx/1KI.usx",
+      "chapters": 22,
+      "verses": 816,
+      "sha256": "62e7d3b9146632a40ab256794be6e63de8040877215e8433674e104d3da6c3ac"
+    },
+    {
+      "usfm": "2KI",
+      "name": "2 Kings",
+      "shortName": "2 Kgs",
+      "file": "usx/2KI.usx",
+      "chapters": 25,
+      "verses": 719,
+      "sha256": "1176dfe8ed73e30ec65c9faddebfb6c839cd50f08186480e845a42fa6071f697"
+    },
+    {
+      "usfm": "1CH",
+      "name": "1 Chronicles",
+      "shortName": "1 Chr",
+      "file": "usx/1CH.usx",
+      "chapters": 29,
+      "verses": 942,
+      "sha256": "c7e811fd40d4ed9424fdb08fb043b0cae00b6962f534ae2edf31659e390215e6"
+    },
+    {
+      "usfm": "2CH",
+      "name": "2 Chronicles",
+      "shortName": "2 Chr",
+      "file": "usx/2CH.usx",
+      "chapters": 36,
+      "verses": 822,
+      "sha256": "e10bd39b4aac0ceb3903b9eef91e4b7dacfca6c3452b775c8b0fdbfe6ab62adc"
+    },
+    {
+      "usfm": "EZR",
+      "name": "Ezra",
+      "shortName": "Ezra",
+      "file": "usx/EZR.usx",
+      "chapters": 10,
+      "verses": 280,
+      "sha256": "f3c4f62397bb1770cbbd98f638776b3b97c59499a9b3824b14de2e91d55d79d0"
+    },
+    {
+      "usfm": "NEH",
+      "name": "Nehemiah",
+      "shortName": "Neh",
+      "file": "usx/NEH.usx",
+      "chapters": 13,
+      "verses": 406,
+      "sha256": "677208a7d4b350987c6c6d414c0546ad023b0195b90242b2fb384332444c70bd"
+    },
+    {
+      "usfm": "EST",
+      "name": "Esther",
+      "shortName": "Esth",
+      "file": "usx/EST.usx",
+      "chapters": 10,
+      "verses": 167,
+      "sha256": "22eb29e18bbb61bf920eb4dc1d275950037ca94c1abb9dd269a4fbf31b0a9e9a"
+    },
+    {
+      "usfm": "JOB",
+      "name": "Job",
+      "shortName": "Job",
+      "file": "usx/JOB.usx",
+      "chapters": 42,
+      "verses": 1070,
+      "sha256": "f2443fb08533ff37ac6cfb2948ed0aa9345ccd03b71c61cbcb28ed9bd3c5161f"
+    },
+    {
+      "usfm": "PSA",
+      "name": "Psalm",
+      "shortName": "Ps",
+      "file": "usx/PSA.usx",
+      "chapters": 150,
+      "verses": 2460,
+      "sha256": "40968ede85b7dde5ff08883cb8d35e61617d09d281168c2da2439fa8515b3669"
+    },
+    {
+      "usfm": "PRO",
+      "name": "Proverbs",
+      "shortName": "Prov",
+      "file": "usx/PRO.usx",
+      "chapters": 31,
+      "verses": 915,
+      "sha256": "605349017fd54ed26de149ffe1da79d17f02377b3b30483611486a9308099f34"
+    },
+    {
+      "usfm": "ECC",
+      "name": "Ecclesiastes",
+      "shortName": "Eccl",
+      "file": "usx/ECC.usx",
+      "chapters": 12,
+      "verses": 222,
+      "sha256": "d429ab1a5ce27d7bc7552c1c7189c5e743a4fb74705a3f3349a989839097b6ef"
+    },
+    {
+      "usfm": "SNG",
+      "name": "Song of Solomon",
+      "shortName": "Song",
+      "file": "usx/SNG.usx",
+      "chapters": 8,
+      "verses": 117,
+      "sha256": "fa10fee7e657d3ad9ba02efe9926de66ff6d0983fc5ba7397a126e4b9a2d030c"
+    },
+    {
+      "usfm": "ISA",
+      "name": "Isaiah",
+      "shortName": "Isa",
+      "file": "usx/ISA.usx",
+      "chapters": 66,
+      "verses": 1292,
+      "sha256": "74340c27ed8ce4b77441530ce630eaab2d2725c8a67af0116e0272403e71eb0b"
+    },
+    {
+      "usfm": "JER",
+      "name": "Jeremiah",
+      "shortName": "Jer",
+      "file": "usx/JER.usx",
+      "chapters": 52,
+      "verses": 1364,
+      "sha256": "496679c728e3f2f51cd2fe7e505085c0c172ca704b32116962d354595acfd792"
+    },
+    {
+      "usfm": "LAM",
+      "name": "Lamentations",
+      "shortName": "Lam",
+      "file": "usx/LAM.usx",
+      "chapters": 5,
+      "verses": 154,
+      "sha256": "4da2ea0fa5958bd437ae4cc85da889cea77d12373facb10836fdf02bdeee1978"
+    },
+    {
+      "usfm": "EZK",
+      "name": "Ezekiel",
+      "shortName": "Ezek",
+      "file": "usx/EZK.usx",
+      "chapters": 48,
+      "verses": 1273,
+      "sha256": "f3f3343591e914fa14839ba48e00e73f2519c204785d6d7ed83e785683f2c3eb"
+    },
+    {
+      "usfm": "DAN",
+      "name": "Daniel",
+      "shortName": "Dan",
+      "file": "usx/DAN.usx",
+      "chapters": 12,
+      "verses": 357,
+      "sha256": "7552f8ea221cbcf36d4cf57c822df6f37453ecbbd5c0e4d85c086f2f55e922ba"
+    },
+    {
+      "usfm": "HOS",
+      "name": "Hosea",
+      "shortName": "Hos",
+      "file": "usx/HOS.usx",
+      "chapters": 14,
+      "verses": 197,
+      "sha256": "5f7a9136233deadd4665d45e1bb38d814593c07df368f5a5aefac5a4c733c17c"
+    },
+    {
+      "usfm": "JOL",
+      "name": "Joel",
+      "shortName": "Joel",
+      "file": "usx/JOL.usx",
+      "chapters": 3,
+      "verses": 73,
+      "sha256": "6211724452baf04bf45d2efc762ce5ca855a554a3b12f2822393059686e3ad38"
+    },
+    {
+      "usfm": "AMO",
+      "name": "Amos",
+      "shortName": "Amos",
+      "file": "usx/AMO.usx",
+      "chapters": 9,
+      "verses": 146,
+      "sha256": "9fc0f401eae9c980939d33ffef6868e4b74b4249225857eb84b726fe2823ac9f"
+    },
+    {
+      "usfm": "OBA",
+      "name": "Obadiah",
+      "shortName": "Obad",
+      "file": "usx/OBA.usx",
+      "chapters": 1,
+      "verses": 21,
+      "sha256": "1eafa43c8a56c37f9e13fed7da45ea34ff9a20c265d408965425bfcf12287a97"
+    },
+    {
+      "usfm": "JON",
+      "name": "Jonah",
+      "shortName": "Jonah",
+      "file": "usx/JON.usx",
+      "chapters": 4,
+      "verses": 48,
+      "sha256": "de1a4a459d215b1a335280d6d4cb7c58cb3783864da57829a328721d74984498"
+    },
+    {
+      "usfm": "MIC",
+      "name": "Micah",
+      "shortName": "Mic",
+      "file": "usx/MIC.usx",
+      "chapters": 7,
+      "verses": 105,
+      "sha256": "fa8018706f6c5b4c73f412cd9ae90482ef0bc37d7bf6986f613d0b453af677d2"
+    },
+    {
+      "usfm": "NAM",
+      "name": "Nahum",
+      "shortName": "Nah",
+      "file": "usx/NAM.usx",
+      "chapters": 3,
+      "verses": 47,
+      "sha256": "11b781b36adab9401dae439de043a605a48a2201e9481807c4f236b86137de1e"
+    },
+    {
+      "usfm": "HAB",
+      "name": "Habakkuk",
+      "shortName": "Hab",
+      "file": "usx/HAB.usx",
+      "chapters": 3,
+      "verses": 56,
+      "sha256": "4f787091840fe816e51bb6b970985a508781ecc863debd591f4850bc90640381"
+    },
+    {
+      "usfm": "ZEP",
+      "name": "Zephaniah",
+      "shortName": "Zeph",
+      "file": "usx/ZEP.usx",
+      "chapters": 3,
+      "verses": 53,
+      "sha256": "0bedf18dc3b0b6640871afef4133c7badcca5e119883ca0e0562b794c11882be"
+    },
+    {
+      "usfm": "HAG",
+      "name": "Haggai",
+      "shortName": "Hag",
+      "file": "usx/HAG.usx",
+      "chapters": 2,
+      "verses": 38,
+      "sha256": "867bd60f0b18bd1154893abb58cfc7742408baaa9154c8a7d30048b3c2706fc3"
+    },
+    {
+      "usfm": "ZEC",
+      "name": "Zechariah",
+      "shortName": "Zech",
+      "file": "usx/ZEC.usx",
+      "chapters": 14,
+      "verses": 210,
+      "sha256": "8b2c0d40dbad70b31432dee00e02fdcf3ea3361fd31736b0a54c55a35a5b8cde"
+    },
+    {
+      "usfm": "MAL",
+      "name": "Malachi",
+      "shortName": "Mal",
+      "file": "usx/MAL.usx",
+      "chapters": 4,
+      "verses": 55,
+      "sha256": "4c765f1a91cb010c07fcd0fc441986a14f75906dba00f17c44eb3572c02cf68c"
+    },
+    {
+      "usfm": "MAT",
+      "name": "Matthew",
+      "shortName": "Matt",
+      "file": "usx/MAT.usx",
+      "chapters": 28,
+      "verses": 1068,
+      "sha256": "ef41c44610f30d8448767c4d4be8a4ccc5256e3cf01250759b246db09ca431bb"
+    },
+    {
+      "usfm": "MRK",
+      "name": "Mark",
+      "shortName": "Mark",
+      "file": "usx/MRK.usx",
+      "chapters": 16,
+      "verses": 673,
+      "sha256": "fdc2232e6a1bda02c0ff403fed8da12d33c3c338b054110ad2ad9222fc0f25ec"
+    },
+    {
+      "usfm": "LUK",
+      "name": "Luke",
+      "shortName": "Luke",
+      "file": "usx/LUK.usx",
+      "chapters": 24,
+      "verses": 1149,
+      "sha256": "45b40da28a96952ff4f9cf2800392f5f4c73b6961c5ab8172f1f25a25138f5ba"
+    },
+    {
+      "usfm": "JHN",
+      "name": "John",
+      "shortName": "John",
+      "file": "usx/JHN.usx",
+      "chapters": 21,
+      "verses": 878,
+      "sha256": "b61f77c9bee17281b5634249d92856c1c069c6243a910528d3fbd999633ef2c6"
+    },
+    {
+      "usfm": "ACT",
+      "name": "Acts",
+      "shortName": "Acts",
+      "file": "usx/ACT.usx",
+      "chapters": 28,
+      "verses": 1003,
+      "sha256": "e6f8b588a150f565e0a734c21c4c18ac40d2e398553793e6537ae760edfb94d0"
+    },
+    {
+      "usfm": "ROM",
+      "name": "Romans",
+      "shortName": "Rom",
+      "file": "usx/ROM.usx",
+      "chapters": 16,
+      "verses": 432,
+      "sha256": "b0d5b8b3530629fc013a2a14cffe5dd21b5cdedd876906d4c5e595d38eb4d0e2"
+    },
+    {
+      "usfm": "1CO",
+      "name": "1 Corinthians",
+      "shortName": "1 Cor",
+      "file": "usx/1CO.usx",
+      "chapters": 16,
+      "verses": 437,
+      "sha256": "6c0657b6560b3076a505ab05e917c9b0fba6495a102cd8a574909ffee25710d6"
+    },
+    {
+      "usfm": "2CO",
+      "name": "2 Corinthians",
+      "shortName": "2 Cor",
+      "file": "usx/2CO.usx",
+      "chapters": 13,
+      "verses": 257,
+      "sha256": "d157d80c986ce8e8f00eeac96194023bf4c37b8042067c346796b512a2059564"
+    },
+    {
+      "usfm": "GAL",
+      "name": "Galatians",
+      "shortName": "Gal",
+      "file": "usx/GAL.usx",
+      "chapters": 6,
+      "verses": 149,
+      "sha256": "9011fdba08557d86f336ac1a8780224c13e820528bfb7001e2ffe8f7c9ce8bb1"
+    },
+    {
+      "usfm": "EPH",
+      "name": "Ephesians",
+      "shortName": "Eph",
+      "file": "usx/EPH.usx",
+      "chapters": 6,
+      "verses": 155,
+      "sha256": "42d2cb539bacceeb2fa97fbbaf310e6b9432de96518e2bb68dd42aaade862b13"
+    },
+    {
+      "usfm": "PHP",
+      "name": "Philippians",
+      "shortName": "Phil",
+      "file": "usx/PHP.usx",
+      "chapters": 4,
+      "verses": 104,
+      "sha256": "bf43edb477df83779198845480df9b86cd3f24714db7069e186987520706e293"
+    },
+    {
+      "usfm": "COL",
+      "name": "Colossians",
+      "shortName": "Col",
+      "file": "usx/COL.usx",
+      "chapters": 4,
+      "verses": 95,
+      "sha256": "8f637e664d2502fa392218e20543f953246662ecdbe22697fbc591bbf3bd6433"
+    },
+    {
+      "usfm": "1TH",
+      "name": "1 Thessalonians",
+      "shortName": "1 Thess",
+      "file": "usx/1TH.usx",
+      "chapters": 5,
+      "verses": 89,
+      "sha256": "ded001acac686112972b15addead51d1b71c0e697ccd751df05f56f9f01a404a"
+    },
+    {
+      "usfm": "2TH",
+      "name": "2 Thessalonians",
+      "shortName": "2 Thess",
+      "file": "usx/2TH.usx",
+      "chapters": 3,
+      "verses": 47,
+      "sha256": "5b6542ab506de2c65cd659bd62fccc7dff1880a48e0551498cc13d5a945bfa58"
+    },
+    {
+      "usfm": "1TI",
+      "name": "1 Timothy",
+      "shortName": "1 Tim",
+      "file": "usx/1TI.usx",
+      "chapters": 6,
+      "verses": 113,
+      "sha256": "467c058dcba26241e03be48ce7d6cba9e91e878df87e189b6e2056e5d8db7da7"
+    },
+    {
+      "usfm": "2TI",
+      "name": "2 Timothy",
+      "shortName": "2 Tim",
+      "file": "usx/2TI.usx",
+      "chapters": 4,
+      "verses": 83,
+      "sha256": "cc49f7135d6d7f55b8710a96eb0885b9bf4fb4c16bb9ca4c7797f2d14514fe94"
+    },
+    {
+      "usfm": "TIT",
+      "name": "Titus",
+      "shortName": "Titus",
+      "file": "usx/TIT.usx",
+      "chapters": 3,
+      "verses": 46,
+      "sha256": "57ea6fc7726403ef6e6091752e44d5633042aeff7feac8950db8a217cfd24386"
+    },
+    {
+      "usfm": "PHM",
+      "name": "Philemon",
+      "shortName": "Phlm",
+      "file": "usx/PHM.usx",
+      "chapters": 1,
+      "verses": 25,
+      "sha256": "6957b2fd58bdcb8143049f8a97dd0998236614c8a73ce9d5ff4c1baab69ac504"
+    },
+    {
+      "usfm": "HEB",
+      "name": "Hebrews",
+      "shortName": "Heb",
+      "file": "usx/HEB.usx",
+      "chapters": 13,
+      "verses": 303,
+      "sha256": "38fd137f43b29d6a79ec322d844ae93e4b31ace2f275d04a55f27972717135ac"
+    },
+    {
+      "usfm": "JAS",
+      "name": "James",
+      "shortName": "Jas",
+      "file": "usx/JAS.usx",
+      "chapters": 5,
+      "verses": 108,
+      "sha256": "efd1d6cab760375c88d785feb725639ea01a8e954dc49adf472aef58b629b642"
+    },
+    {
+      "usfm": "1PE",
+      "name": "1 Peter",
+      "shortName": "1 Pet",
+      "file": "usx/1PE.usx",
+      "chapters": 5,
+      "verses": 105,
+      "sha256": "fbe21613951d2db7f95cc8c9fc349ab382e5b8b00c36408dd996391611f7d2f7"
+    },
+    {
+      "usfm": "2PE",
+      "name": "2 Peter",
+      "shortName": "2 Pet",
+      "file": "usx/2PE.usx",
+      "chapters": 3,
+      "verses": 61,
+      "sha256": "8782c63e199fff5ade974acec065217fffe3518a8356012adf68a407c414c8ad"
+    },
+    {
+      "usfm": "1JN",
+      "name": "1 John",
+      "shortName": "1 John",
+      "file": "usx/1JN.usx",
+      "chapters": 5,
+      "verses": 105,
+      "sha256": "044803f3a457a92ffe1b49bb135f54ea2eb3d3cb764879ad44518ace415877ee"
+    },
+    {
+      "usfm": "2JN",
+      "name": "2 John",
+      "shortName": "2 John",
+      "file": "usx/2JN.usx",
+      "chapters": 1,
+      "verses": 13,
+      "sha256": "74c46bd8105b2eb6e9b3f716398c34d2ef6c6b026ba5aee7d812d021e4a4c065"
+    },
+    {
+      "usfm": "3JN",
+      "name": "3 John",
+      "shortName": "3 John",
+      "file": "usx/3JN.usx",
+      "chapters": 1,
+      "verses": 14,
+      "sha256": "58032a3f1373323bae5814abf3e875dca35f084a8a3a96608d3fec93782b0203"
+    },
+    {
+      "usfm": "JUD",
+      "name": "Jude",
+      "shortName": "Jude",
+      "file": "usx/JUD.usx",
+      "chapters": 1,
+      "verses": 25,
+      "sha256": "dc5677cbfc6358d94979d1a099419418884aea76cb08ffdc2ad36f66c784a82e"
+    },
+    {
+      "usfm": "REV",
+      "name": "Revelation",
+      "shortName": "Rev",
+      "file": "usx/REV.usx",
+      "chapters": 22,
+      "verses": 404,
+      "sha256": "4f104a365d275ea5d2eee27ec437b6fb07b603fcc7b6a6444524ff90b817e933"
+    }
+  ]
+}
