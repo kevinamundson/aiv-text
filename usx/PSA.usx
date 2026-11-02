@@ -2,15 +2,15 @@
 <usx version="3.1">
 <book code="PSA" style="id">eng_aiv Amundson Interpretive Version</book>
 
-<para style="h">Psalm</para>
+<para style="h">Psalms</para>
 
-<para style="toc1">Psalm</para>
+<para style="toc1">Psalms</para>
 
-<para style="toc2">Psalm</para>
+<para style="toc2">Psalms</para>
 
 <para style="toc3">Ps</para>
 
-<para style="mt1">Psalm</para>
+<para style="mt1">Psalms</para>
 
 <para style="rem">id=eng_aiv name=Amundson Interpretive Version (AIV) status=draft spec=USFM-USX 3.1.1 export=2026-11-02 char:add=translator-addition-italic char:wj=words-of-Jesus-as-received-unmapped note:f=footnotes para:r=parallel-passage-references para:d=psalm-superscriptions</para>
 
