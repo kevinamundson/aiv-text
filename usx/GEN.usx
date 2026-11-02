@@ -374,13 +374,13 @@
 
 <para style="p"><verse number="26" style="v" sid="GEN 4:26"/>And to Seth, <char style="add">to</char> him also a son was born, and he called his name Enosh. </para>
 
-<para style="p" vid="GEN 4:26">At that time they began to call on<note caller="+" style="f"><char style="fr" closed="false">4.26 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">to proclaim</char><char style="ft" closed="false">; some translators </char><char style="fq" closed="false">to invoke</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to call themselves by</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to profane</char><char style="ft" closed="false"> </char></note> the name of YHWH. <verse eid="GEN 4:26"/></para>
+<para style="p" vid="GEN 4:26">At that time they began to call on<note caller="+" style="f"><char style="fr" closed="false">4.26 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">to proclaim</char><char style="ft" closed="false">; some translators </char><char style="fq" closed="false">to invoke</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to call themselves by</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to profane</char><char style="ft" closed="false"> </char></note> the name of YHWH.</para>
+
+<para style="qd"><char style="va">5:1a</char>This <char style="add">is</char> the book of the generations of Adam.<verse eid="GEN 4:26"/></para>
 
 <chapter eid="GEN 4"/>
 
 <chapter number="5" style="c" sid="GEN 5"/>
-
-<para style="d" vid="GEN 5:1a"><verse number="1a" style="v" sid="GEN 5:1a"/>This is the book of the generations of Adam.<verse eid="GEN 5:1a"/></para>
 
 <para style="ms1">The Written Record of Noah</para>
 
@@ -390,7 +390,7 @@
 
 <para style="r">(1 Chronicles 1:1–3)</para>
 
-<para style="p"><verse number="1b" style="v" sid="GEN 5:1b"/>This <char style="add">is</char> the book of the generations of Adam. In the day God created man, in the likeness of God He made him. <verse eid="GEN 5:1b"/></para>
+<para style="p"><verse number="1" style="v" altnumber="1b" sid="GEN 5:1"/>In the day God created man, in the likeness of God He made him. <verse eid="GEN 5:1"/></para>
 
 <para style="p"><verse number="2" style="v" sid="GEN 5:2"/>Male and female He created them, and He blessed them and called their name “Man,<note caller="+" style="f"><char style="fr" closed="false">5.2 </char><char style="ft" closed="false"> Cited in Matthew 19:4 and Mark 10:6</char></note>” in the day they were created. <note caller="+" style="f"><char style="fr" closed="false">5.2 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">Adam</char></note><verse eid="GEN 5:2"/></para>
 
