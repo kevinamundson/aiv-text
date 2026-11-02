@@ -21,7 +21,7 @@
       "file": "usx/GEN.usx",
       "chapters": 50,
       "verses": 1533,
-      "sha256": "6f7d8e56aafb81960d86539b3a61c6606a96002fe41fb4d4fba2b02019596a53"
+      "sha256": "6c5a0153cfc9dfc352fe646c4baa2c772f3148db475d8107554a1c1dcb99ce0a"
     },
     {
       "usfm": "EXO",
@@ -183,7 +183,7 @@
       "file": "usx/PSA.usx",
       "chapters": 150,
       "verses": 2460,
-      "sha256": "a687f7f7899c3e004e4319d7bc909273b43800c0894f64de0d95023cea95496b"
+      "sha256": "d2391c83c477f3a8348caf10c5938b66209b7f31608fdfacbf1a54b347527334"
     },
     {
       "usfm": "PRO",
@@ -327,7 +327,7 @@
       "file": "usx/HAB.usx",
       "chapters": 3,
       "verses": 56,
-      "sha256": "d87fe9d9dafe1aff1dda3a698447ef6f176437bec74039767a71417ae588b502"
+      "sha256": "c82551fda32cfce5c4cc73b3779071cf0b430c77fd7c93b9c3931bb679e9f4dc"
     },
     {
       "usfm": "ZEP",
