@@ -1,0 +1,332 @@
+[
+  {
+    "id": "GEN",
+    "name": "Genesis",
+    "usx": "/usx/GEN.usx"
+  },
+  {
+    "id": "EXO",
+    "name": "Exodus",
+    "usx": "/usx/EXO.usx"
+  },
+  {
+    "id": "LEV",
+    "name": "Leviticus",
+    "usx": "/usx/LEV.usx"
+  },
+  {
+    "id": "NUM",
+    "name": "Numbers",
+    "usx": "/usx/NUM.usx"
+  },
+  {
+    "id": "DEU",
+    "name": "Deuteronomy",
+    "usx": "/usx/DEU.usx"
+  },
+  {
+    "id": "JOS",
+    "name": "Joshua",
+    "usx": "/usx/JOS.usx"
+  },
+  {
+    "id": "JDG",
+    "name": "Judges",
+    "usx": "/usx/JDG.usx"
+  },
+  {
+    "id": "RUT",
+    "name": "Ruth",
+    "usx": "/usx/RUT.usx"
+  },
+  {
+    "id": "1SA",
+    "name": "1 Samuel",
+    "usx": "/usx/1SA.usx"
+  },
+  {
+    "id": "2SA",
+    "name": "2 Samuel",
+    "usx": "/usx/2SA.usx"
+  },
+  {
+    "id": "1KI",
+    "name": "1 Kings",
+    "usx": "/usx/1KI.usx"
+  },
+  {
+    "id": "2KI",
+    "name": "2 Kings",
+    "usx": "/usx/2KI.usx"
+  },
+  {
+    "id": "1CH",
+    "name": "1 Chronicles",
+    "usx": "/usx/1CH.usx"
+  },
+  {
+    "id": "2CH",
+    "name": "2 Chronicles",
+    "usx": "/usx/2CH.usx"
+  },
+  {
+    "id": "EZR",
+    "name": "Ezra",
+    "usx": "/usx/EZR.usx"
+  },
+  {
+    "id": "NEH",
+    "name": "Nehemiah",
+    "usx": "/usx/NEH.usx"
+  },
+  {
+    "id": "EST",
+    "name": "Esther",
+    "usx": "/usx/EST.usx"
+  },
+  {
+    "id": "JOB",
+    "name": "Job",
+    "usx": "/usx/JOB.usx"
+  },
+  {
+    "id": "PSA",
+    "name": "Psalms",
+    "usx": "/usx/PSA.usx"
+  },
+  {
+    "id": "PRO",
+    "name": "Proverbs",
+    "usx": "/usx/PRO.usx"
+  },
+  {
+    "id": "ECC",
+    "name": "Ecclesiastes",
+    "usx": "/usx/ECC.usx"
+  },
+  {
+    "id": "SNG",
+    "name": "Song of Songs",
+    "usx": "/usx/SNG.usx"
+  },
+  {
+    "id": "ISA",
+    "name": "Isaiah",
+    "usx": "/usx/ISA.usx"
+  },
+  {
+    "id": "JER",
+    "name": "Jeremiah",
+    "usx": "/usx/JER.usx"
+  },
+  {
+    "id": "LAM",
+    "name": "Lamentations",
+    "usx": "/usx/LAM.usx"
+  },
+  {
+    "id": "EZK",
+    "name": "Ezekiel",
+    "usx": "/usx/EZK.usx"
+  },
+  {
+    "id": "DAN",
+    "name": "Daniel",
+    "usx": "/usx/DAN.usx"
+  },
+  {
+    "id": "HOS",
+    "name": "Hosea",
+    "usx": "/usx/HOS.usx"
+  },
+  {
+    "id": "JOL",
+    "name": "Joel",
+    "usx": "/usx/JOL.usx"
+  },
+  {
+    "id": "AMO",
+    "name": "Amos",
+    "usx": "/usx/AMO.usx"
+  },
+  {
+    "id": "OBA",
+    "name": "Obadiah",
+    "usx": "/usx/OBA.usx"
+  },
+  {
+    "id": "JON",
+    "name": "Jonah",
+    "usx": "/usx/JON.usx"
+  },
+  {
+    "id": "MIC",
+    "name": "Micah",
+    "usx": "/usx/MIC.usx"
+  },
+  {
+    "id": "NAM",
+    "name": "Nahum",
+    "usx": "/usx/NAM.usx"
+  },
+  {
+    "id": "HAB",
+    "name": "Habakkuk",
+    "usx": "/usx/HAB.usx"
+  },
+  {
+    "id": "ZEP",
+    "name": "Zephaniah",
+    "usx": "/usx/ZEP.usx"
+  },
+  {
+    "id": "HAG",
+    "name": "Haggai",
+    "usx": "/usx/HAG.usx"
+  },
+  {
+    "id": "ZEC",
+    "name": "Zechariah",
+    "usx": "/usx/ZEC.usx"
+  },
+  {
+    "id": "MAL",
+    "name": "Malachi",
+    "usx": "/usx/MAL.usx"
+  },
+  {
+    "id": "MAT",
+    "name": "Matthew",
+    "usx": "/usx/MAT.usx"
+  },
+  {
+    "id": "MRK",
+    "name": "Mark",
+    "usx": "/usx/MRK.usx"
+  },
+  {
+    "id": "LUK",
+    "name": "Luke",
+    "usx": "/usx/LUK.usx"
+  },
+  {
+    "id": "JHN",
+    "name": "John",
+    "usx": "/usx/JHN.usx"
+  },
+  {
+    "id": "ACT",
+    "name": "Acts",
+    "usx": "/usx/ACT.usx"
+  },
+  {
+    "id": "ROM",
+    "name": "Romans",
+    "usx": "/usx/ROM.usx"
+  },
+  {
+    "id": "1CO",
+    "name": "1 Corinthians",
+    "usx": "/usx/1CO.usx"
+  },
+  {
+    "id": "2CO",
+    "name": "2 Corinthians",
+    "usx": "/usx/2CO.usx"
+  },
+  {
+    "id": "GAL",
+    "name": "Galatians",
+    "usx": "/usx/GAL.usx"
+  },
+  {
+    "id": "EPH",
+    "name": "Ephesians",
+    "usx": "/usx/EPH.usx"
+  },
+  {
+    "id": "PHP",
+    "name": "Philippians",
+    "usx": "/usx/PHP.usx"
+  },
+  {
+    "id": "COL",
+    "name": "Colossians",
+    "usx": "/usx/COL.usx"
+  },
+  {
+    "id": "1TH",
+    "name": "1 Thessalonians",
+    "usx": "/usx/1TH.usx"
+  },
+  {
+    "id": "2TH",
+    "name": "2 Thessalonians",
+    "usx": "/usx/2TH.usx"
+  },
+  {
+    "id": "1TI",
+    "name": "1 Timothy",
+    "usx": "/usx/1TI.usx"
+  },
+  {
+    "id": "2TI",
+    "name": "2 Timothy",
+    "usx": "/usx/2TI.usx"
+  },
+  {
+    "id": "TIT",
+    "name": "Titus",
+    "usx": "/usx/TIT.usx"
+  },
+  {
+    "id": "PHM",
+    "name": "Philemon",
+    "usx": "/usx/PHM.usx"
+  },
+  {
+    "id": "HEB",
+    "name": "Hebrews",
+    "usx": "/usx/HEB.usx"
+  },
+  {
+    "id": "JAS",
+    "name": "James",
+    "usx": "/usx/JAS.usx"
+  },
+  {
+    "id": "1PE",
+    "name": "1 Peter",
+    "usx": "/usx/1PE.usx"
+  },
+  {
+    "id": "2PE",
+    "name": "2 Peter",
+    "usx": "/usx/2PE.usx"
+  },
+  {
+    "id": "1JN",
+    "name": "1 John",
+    "usx": "/usx/1JN.usx"
+  },
+  {
+    "id": "2JN",
+    "name": "2 John",
+    "usx": "/usx/2JN.usx"
+  },
+  {
+    "id": "3JN",
+    "name": "3 John",
+    "usx": "/usx/3JN.usx"
+  },
+  {
+    "id": "JUD",
+    "name": "Jude",
+    "usx": "/usx/JUD.usx"
+  },
+  {
+    "id": "REV",
+    "name": "Revelation",
+    "usx": "/usx/REV.usx"
+  }
+]
