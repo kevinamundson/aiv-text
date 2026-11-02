@@ -210,7 +210,7 @@
       "file": "usx/SNG.usx",
       "chapters": 8,
       "verses": 117,
-      "sha256": "fa10fee7e657d3ad9ba02efe9926de66ff6d0983fc5ba7397a126e4b9a2d030c"
+      "sha256": "10ece389b857882b1acaec3cc0be4c373e01399fe0d1ee2a4fd1344121f5c313"
     },
     {
       "usfm": "ISA",
@@ -354,7 +354,7 @@
       "file": "usx/ZEC.usx",
       "chapters": 14,
       "verses": 210,
-      "sha256": "6fe27a56a78c6fd15f6a76975d037c8690d1477dede9e72bfd79b27597a63c50"
+      "sha256": "efdd35c736529a28e4805242abc3a6fd0b1fc510a66c48fb6bcdf48a8194887a"
     },
     {
       "usfm": "MAL",
@@ -534,7 +534,7 @@
       "file": "usx/HEB.usx",
       "chapters": 13,
       "verses": 303,
-      "sha256": "6275781178ce37c5fc5806775a5b4e8e21ea7ac03be7efc9c44393e08755017b"
+      "sha256": "a8bb9e396bc7be264395d03513ec45d3b12991d41318e7f8b73f786deb911bfd"
     },
     {
       "usfm": "JAS",
