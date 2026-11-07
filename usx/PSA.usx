@@ -1096,7 +1096,11 @@
 
 <para style="r">(2 Samuel 22:1–51)</para>
 
-<para style="d">Of the servant of YHWH, David, who spoke to YHWH the words of this song on the day that YHWH snatched him from the hand of all his enemies, from the hand of Saul. 1 And he said:</para>
+<para style="d">Of the servant of YHWH, David, who spoke to YHWH the words of this song on the day that YHWH snatched him from the hand of all his enemies, from the hand of Saul.</para>
+
+<para style="p"><verse number="1" style="v" sid="PSA 18:1"/>And he said: </para>
+
+<para style="q1" vid="PSA 18:1">I love You, O YHWH, my strength. <verse eid="PSA 18:1"/></para>
 
 <para style="q1"><verse number="2" style="v" sid="PSA 18:2"/>YHWH <char style="add">is</char> my rock, and my fortress, and my deliverer. </para>
 
@@ -2890,7 +2894,7 @@
 
 <para style="d">Of the servant of YHWH, of David.</para>
 
-<para style="q1"><verse number="1" style="v" sid="PSA 36:1"/> Of the transgression of the wicked </para>
+<para style="q1"><verse number="1" style="v" sid="PSA 36:1"/>An utterance Of the transgression of the wicked </para>
 
 <para style="q2" vid="PSA 36:1"><char style="add">is</char> within my heart; </para>
 
@@ -3914,6 +3918,8 @@
 
 <para style="q2" vid="PSA 45:17">upon thus the people will praise you forever and ever. <verse eid="PSA 45:17"/></para>
 
+<para style="d">For the one directing. Of the sons of Korah. According to Alamoth.† </para>
+
 <chapter eid="PSA 45"/>
 
 <chapter number="46" style="c" sid="PSA 46"/>
@@ -3922,7 +3928,7 @@
 
 <para style="r">(2 Kings 18:13–16; 2 Chronicles 32:1–8)</para>
 
-<para style="d">For the one directing. Of the sons of Korah. According to Alamoth.† A Song.</para>
+<para style="d">A Song.</para>
 
 <para style="q1"><verse number="1" style="v" sid="PSA 46:1"/> God <char style="add">is</char> unto us a place of refuge and strength, </para>
 
@@ -4916,7 +4922,7 @@
 
 <para style="d">Of David. a Miktam.†</para>
 
-<para style="q1"><verse number="1" style="v" sid="PSA 58:1"/> <char style="add">Is it</char> truly righteousness you⁺ speak? </para>
+<para style="q1"><verse number="1" style="v" sid="PSA 58:1"/>O silent ones, <char style="add">Is it</char> truly righteousness you⁺ speak? </para>
 
 <para style="q2" vid="PSA 58:1">Do you⁺ judge uprightly, O sons of man? <note caller="+" style="f"><char style="fr" closed="false">58.1 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">Miktam</char><char style="ft" closed="false"> is probably a musical or liturgical term; used for Psalms 16 and 56–60.</char></note><verse eid="PSA 58:1"/></para>
 
@@ -5674,7 +5680,7 @@
 
 <para style="d">Of David. A Psalm. A Song.</para>
 
-<para style="q1"><verse number="1" style="v" sid="PSA 68:1"/> Arises, His enemies are scattered, </para>
+<para style="q1"><verse number="1" style="v" sid="PSA 68:1"/>God Arises, His enemies are scattered, </para>
 
 <para style="q2" vid="PSA 68:1">and those hating Him flee before His face. <verse eid="PSA 68:1"/></para>
 
@@ -7844,13 +7850,15 @@
 
 <para style="q2" vid="PSA 87:7">“All my springs <char style="add">are</char> in you.” <verse eid="PSA 87:7"/></para>
 
+<para style="d">A Song. A Psalm of the sons of Korah, for the one directing. According to Mahalath Leannoth.† </para>
+
 <chapter eid="PSA 87"/>
 
 <chapter number="88" style="c" sid="PSA 88"/>
 
 <para style="s1">I Cry Out before You</para>
 
-<para style="d">A Song. A Psalm of the sons of Korah, for the one directing. According to Mahalath Leannoth.† A Maskil† of Heman the Ezrahite.</para>
+<para style="d">A Maskil† of Heman the Ezrahite.</para>
 
 <para style="q1"><verse number="1" style="v" sid="PSA 88:1"/> O YHWH, God of my salvation, </para>
 
@@ -10756,6 +10764,8 @@
 
 <para style="s1">Your Word Is a Lamp to My Feet</para>
 
+<para style="qa">אALEPH</para>
+
 <para style="q1"><verse number="1" style="v" sid="PSA 119:1"/>Blessed <char style="add">are</char><note caller="+" style="f"><char style="fr" closed="false">119.1 </char><char style="ft" closed="false"> This psalm is an acrostic poem of twenty-two stanzas, following the letters of the Hebrew alphabet; within a stanza, each verse begins with the same Hebrew letter.</char></note> those complete in the way, </para>
 
 <para style="q2" vid="PSA 119:1">those walking in the law of YHWH. <verse eid="PSA 119:1"/></para>
@@ -11980,7 +11990,7 @@
 
 <para style="d">A Song of the Ascents.</para>
 
-<para style="q1"><verse number="1" style="v" sid="PSA 132:1"/> Remember for David, </para>
+<para style="q1"><verse number="1" style="v" sid="PSA 132:1"/>O YHWH, Remember for David, </para>
 
 <para style="q2" vid="PSA 132:1">all his afflictions, <verse eid="PSA 132:1"/></para>
 
