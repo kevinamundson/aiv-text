@@ -16,7 +16,7 @@
 
 <chapter number="1" style="c" sid="GEN 1"/>
 
-<para style="ms1">The Written Record of God</para>
+<para style="ms1">The Written Record of YHWH God</para>
 
 <para style="mr">(1:1–2:4)</para>
 
@@ -122,7 +122,7 @@
 
 <para style="p"><verse number="3" style="v" sid="GEN 2:3"/>And God blessed the seventh day, and He sanctified it, because on it He ceased from all His work that God had created for making. <verse eid="GEN 2:3"/></para>
 
-<para style="d"><verse number="4" style="v" sid="GEN 2:4"/>These <char style="add">are</char> the generations of the heavens and the earth in their being created, in the day when YHWH<note caller="+" style="f"><char style="fr" closed="false">2.4 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">YHWH</char><char style="ft" closed="false"> represents the proper name of the God of Israel and the one true God, transliterated from the Hebrew as </char><char style="fq" closed="false">YHWH</char><char style="ft" closed="false"> and commonly pronounced as </char><char style="fq" closed="false">Yahweh</char><char style="ft" closed="false">; here and throughout the Scriptures. Many translations represent this name as </char><char style="fq" closed="false">the LORD</char><char style="ft" closed="false">.</char></note> God made the earth and the heavens. <verse eid="GEN 2:4"/></para>
+<para style="qd"><verse number="4" style="v" sid="GEN 2:4"/>These <char style="add">are</char> the generations of the heavens and the earth in their being created, in the day when YHWH<note caller="+" style="f"><char style="fr" closed="false">2.4 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">YHWH</char><char style="ft" closed="false"> represents the proper name of the God of Israel and the one true God, transliterated from the Hebrew as </char><char style="fq" closed="false">YHWH</char><char style="ft" closed="false"> and commonly pronounced as </char><char style="fq" closed="false">Yahweh</char><char style="ft" closed="false">; here and throughout the Scriptures. Many translations represent this name as </char><char style="fq" closed="false">the LORD</char><char style="ft" closed="false">.</char></note> God made the earth and the heavens. <verse eid="GEN 2:4"/></para>
 
 <para style="ms1">The Written Record of Adam</para>
 
@@ -376,7 +376,7 @@
 
 <para style="p" vid="GEN 4:26">At that time they began to call on<note caller="+" style="f"><char style="fr" closed="false">4.26 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">to proclaim</char><char style="ft" closed="false">; some translators </char><char style="fq" closed="false">to invoke</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to call themselves by</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">to profane</char><char style="ft" closed="false"> </char></note> the name of YHWH.</para>
 
-<para style="qd"><char style="va">5:1a</char>This <char style="add">is</char> the book of the generations of Adam.<verse eid="GEN 4:26"/></para>
+<para style="qd" vid="GEN 4:26"><char style="va">1</char> This <char style="add">is</char> the book of the generations of Adam.</para><verse eid="GEN 4:26"/>
 
 <chapter eid="GEN 4"/>
 
@@ -390,7 +390,7 @@
 
 <para style="r">(1 Chronicles 1:1–3)</para>
 
-<para style="p"><verse number="1" style="v" altnumber="1b" sid="GEN 5:1"/>In the day God created man, in the likeness of God He made him. <verse eid="GEN 5:1"/></para>
+<para style="p"><verse style="v" sid="GEN 5:1"/>In the day God created man, in the likeness of God He made him. <verse eid="GEN 5:1"/></para>
 
 <para style="p"><verse number="2" style="v" sid="GEN 5:2"/>Male and female He created them, and He blessed them and called their name “Man,<note caller="+" style="f"><char style="fr" closed="false">5.2 </char><char style="ft" closed="false"> Cited in Matthew 19:4 and Mark 10:6</char></note>” in the day they were created. <note caller="+" style="f"><char style="fr" closed="false">5.2 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">Adam</char></note><verse eid="GEN 5:2"/></para>
 
@@ -482,17 +482,17 @@
 
 <para style="p"><verse number="7" style="v" sid="GEN 6:7"/>And YHWH said, “I will wipe out mankind whom I have created from the face of the ground—from mankind to beast, to crawling thing, to the bird of the heavens—for I regret that I have made them!” <verse eid="GEN 6:7"/></para>
 
-<para style="s1">Noah’s Favor with God</para>
-
 <para style="p"><verse number="8" style="v" sid="GEN 6:8"/>And Noah found favor in the eyes of YHWH. <verse eid="GEN 6:8"/></para>
 
-<para style="d" vid="GEN 6:9a"><verse number="9a" style="v" sid="GEN 6:9"/>These <char style="add">are</char> the generations of Noah. </para>
+<para style="qd" vid="GEN 6:9"><verse number="9" style="v" sid="GEN 6:9"/>These <char style="add">are</char> the generations of Noah. </para>
 
 <para style="ms1">The Written Record of Shem</para>
 
 <para style="mr">(6:9b–11:10a)</para>
 
-<para style="p" vid="GEN 6:9b"><verse number="9b" style="v" sid="GEN 6:9"/>Noah was a righteous man, blameless in his generations; Noah walked with God. <verse eid="GEN 6:9"/></para>
+<para style="s1">Noah Walked with God</para>
+
+<para style="p" vid="GEN 6:9">Noah was a righteous man, blameless in his generations; Noah walked with God. <verse eid="GEN 6:9"/></para>
 
 <para style="p"><verse number="10" style="v" sid="GEN 6:10"/>And Noah begat three sons: Shem, Ham, and Japheth. <verse eid="GEN 6:10"/></para>
 
@@ -760,29 +760,31 @@
 
 <para style="p"><verse number="2" style="v" sid="GEN 10:2"/>The sons of Japheth: </para>
 
-<para style="p" vid="GEN 10:2">Gomer, and Magog, and Madai, and Javan, and Tubal, and Meshech, and Tiras. <verse eid="GEN 10:2"/></para>
+<para style="pi" vid="GEN 10:2">Gomer, and Magog, and Madai, and Javan, and Tubal, and Meshech, and Tiras. <verse eid="GEN 10:2"/></para>
 
 <para style="p"><verse number="3" style="v" sid="GEN 10:3"/>And the sons of Gomer: </para>
 
-<para style="p" vid="GEN 10:3">Ashkenaz, and Riphath, and Togarmah. <verse eid="GEN 10:3"/></para>
+<para style="pi" vid="GEN 10:3">Ashkenaz, and Riphath, and Togarmah. <verse eid="GEN 10:3"/></para>
 
-<para style="p"><verse number="4" style="v" sid="GEN 10:4"/>And the sons of Javan: Elishah, and Tarshish, the Kittim, and the Rodanim. <note caller="+" style="f"><char style="fr" closed="false">10.4 </char><char style="ft" closed="false"> SP and some MT manuscripts (see also LXX and 1 Chronicles 1:7); most MT manuscripts </char><char style="fq" closed="false">Dodanim</char></note><verse eid="GEN 10:4"/></para>
+<para style="p"><verse number="4" style="v" sid="GEN 10:4"/>And the sons of Javan: </para>
 
-<para style="p"><verse number="5" style="v" sid="GEN 10:5"/>From these were separated the coastlands of the nations, in their lands, each according to his language, according to their clans, in their nations. <verse eid="GEN 10:5"/></para>
+<para style="pi" vid="GEN 10:4">Elishah, and Tarshish, the Kittim, and the Rodanim. <note caller="+" style="f"><char style="fr" closed="false">10.4 </char><char style="ft" closed="false"> SP and some MT manuscripts (see also LXX and 1 Chronicles 1:7); most MT manuscripts </char><char style="fq" closed="false">Dodanim</char></note><verse eid="GEN 10:4"/>
+
+<verse number="5" style="v" sid="GEN 10:5"/>From these were separated the coastlands of the nations, in their lands, each according to his language, according to their clans, in their nations. <verse eid="GEN 10:5"/></para>
 
 <para style="s1">The Hamites</para>
 
 <para style="p"><verse number="6" style="v" sid="GEN 10:6"/>And the sons of Ham: </para>
 
-<para style="p" vid="GEN 10:6">Cush, and Mizraim, and Put, and Canaan. <verse eid="GEN 10:6"/></para>
+<para style="pi" vid="GEN 10:6">Cush, and Mizraim, and Put, and Canaan. <verse eid="GEN 10:6"/></para>
 
 <para style="p"><verse number="7" style="v" sid="GEN 10:7"/>And the sons of Cush: </para>
 
-<para style="p" vid="GEN 10:7">Seba, and Havilah, and Sabtah, and Raamah, and Sabtecha. </para>
+<para style="pi" vid="GEN 10:7">Seba, and Havilah, and Sabtah, and Raamah, and Sabtecha. </para>
 
 <para style="p" vid="GEN 10:7">And the sons of Raamah: </para>
 
-<para style="p" vid="GEN 10:7">Sheba and Dedan. <note caller="+" style="f"><char style="fr" closed="false">10.7 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">Sabtah</char><char style="ft" closed="false"> is a variant of </char><char style="fq" closed="false">Sabta</char><char style="ft" closed="false">; see 1 Chronicles 1:9.</char></note><verse eid="GEN 10:7"/></para>
+<para style="pi" vid="GEN 10:7">Sheba and Dedan. <note caller="+" style="f"><char style="fr" closed="false">10.7 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">Sabtah</char><char style="ft" closed="false"> is a variant of </char><char style="fq" closed="false">Sabta</char><char style="ft" closed="false">; see 1 Chronicles 1:9.</char></note><verse eid="GEN 10:7"/></para>
 
 <para style="p"><verse number="8" style="v" sid="GEN 10:8"/>And Cush begat Nimrod; he began to be a mighty one on the earth.<note caller="+" style="f"><char style="fr" closed="false">10.8 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">who established himself as a mighty warrior</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">who became the first fearless leader</char></note> <verse eid="GEN 10:8"/></para>
 
@@ -838,7 +840,7 @@
 
 <para style="p"><verse number="31" style="v" sid="GEN 10:31"/>These <char style="add">are</char> the sons of Shem, according to their clans, according to their languages, in their lands, in their nations. <verse eid="GEN 10:31"/></para>
 
-<para style="p"><verse number="32" style="v" sid="GEN 10:32"/>These <char style="add">are</char> the clans of the sons of Noah, according to their generations, in their nations. And from these the nations were divided on the earth after the flood. <verse eid="GEN 10:32"/></para>
+<para style="qd"><verse number="32" style="v" sid="GEN 10:32"/>These <char style="add">are</char> the clans of the sons of Noah, according to their generations, in their nations. And from these the nations were divided on the earth after the flood. <verse eid="GEN 10:32"/></para>
 
 <chapter eid="GEN 10"/>
 
@@ -866,15 +868,16 @@
 
 <para style="p"><verse number="9" style="v" sid="GEN 11:9"/>Upon thus its name is called Babel,<note caller="+" style="f"><char style="fr" closed="false">11.9 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">Babylon</char><char style="ft" closed="false">; the Hebrew word for </char><char style="fq" closed="false">Babel</char><char style="ft" closed="false"> sounds like the Hebrew for </char><char style="fq" closed="false">confused</char><char style="ft" closed="false">.</char></note> for there YHWH confused the language of all the earth, and from there YHWH scattered them over the face of all the earth. <verse eid="GEN 11:9"/></para>
 
-<para style="s1">Genealogy from Shem to Abram</para>
 
-<para style="r">(1 Chronicles 1:17–27)</para>
-
-<para style="d"><verse number="10a" style="v" sid="GEN 11:10"/>These <char style="add">are</char> the generations of Shem. </para>
+<para style="qd"><verse number="10" style="v" sid="GEN 11:10"/>These <char style="add">are</char> the generations of Shem.</para>
 
 <para style="ms1">The Written Record of Terah</para>
 
 <para style="mr">(11:10b–27a)</para>
+
+<para style="s1">Genealogy from Shem to Abram</para>
+
+<para style="r">(1 Chronicles 1:17–27)</para>
 
 <para style="p" vid="GEN 11:10">Shem <char style="add">was</char> a son of a hundred years, and he begat Arphaxad two years after the flood. <verse eid="GEN 11:10"/></para>
 
@@ -908,17 +911,17 @@
 
 <para style="p"><verse number="25" style="v" sid="GEN 11:25"/>And Nahor lived after he begat Terah nine <char style="add">and</char> ten years and a hundred years, and he begat sons and daughters. <verse eid="GEN 11:25"/></para>
 
-<para style="p"><verse number="26" style="v" sid="GEN 11:26"/>And Terah lived seventy years, and he begat Abram, Nahor, and Haran. <verse eid="GEN 11:26"/></para>
+<para style=""><verse number="26" style="v" sid="GEN 11:26"/>And Terah lived seventy years, and he begat Abram, Nahor, and Haran. <verse eid="GEN 11:26"/></para>
 
-<para style="s1">Terah’s Descendants</para>
-
-<para style="d"><verse number="27a" style="v" sid="GEN 11:27"/>And these <char style="add">are</char> the generations of Terah.<verse eid="GEN 11:27"/></para>
+<para style="qd"><verse number="27" style="v" sid="GEN 11:27"/>And these <char style="add">are</char> the generations of Terah.<verse eid="GEN 11:27"/></para>
 
 <para style="ms1">The Written Record of Isaac, Abraham's Son</para>
 
 <para style="mr">(11:27b–25:19a)</para>
 
-<para style="p" vid="GEN 11:27"><verse number="27b" style="v" sid="GEN 11:27"/>Terah begat Abram, Nahor, and Haran. And Haran begat Lot. <verse eid="GEN 11:27"/></para>
+<para style="s1">Terah’s Descendants</para>
+
+<para style="p" vid="GEN 11:27">Terah begat Abram, Nahor, and Haran. And Haran begat Lot. <verse eid="GEN 11:27"/></para>
 
 <para style="p"><verse number="28" style="v" sid="GEN 11:28"/>And Haran died before the face of Terah his father, in the land of his birth, in Ur of the Chaldeans. <verse eid="GEN 11:28"/></para>
 
@@ -1896,8 +1899,6 @@
 
 <para style="p"><verse number="11" style="v" sid="GEN 25:11"/>And it came to pass after the death of Abraham, that God blessed Isaac his son. And Isaac dwelt near Beer-lahai-roi. <verse eid="GEN 25:11"/></para>
 
-
-
 <para style="ms2">The Appended Record of Ishmael</para>
 
 <para style="mr">(25:12–18)</para>
@@ -1906,33 +1907,32 @@
 
 <para style="r">(1 Chronicles 1:28–31)</para>
 
-<para style="p"><verse number="12" style="v" sid="GEN 25:12"/>And these <char style="add">are</char> the generations of Ishmael son of Abraham, whom Hagar the Egyptianess, maidservant of Sarah, bore to Abraham. <verse eid="GEN 25:12"/></para>
+<para style="d"><verse number="12" style="v" sid="GEN 25:12"/>And these <char style="add">are</char> the generations of Ishmael son of Abraham, whom Hagar the Egyptianess, maidservant of Sarah, bore to Abraham. <verse eid="GEN 25:12"/></para>
 
-<para style="p"><verse number="13" style="v" sid="GEN 25:13"/>And these <char style="add">are</char> the names of the sons of Ishmael, by their names, according to their generations: Nebajoth the firstborn of Ishmael, and Kedar, and Adbeel, and Mibsam, <verse eid="GEN 25:13"/></para>
+<para style="pi"><verse number="13" style="v" sid="GEN 25:13"/>And these <char style="add">are</char> the names of the sons of Ishmael, by their names, according to their generations: Nebajoth the firstborn of Ishmael, and Kedar, and Adbeel, and Mibsam, <verse eid="GEN 25:13"/>
 
-<para style="p"><verse number="14" style="v" sid="GEN 25:14"/>and Mishma, and Dumah, and Massa, <verse eid="GEN 25:14"/></para>
+<verse number="14" style="v" sid="GEN 25:14"/>and Mishma, and Dumah, and Massa, <verse eid="GEN 25:14"/>
 
-<para style="p"><verse number="15" style="v" sid="GEN 25:15"/>Hadad, and Tema, Jetur, Naphish, and Kedemah. <verse eid="GEN 25:15"/></para>
+<verse number="15" style="v" sid="GEN 25:15"/>Hadad, and Tema, Jetur, Naphish, and Kedemah. <verse eid="GEN 25:15"/></para>
 
-<para style="p"><verse number="16" style="v" sid="GEN 25:16"/>These were the sons of Ishmael, and these <char style="add">were</char> their names, by their towns and their settlements—two <char style="add">and</char> ten princes according to their tribes. <verse eid="GEN 25:16"/></para>
+<para style="pi"><verse number="16" style="v" sid="GEN 25:16"/>These were the sons of Ishmael, and these <char style="add">were</char> their names, by their towns and their settlements—two <char style="add">and</char> ten princes according to their tribes. <verse eid="GEN 25:16"/>
 
-<para style="p"><verse number="17" style="v" sid="GEN 25:17"/>And these <char style="add">were</char> the years of the life of Ishmael: A hundred years and thirty years and seven years. And he expired and died, and he was gathered to his people. <verse eid="GEN 25:17"/></para>
+<verse number="17" style="v" sid="GEN 25:17"/>And these <char style="add">were</char> the years of the life of Ishmael: A hundred years and thirty years and seven years. And he expired and died, and he was gathered to his people. <verse eid="GEN 25:17"/></para>
 
-<para style="p"><verse number="18" style="v" sid="GEN 25:18"/>And they dwelt from Havilah as far as Shur, which <char style="add">is</char> before Egypt, as you go toward Asshur;<note caller="+" style="f"><char style="fr" closed="false">25.18 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">Assyria</char></note> Against the faces of all his brothers has he fallen. <verse eid="GEN 25:18"/></para>
+<para style="pi"><verse number="18" style="v" sid="GEN 25:18"/>And they dwelt from Havilah as far as Shur, which <char style="add">is</char> before Egypt, as you go toward Asshur;<note caller="+" style="f"><char style="fr" closed="false">25.18 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">Assyria</char></note> Against the faces of all his brothers has he fallen. <verse eid="GEN 25:18"/></para>
 
-<para style="s1">Jacob and Esau</para>
-
-<para style="r">(Malachi 1:1–5; Romans 9:6–29)</para>
-
-<para style="d"><verse number="19a" style="v" sid="GEN 25:19"/>And these <char style="add">are</char> the generations of Isaac son of Abraham. <verse eid="GEN 25:19"/></para>
+<para style="qd"><verse number="19" style="v" sid="GEN 25:19"/>And these <char style="add">are</char> the generations of Isaac son of Abraham. 
+</para>
 
 <para style="ms1">The Written Record of Jacob</para>
 
 <para style="mr">(25:19b–37:2a)</para>
 
-<para style="p" vid="GEN 25:19"><verse number="19b" style="v" sid="GEN 25:19"/>Abraham begat Isaac, <verse eid="GEN 25:19"/></para>
+<para style="s1">Jacob and Esau</para>
 
-<para style="p"><verse number="20" style="v" sid="GEN 25:20"/>and Isaac was a son of forty years when he took Rebekah, the daughter of Bethuel the Aramaean from Paddan-aram,<note caller="+" style="f"><char style="fr" closed="false">25.20 </char><char style="ft" closed="false"> That is, northwest Mesopotamia</char></note> the sister of Laban the Aramaean, to him as wife. <verse eid="GEN 25:20"/></para>
+<para style="r">(Malachi 1:1–5; Romans 9:6–29)</para>
+
+<para style="p" vid="GEN 25:19">Abraham begat Isaac, <verse eid="GEN 25:19"/><verse number="20" style="v" sid="GEN 25:20"/>and Isaac was a son of forty years when he took Rebekah, the daughter of Bethuel the Aramaean from Paddan-aram,<note caller="+" style="f"><char style="fr" closed="false">25.20 </char><char style="ft" closed="false"> That is, northwest Mesopotamia</char></note> the sister of Laban the Aramaean, to him as wife. <verse eid="GEN 25:20"/></para>
 
 <para style="p"><verse number="21" style="v" sid="GEN 25:21"/>And Isaac entreated YHWH for his wife, because she <char style="add">was</char> barren. And YHWH was entreated for him, and Rebekah his wife conceived. <verse eid="GEN 25:21"/></para>
 
