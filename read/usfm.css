@@ -299,5 +299,5 @@
 /* AIV overrides */
 .usfm-add{font-weight:normal} /* sty gives add Bold+Italic; the AIV USX header (rem) declares char:add=translator-addition-italic, so supplied words are italic only */
 .usfm-wj{color:inherit} /* sty gives wj Color 255 (red); Kevin ruled 14 Nov 2026: no red letters, words of Jesus in normal ink */
-.usfm-d{font-style:normal;font-variant-caps:small-caps} /* sty gives d Italic; Kevin ruled 14 Nov 2026: superscriptions/colophons in small caps, no italics (supplied words keep add italic) */
-.usfm-qd{font-style:normal;font-variant-caps:small-caps} /* sty gives qd Italic; Kevin ruled 14 Nov 2026: small caps, no italics (supplied words keep add italic) */
+.usfm-d{font-style:normal;font-variant-caps:small-caps;text-align:left} /* sty gives d Italic, centred; Kevin ruled 14 Nov 2026: superscriptions/colophons in small caps, no italics (supplied words keep add italic), left-aligned */
+.usfm-qd{font-style:normal;font-variant-caps:small-caps;text-align:left;margin-left:0} /* sty gives qd Italic, indented; Kevin ruled 14 Nov 2026: small caps, no italics (supplied words keep add italic), flush left */
