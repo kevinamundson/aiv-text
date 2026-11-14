@@ -27,7 +27,7 @@ CREDIT = "based on a public-domain draft published at literalbible.com, with AIV
 # Same grouping and order as the site index (Tanakh order for the Old Testament).
 GROUPS = [
     ("Old Testament", "The Law (TORAH)", "GEN EXO LEV NUM DEU"),
-    ("Old Testament", "The Prophets (NEVI'IM)",
+    ("Old Testament", "The Prophets (NEVI’IM)",
      "JOS JDG 1SA 2SA 1KI 2KI ISA JER EZK HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL"),
     ("Old Testament", "The Writings (KETUVIM)", "PSA PRO JOB SNG RUT LAM ECC EST DAN EZR NEH 1CH 2CH"),
     ("New Testament", None,
@@ -240,7 +240,7 @@ def build():
         if sub:
             groups.append(f"<h3>{esc(sub)}</h3>")
         items = "".join(f'<li><a class="book" href="/read/{b}/">{esc(books[b])}</a> '
-                        f'<a class="usx" href="/usx/{b}.usx" title="USX source file">{b}.usx</a></li>'
+                        f'<span class="usxp">(<a class="usx" href="/usx/{b}.usx" title="USX source file">{b}.usx</a>)</span></li>'
                         for b in s.split())
         groups.append(f'<ul class="books">{items}</ul>')
     landing = (HEAD.format(title="Read the AIV (draft)",
