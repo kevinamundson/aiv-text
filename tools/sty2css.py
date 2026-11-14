@@ -40,6 +40,9 @@ OVERRIDES = {
     "add": ({"font-weight": "normal"},
             "sty gives add Bold+Italic; the AIV USX header (rem) declares "
             "char:add=translator-addition-italic, so supplied words are italic only"),
+    "wj": ({"color": "inherit"},
+           "sty gives wj Color 255 (red); Kevin ruled 14 Nov 2026: no red letters, "
+           "words of Jesus in normal ink"),
 }
 
 

@@ -239,7 +239,8 @@ def build():
             groups.append(f"<h2>{esc(t)}</h2>"); last_t = t
         if sub:
             groups.append(f"<h3>{esc(sub)}</h3>")
-        items = "".join(f'<li><a href="/read/{b}/{parsed[b][1][0].n if len(parsed[b][1]) == 1 else ""}">{esc(books[b])}</a></li>'
+        items = "".join(f'<li><a class="book" href="/read/{b}/">{esc(books[b])}</a> '
+                        f'<a class="usx" href="/usx/{b}.usx" title="USX source file">{b}.usx</a></li>'
                         for b in s.split())
         groups.append(f'<ul class="books">{items}</ul>')
     landing = (HEAD.format(title="Read the AIV (draft)",
@@ -250,7 +251,6 @@ def build():
                + "\n".join(groups) + "\n"
                + '<section class="key"><h2>How to read this page</h2><ul>'
                + '<li><span class="usfm-add">Italic words</span> are supplied by the translator for sense in English.</li>'
-               + '<li><span class="usfm-wj">Red words</span> are the words of Jesus.</li>'
                + '<li><span class="apparatus">Headings, parallel references</span> and the lettered notes<span class="fn-call"><sup>a</sup></span> '
                + 'are editorial aids. They are not part of the Scripture text.</li></ul></section>\n'
                + '<section class="dev" id="data"><h2>For developers and Scripture apps</h2><ul>'

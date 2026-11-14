@@ -33,7 +33,7 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 :target{background:#f3ead2}
 /* Index pages */
 main.index h1{margin:1rem 0 .3rem}
-ul.books{columns:3 11rem;padding-left:1.2rem}
+
 ul.chapters{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(3rem,1fr));gap:.4rem}
 ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:#fff}
 .draft{color:var(--accent)}
@@ -42,3 +42,8 @@ section.key h2,section.dev h2{font-size:1.1rem}
 code{font-size:.85em;color:#555}
 footer.site{margin-top:2.5rem;font-size:.85rem;color:#555;border-top:1px solid var(--rule);padding-top:.8rem}
 footer.site p{margin:.3rem 0}
+/* Book lists: red reading link, then the raw USX file in gray, underlined */
+ul.books{columns:3 10rem;padding-left:1.1rem}
+ul.books li{break-inside:avoid;margin:.15rem 0}
+a.usx{color:#777;text-decoration:underline;font-size:.75em;white-space:nowrap}
+@media (max-width:600px){ul.books{columns:2;column-gap:.8rem;list-style:none;padding-left:0;font-size:.95em} a.usx{font-size:.7em}}
