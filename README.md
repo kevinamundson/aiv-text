@@ -9,6 +9,12 @@ Source for https://aivbible.kevinamundson.me/, served by Cloudflare Pages.
 - `scripts/sync_from_ezra.sh`: copy a new USX export in byte-for-byte and check sha256
 - `scripts/verify_live.py`: fetch every live USX file and check sha256 and headers
 - `_headers`: Cloudflare Pages response headers
+- `read/`: human-readable reader generated from the USX (`/read/`, `/read/{BOOK}/`, `/read/{BOOK}/{N}`). Do not edit by hand.
+- `tools/sty2css.py`: generates `read/usfm.css` from the Paratext default stylesheets (`usfm3_1.sty`, fallback `usfm.sty` 3.0.11), pinned by commit and sha256
+- `tools/build_reader.py`: builds `read/` from `usx/*.usx` (text rendered exactly as in the USX)
+- `tools/verify_reader.py`: checks every chapter page against the USX text and notes
+
+After any USX change, run `python3 tools/sty2css.py && python3 tools/build_reader.py && python3 tools/verify_reader.py` and commit `read/` with the USX.
 
 The AIV is a work in progress and is not finished.
 

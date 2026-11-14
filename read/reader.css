@@ -1,0 +1,44 @@
+/* AIV reader layout and chrome (hand-written). Marker styles come from usfm.css,
+   which tools/sty2css.py generates from the Paratext default stylesheet. */
+:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#fafafa}
+@media (max-width:600px){:root{--usfm-inch:3.5em}}
+*{box-sizing:border-box}
+body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;max-width:42rem;margin:0 auto;padding:0 1rem 2rem;
+  line-height:1.6;color:var(--ink);background:var(--bg);font-size:1.125rem}
+a{color:var(--accent)}
+header.site{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.8rem 0;border-bottom:1px solid var(--rule)}
+header.site .home{font-weight:600;text-decoration:none;color:var(--ink)}
+.status{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:3px;letter-spacing:.06em}
+nav.chap{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.8rem 0;font-size:.95rem}
+nav.chap a{text-decoration:none;padding:.35rem .2rem}
+nav.chap .up{color:var(--muted);text-align:center}
+/* Scripture text */
+main.text{margin:1rem 0 2rem}
+:where(main.text) :is(h2,h3,h4){font-size:1em;font-weight:normal;margin:0;line-height:1.35}
+main.text p{margin-top:0;margin-bottom:0}
+main.text .usfm-p{margin-top:.15em}
+.usfm-c.chrome{color:var(--muted);text-align:left;font-size:1.35em}
+/* Editorial apparatus: headings and parallel references, set apart from Scripture */
+.apparatus{color:var(--muted)}
+.usfm-v{color:var(--muted);padding:0 .12em 0 .2em;font-weight:600}
+.usfm-va{padding-right:.12em}
+/* Notes: a separate block below the text */
+.fn-call{text-decoration:none;font-size:.8em;color:var(--accent);padding:0 .08em}
+.fn-call sup{line-height:0}
+section.notes{border-top:2px solid var(--rule);margin-top:1.5rem;padding-top:.5rem;font-size:.88em;color:#3a3a3a}
+section.notes h2{font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:.4rem 0}
+section.notes ol{list-style:none;padding:0;margin:0}
+section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
+.fn-back{display:inline-block;min-width:1.4em;text-indent:0;text-decoration:none;font-weight:600}
+:target{background:#f3ead2}
+/* Index pages */
+main.index h1{margin:1rem 0 .3rem}
+ul.books{columns:3 11rem;padding-left:1.2rem}
+ul.chapters{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(3rem,1fr));gap:.4rem}
+ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:#fff}
+.draft{color:var(--accent)}
+section.key,section.dev{margin-top:2rem;font-size:.95rem}
+section.key h2,section.dev h2{font-size:1.1rem}
+code{font-size:.85em;color:#555}
+footer.site{margin-top:2.5rem;font-size:.85rem;color:#555;border-top:1px solid var(--rule);padding-top:.8rem}
+footer.site p{margin:.3rem 0}
