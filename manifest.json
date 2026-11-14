@@ -183,7 +183,7 @@
       "file": "usx/PSA.usx",
       "chapters": 150,
       "verses": 2461,
-      "sha256": "3d56f6cf9d24820f474ff374e95e6367f03d4e9e782a538e3377d0f50c4e017d"
+      "sha256": "6a795e962afbbd4e421b761c4ba6cba019e24e42beae10be0890fbedef2c140c"
     },
     {
       "usfm": "PRO",
@@ -219,7 +219,7 @@
       "file": "usx/ISA.usx",
       "chapters": 66,
       "verses": 1292,
-      "sha256": "0bde28310e3f7acc335d70e93044d771ed4575e5f2993e4d136aa916b7a61619"
+      "sha256": "4dabde1ff9427dbf8e83608fa6d404c083c25b3be6f705979a4403e4fbfe5178"
     },
     {
       "usfm": "JER",
@@ -327,7 +327,7 @@
       "file": "usx/HAB.usx",
       "chapters": 3,
       "verses": 56,
-      "sha256": "c8e76b63b94a06c4d9cec9398940be7883e4853d9a43b03674fb0cd5905ad905"
+      "sha256": "0889307c4387abc54a75eb7c32912e929dc589f8063111425380fe29efe0a777"
     },
     {
       "usfm": "ZEP",
