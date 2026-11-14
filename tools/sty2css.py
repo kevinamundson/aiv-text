@@ -43,14 +43,14 @@ OVERRIDES = {
     "wj": ({"color": "inherit"},
            "sty gives wj Color 255 (red); Kevin ruled 14 Nov 2026: no red letters, "
            "words of Jesus in normal ink"),
-    "d": ({"font-style": "normal", "font-variant-caps": "small-caps", "text-align": "left"},
+    "d": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-align": "left"},
           "sty gives d Italic, centred; Kevin ruled 14 Nov 2026: superscriptions/colophons in small caps, "
-          "no italics (supplied words keep add italic), left-aligned"),
-    "qs": ({"font-style": "normal", "font-variant-caps": "small-caps"},
-           "sty gives qs Italic; Kevin ruled 14 Nov 2026: Selah in small caps, no italics"),
-    "qd": ({"font-style": "normal", "font-variant-caps": "small-caps", "text-align": "left", "margin-left": "0"},
+          "no italics (supplied words keep add italic), left-aligned; all-small-caps per 14 Nov 3:26 PM"),
+    "qs": ({"font-style": "normal", "font-variant-caps": "all-small-caps"},
+           "sty gives qs Italic; Kevin ruled 14 Nov 2026: Selah in small caps, no italics; 14 Nov 3:26 PM: all-small-caps (no full-size capitals)"),
+    "qd": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-align": "left", "margin-left": "0"},
            "sty gives qd Italic, indented; Kevin ruled 14 Nov 2026: small caps, no italics "
-           "(supplied words keep add italic), flush left"),
+           "(supplied words keep add italic), flush left; all-small-caps per 14 Nov 3:26 PM"),
 }
 
 
