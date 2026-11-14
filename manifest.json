@@ -183,7 +183,7 @@
       "file": "usx/PSA.usx",
       "chapters": 150,
       "verses": 2461,
-      "sha256": "6a795e962afbbd4e421b761c4ba6cba019e24e42beae10be0890fbedef2c140c"
+      "sha256": "a1aa0dacaffa30ec5136a0f2204d192bab41bf8f23a344d7920d7b6861dfb0c6"
     },
     {
       "usfm": "PRO",
@@ -327,7 +327,7 @@
       "file": "usx/HAB.usx",
       "chapters": 3,
       "verses": 56,
-      "sha256": "0889307c4387abc54a75eb7c32912e929dc589f8063111425380fe29efe0a777"
+      "sha256": "25ad7a6f91a61161fa393dce356b33f7c6632b024426091da78bdcdcdd4440ab"
     },
     {
       "usfm": "ZEP",
