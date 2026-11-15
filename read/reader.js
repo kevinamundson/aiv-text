@@ -41,7 +41,7 @@
   panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true");
   panel.setAttribute("aria-label", "Books of the Bible");
   var head = el("div", "panel-head");
-  var brand = el("a", "panel-brand"); brand.href = "/read/";
+  var brand = el("a", "panel-brand"); brand.href = "/";
   brand.appendChild(el("span", "brand-name", "Amundson Interpretive Version"));
   brand.appendChild(el("span", "status", "DRAFT"));
   var close = el("button", "panel-close"); close.type = "button"; close.setAttribute("aria-label", "Close"); close.textContent = "×";
@@ -75,7 +75,7 @@
   }
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
-  foot.innerHTML = '<a class="raw" href="/read/">Raw USX files</a> · <a href="/">Home</a>';
+  foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
   panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 

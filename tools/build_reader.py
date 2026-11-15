@@ -7,8 +7,7 @@ from read/usfm.css, which tools/sty2css.py generates from the Paratext default
 stylesheets. Layout and chrome live in read/reader.css (hand-written).
 
 Output (served by Cloudflare Pages with pretty URLs):
-  read/index.html            book list          -> /read/
-  read/{BOOK}/index.html     chapter list       -> /read/GEN/
+  _redirects                 /read, /read/{BOOK} -> 301 to the first chapter
   read/{BOOK}/{N}.html       one chapter        -> /read/GEN/1
 The raw USX, manifest.json, books.json and metadata.json are left untouched.
 
@@ -160,7 +159,7 @@ HEAD = """<!doctype html>
 <header class="bar">
 <button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 <a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
-<span class="bar-right"><a class="status" href="/read/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
+<span class="bar-right"><a class="status" href="/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
 </header>
 """
 
@@ -219,7 +218,7 @@ HEAD = """<!doctype html>
 <header class="bar">
 <button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 <a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
-<span class="bar-right"><a class="status" href="/read/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
+<span class="bar-right"><a class="status" href="/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
 </header>
 """
 
@@ -295,7 +294,7 @@ def build():
         parts = [HEAD.format(title=f"{esc(lab(b, n))} · AIV (draft)",
                              desc=f"{attr(lab(b, n))} in the Amundson Interpretive Version (AIV), a draft English Bible text.",
                              extra=f'<link rel="alternate" type="application/xml" href="/usx/{b}.usx" title="USX source">\n',
-                             book=b, chapter=n, barhref=f"/read/{b}/", bartitle=esc(lab(b, n))),
+                             book=b, chapter=n, barhref="/#books", bartitle=esc(lab(b, n))),
                  f'<main class="text" lang="en" data-book="{b}" data-chapter="{n}">\n']
         if n == chs[0].n:
             parts += [para_html(s, body) + "\n" for s, body in intro.paras]
@@ -313,48 +312,18 @@ def build():
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("".join(parts), encoding="utf-8")
         pages += 1
+    # /read and /read/{BOOK} index pages are retired (Kevin 14 Nov 9:51 PM): they 301 to the
+    # first chapter via Cloudflare Pages _redirects. Books are listed explicitly so assets
+    # such as /read/reader.css are never caught by a placeholder rule.
+    old = OUT / "index.html"
+    if old.exists():
+        old.unlink()
+    rules = ["# Generated by tools/build_reader.py. Retired reader index pages -> first chapter.",
+             "/read /read/GEN/1 301", "/read/ /read/GEN/1 301", "/read/index.html /read/GEN/1 301"]
     for b in ORDER:
-        chs = parsed[b][1]
-        grid = "".join(f'<li><a href="/read/{b}/{c.n}">{c.n}</a></li>' for c in chs)
-        page = (HEAD.format(title=f"{esc(books[b])} · AIV (draft)",
-                            desc=f"Chapters of {attr(books[b])} in the Amundson Interpretive Version (AIV).", extra="",
-                            book=b, chapter="", barhref="/read/", bartitle=esc(books[b]))
-                + f'<main class="index"><h1>{esc(books[b])}</h1>\n<ul class="chapters">{grid}</ul>\n'
-                + f'<p class="dev">Source file: <a href="/usx/{b}.usx">/usx/{b}.usx</a> (USX 3.1)</p>\n'
-                + '<p><a href="/read/">&lsaquo; All books</a></p></main>\n'
-                + foot(""))
-        (OUT / b / "index.html").write_text(page, encoding="utf-8")
-        pages += 1
-    groups, last_t = [], None
-    for t, sub, s in GROUPS:
-        if t != last_t:
-            groups.append(f"<h2>{esc(t)}</h2>"); last_t = t
-        if sub:
-            groups.append(f"<h3>{esc(sub)}</h3>")
-        items = "".join(f'<li><a class="book" href="/read/{b}/">{esc(books[b])}</a> '
-                        f'<span class="usxp">(<a class="usx" href="/usx/{b}.usx" title="USX source file">{b}.usx</a>)</span></li>'
-                        for b in s.split())
-        groups.append(f'<ul class="books">{items}</ul>')
-    landing = (HEAD.format(title="Read the AIV (draft)",
-                           desc="Read the Amundson Interpretive Version (AIV), a draft English Bible text, book by book.",
-                           extra="", book="", chapter="", barhref="/read/", bartitle="Books of the Bible")
-               + '<main class="index">\n<h1>Read the Bible</h1>\n'
-               + '<p class="draft">This is a draft. The text is under active revision and may change.</p>\n'
-               + "\n".join(groups) + "\n"
-               + '<section class="key"><h2>How to read this page</h2><ul>'
-               + '<li><span class="usfm-add">Italic words</span> are supplied by the translator for sense in English.</li>'
-               + '<li><span class="apparatus">Headings, parallel references</span> and the lettered notes<span class="fn-call"><sup>a</sup></span> '
-               + 'are editorial aids. They are not part of the Scripture text.</li></ul></section>\n'
-               + '<section class="dev" id="data"><h2>For developers and Scripture apps</h2><ul>'
-               + '<li>USX 3.1 files, one per book: <code>/usx/{BOOK}.usx</code> (for example <a href="/usx/GEN.usx">/usx/GEN.usx</a>)</li>'
-               + '<li><a href="/manifest.json">manifest.json</a>: book list, counts and sha256 per USX file</li>'
-               + '<li><a href="/books.json">books.json</a>: the 66 books and their USX paths</li>'
-               + '<li><a href="/metadata.json">metadata.json</a>: translation metadata and licence</li>'
-               + '</ul><p>All of these are served with <code>Access-Control-Allow-Origin: *</code>. '
-               + 'Styling follows the Paratext default USFM stylesheet (<a href="/read/usfm.css">usfm.css</a>).</p></section>\n'
-               + "</main>\n" + foot(""))
-    (OUT / "index.html").write_text(landing, encoding="utf-8")
-    pages += 1
+        first = parsed[b][1][0].n
+        rules += [f"/read/{b} /read/{b}/{first} 301", f"/read/{b}/ /read/{b}/{first} 301"]
+    (ROOT / "_redirects").write_text("\n".join(rules) + "\n", encoding="utf-8")
     print(f"wrote {pages} pages to {OUT}; unknown USX elements: {sorted(unknown) or 'none'}")
 
 

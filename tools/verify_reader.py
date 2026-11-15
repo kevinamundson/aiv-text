@@ -117,7 +117,7 @@ def main():
         if vpage != verses:
             bad.append(f"{b}: {vpage} verse numbers in pages vs {verses} in USX")
         nv += verses
-    for p in [ROOT / "read" / "index.html"] + sorted((ROOT / "read").glob("*/index.html")):
+    for p in [ROOT / "index.html"]:
         if re.search(r"berean", p.read_text(), re.I):
             bad.append(f"{p}: source name in index chrome")
     print(f"chapters={pages} verses={nv} notes={nn} problems={len(bad)}")
