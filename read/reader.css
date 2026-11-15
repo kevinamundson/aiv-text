@@ -11,9 +11,15 @@
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height:1.6;color:var(--ink);background:var(--bg);font-size:1.125rem}
+/* Reading-pane type steps with viewport width (Kevin 15 Nov; measured from literalword.com Genesis 1,
+   Default preset: ~21-22px at 1919/1242px, ~18px at 848px, ~15px at 513px, stepping between 1242-848px
+   and 848-513px). AIV keeps its 18px midpoint and floors at 16px rather than 15px. */
+@media (min-width:77.5rem){body{font-size:1.3125rem}} /* 21px on wide screens */
+@media (max-width:53rem){body{font-size:1rem}} /* 16px on phones */
 a{color:var(--accent)}
 [id]{scroll-margin-top:calc(var(--bar) + .75rem)}
 .page{max-width:42rem;margin:0 auto;padding:0 var(--pane) 6rem;transition:transform .25s ease}
+@media (min-width:77.5rem){.page{max-width:56rem}} /* wide screens: 56rem column; Literal Word runs ~80rem, 56rem keeps lines shorter */
 /* Top bar: menu, centred book + chapter (opens the panel), draft tag and search */
 header.bar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:3rem 1fr auto;align-items:center;height:var(--bar);
   margin:0 calc(-1 * var(--pane));padding:0 .4rem;background:var(--bg);border-bottom:1px solid var(--rule)}
@@ -28,16 +34,18 @@ main.text{margin:var(--pane) 0 2rem}
 :where(main.text) :is(h2,h3,h4){font-size:1em;font-weight:normal;margin:0;line-height:1.35}
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
-/* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the 1.125rem body = 6px);
-   d gets twice that after it, qd twice that before it; qs (inside qc) keeps the qc paragraph spacing unchanged. */
-main.text p.usfm-d{margin-top:calc(2 * .3333 * 1.125rem);margin-bottom:calc(2 * .3333 * 1.125rem)} /* same before as after (Kevin 14 Nov 8:44 PM) */
-main.text p.usfm-qd{margin-top:calc(2 * .3333 * 1.125rem)}
+/* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the body size = 6px at 18px);
+   d gets twice that after it, qd twice that before it; qs (inside qc) keeps the qc paragraph spacing unchanged.
+   The em is relative, so the spacing scales with the stepped body size above. */
+main.text p.usfm-d{margin-top:calc(2 * .3333em);margin-bottom:calc(2 * .3333em)} /* same before as after (Kevin 14 Nov 8:44 PM) */
+main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
 main.text :is(.usfm-h,.usfm-h1,.usfm-h2,.usfm-h3,.usfm-toc1,.usfm-toc2,.usfm-toc3,.usfm-toca1,.usfm-toca2,.usfm-toca3){display:none}
 /* Book title on chapter 1 (mt1): equal space above and below, each the pane padding */
 main.text .usfm-mt1{font-size:2rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:center;line-height:1.2;
   margin:var(--pane) 0;padding:0}
+@media (max-width:53rem){main.text .usfm-mt1{font-size:1.6rem}} /* title shrinks only at the small step, as Literal Word's does */
 main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
 /* Editorial apparatus: headings and parallel references, set apart from Scripture */
@@ -63,6 +71,7 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 .fab.prev{left:max(1rem,env(safe-area-inset-left))}
 .fab.next{right:max(1rem,env(safe-area-inset-right))}
 @media (min-width:56rem){.fab.prev{left:calc(50% - 21rem - 4.5rem)}.fab.next{right:calc(50% - 21rem - 4.5rem)}}
+@media (min-width:77.5rem){.fab.prev{left:calc(50% - 28rem - 4.5rem)}.fab.next{right:calc(50% - 28rem - 4.5rem)}} /* docked beside the 56rem column */
 /* Side panel: neutral gray gradient (dark gray left to darker gray right), tan Old Testament, gold New Testament.
    At most two thirds of the screen width. */
 .scrim{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45)}
