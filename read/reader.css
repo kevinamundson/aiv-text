@@ -19,10 +19,14 @@ body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height
 a{color:var(--accent)}
 [id]{scroll-margin-top:calc(var(--bar) + .75rem)}
 .page{max-width:42rem;margin:0 auto;padding:0 var(--pane) 6rem;transition:transform .25s ease}
-@media (min-width:77.5rem){.page{max-width:56rem}} /* wide screens: 56rem column; Literal Word runs ~80rem, 56rem keeps lines shorter */
-/* Top bar: menu, centred book + chapter (opens the panel), draft tag and search */
+/* Reading column as a fraction of the page width (Kevin 15 Nov): 5/9 at full size (1240px+),
+   7/9 at 768-1239px, 10/12 at 375-767px; below 375px the 42rem base stands (the pane is the viewport less its padding). */
+@media (min-width:23.4375rem) and (max-width:47.9375rem){.page{max-width:83.3333%}} /* 375-767px: 10/12 */
+@media (min-width:48rem) and (max-width:77.4375rem){.page{max-width:77.7778%}} /* 768-1239px: 7/9 */
+@media (min-width:77.5rem){.page{max-width:55.5556%}} /* 1240px+: 5/9 */
+/* Top bar: full width of the page (Kevin 15 Nov) — menu top-left, search top-right; centred book + chapter opens the panel, draft tag and search at right */
 header.bar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:3rem 1fr auto;align-items:center;height:var(--bar);
-  margin:0 calc(-1 * var(--pane));padding:0 .4rem;background:var(--bg);border-bottom:1px solid var(--rule)}
+  margin:0;padding:0 .4rem;background:var(--bg);border-bottom:1px solid var(--rule)}
 .bar-btn{appearance:none;border:0;background:none;color:var(--ink);width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0}
 .bar-btn:hover,.bar-btn:focus-visible{background:rgba(0,0,0,.06)}
 .bar-title{justify-self:center;color:var(--ink);text-decoration:none;font-weight:600;
@@ -70,8 +74,8 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 .fab:active{transform:scale(.94)}
 .fab.prev{left:max(1rem,env(safe-area-inset-left))}
 .fab.next{right:max(1rem,env(safe-area-inset-right))}
-@media (min-width:56rem){.fab.prev{left:calc(50% - 21rem - 4.5rem)}.fab.next{right:calc(50% - 21rem - 4.5rem)}}
-@media (min-width:77.5rem){.fab.prev{left:calc(50% - 28rem - 4.5rem)}.fab.next{right:calc(50% - 28rem - 4.5rem)}} /* docked beside the 56rem column */
+@media (min-width:48rem){.fab.prev{left:calc(50% - 38.8889% - 4.5rem)}.fab.next{right:calc(50% - 38.8889% - 4.5rem)}} /* docked beside the 7/9 column */
+@media (min-width:77.5rem){.fab.prev{left:calc(50% - 27.7778% - 4.5rem)}.fab.next{right:calc(50% - 27.7778% - 4.5rem)}} /* docked beside the 5/9 column */
 /* Side panel: neutral gray gradient (dark gray left to darker gray right), tan Old Testament, gold New Testament.
    At most two thirds of the screen width. */
 .scrim{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45)}
@@ -83,6 +87,11 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 html,body{overflow-x:clip}
 body.panel-open{overflow:hidden}
 body.panel-open .page{transform:translateX(min(6rem,12vw))}
+/* Desktop (1240px+): the open panel pushes the pane aside instead of overlaying it —
+   the pane shifts by half the 24rem panel, which centres it in the space beside the panel,
+   and the scrim is hidden so the pane stays fully visible. Below 1240px the 7/9 column plus
+   a 24rem panel cannot both fit on screen, so the overlay behaviour stands. */
+@media (min-width:77.5rem){body.panel-open .page{transform:translateX(12rem)}body.panel-open .scrim{display:none}}
 @media (prefers-reduced-motion:reduce){.panel{animation:none}.page{transition:none}}
 .panel a{color:inherit}
 .panel-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:.4rem;height:var(--bar);
