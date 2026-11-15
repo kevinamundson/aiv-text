@@ -145,7 +145,7 @@
       if (curBook && byId[curBook] && openId !== curBook && !input.value.trim()) showGrid(curBook, false);
       if (focusSearch || !curBook) input.focus();
       else (pop && pop.querySelector('[aria-current="page"]') || close).focus();
-    } else if (lastFocus) lastFocus.focus();
+    } else if (lastFocus) lastFocus.focus({ preventScroll: true }); // keyboard position kept; no visible ring (reader.css)
   }
   openers.forEach(function (o) {
     o.addEventListener("click", function (e) { e.preventDefault(); lastFocus = o; setOpen(true, o.dataset.open === "search"); });
