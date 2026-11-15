@@ -4,7 +4,7 @@
    d/qd/qs all-small-caps and not italic, d/qd flush left, qr right, qc centred, add italic.
    Reading-pane colours and type are the original ones (as at aa950af); only the side panel has its own palette. */
 :root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#fafafa;
-  --pane:1rem; /* page padding around the reading pane; also the space above and below the book title */
+  --pane:1rem;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; /* page padding around the reading pane; also the space above and below the book title */
   --tan:#bfae8a;--gold:#e2b75e;--bar:3.25rem}
 @media (max-width:600px){:root{--usfm-inch:3.5em}}
 *{box-sizing:border-box}
@@ -29,6 +29,10 @@ main.text{margin:var(--pane) 0 2rem}
 :where(main.text) :is(h2,h3,h4){font-size:1em;font-weight:normal;margin:0;line-height:1.35}
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
+/* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the 1.125rem body = 6px);
+   d gets twice that after it, qd twice that before it; qs (inside qc) keeps the qc paragraph spacing unchanged. */
+main.text p.usfm-d{margin-bottom:calc(2 * .3333 * 1.125rem)}
+main.text p.usfm-qd{margin-top:calc(2 * .3333 * 1.125rem)}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
 main.text :is(.usfm-h,.usfm-h1,.usfm-h2,.usfm-h3,.usfm-toc1,.usfm-toc2,.usfm-toc3,.usfm-toca1,.usfm-toca2,.usfm-toca3){display:none}
@@ -39,7 +43,8 @@ main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
 /* Editorial apparatus: headings and parallel references, set apart from Scripture */
 .apparatus{color:var(--muted)}
-.usfm-v{color:var(--accent);padding:0 .12em 0 .2em;font-weight:600} /* same dark red as the note letters (Kevin 14 Nov 7:18 PM) */
+.usfm-v{color:var(--accent);padding:0 .12em 0 .2em;font-weight:600;font-family:var(--sans)} /* same dark red as the note letters (Kevin 14 Nov 7:18 PM); system-ui sans (8:23 PM) */
+.usfm-va{font-family:var(--sans)}
 .usfm-va{padding-right:.12em}
 /* Notes: a separate block below the text */
 .fn-call{text-decoration:none;font-size:.8em;color:var(--accent);padding:0 .08em}
@@ -63,7 +68,7 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
    At most two thirds of the screen width. */
 .scrim{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45)}
 .panel{position:fixed;top:0;left:0;bottom:0;z-index:40;width:min(66.667vw,24rem);
-  background:linear-gradient(to right,#3a3a3a,#1f1f1f);color:var(--tan);
+  background:linear-gradient(to right,#3a3a3a,#1f1f1f);color:var(--tan);font-family:var(--sans);
   overflow-y:auto;overscroll-behavior:contain;padding:0 .8rem 2rem;font-size:.95rem;box-shadow:4px 0 18px rgba(0,0,0,.35);
   animation:slidein .22s ease}
 @keyframes slidein{from{transform:translateX(-100%)}to{transform:none}}
@@ -78,7 +83,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-close{appearance:none;border:0;background:none;color:var(--tan);font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;flex:none;border-radius:50%;cursor:pointer}
 .panel-close:hover,.panel-close:focus-visible{background:rgba(255,255,255,.1)}
 .panel-search{margin:.8rem 0 .4rem}
-.panel-search input{width:100%;font:inherit;font-size:.95rem;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
+.panel-search input{width:100%;font:inherit;font-family:var(--sans);font-size:.95rem;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
   background:rgba(255,255,255,.08);color:#f2ede2;-webkit-appearance:none;appearance:none;box-shadow:none;outline:none}
 /* search box: book-selector gold instead of the browser's blue focus ring */
 .panel-search input:focus,.panel-search input:focus-visible{outline:2px solid var(--gold);outline-offset:1px;box-shadow:none;border-color:var(--gold)}
@@ -127,3 +132,6 @@ ul.books li{break-inside:avoid;margin:.15rem 0}
 .usxp{color:#777;font-size:.75em;white-space:nowrap}
 a.usx{color:#777;text-decoration:underline}
 @media (max-width:600px){ul.books{columns:2;column-gap:.8rem;list-style:none;padding-left:0;font-size:.85em} .usxp{font-size:.7em}}
+/* Side panel text is system-ui sans (Kevin 14 Nov 8:23 PM); the name "Amundson Interpretive Version" stays in Vollkorn */
+.panel-brand .brand-name{font-family:"Vollkorn",Georgia,"Times New Roman",serif}
+.panel button,.panel input{font-family:var(--sans)}

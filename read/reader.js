@@ -42,7 +42,7 @@
   panel.setAttribute("aria-label", "Books of the Bible");
   var head = el("div", "panel-head");
   var brand = el("a", "panel-brand"); brand.href = "/read/";
-  brand.appendChild(el("span", "", "Amundson Interpretive Version"));
+  brand.appendChild(el("span", "brand-name", "Amundson Interpretive Version"));
   brand.appendChild(el("span", "status", "DRAFT"));
   var close = el("button", "panel-close"); close.type = "button"; close.setAttribute("aria-label", "Close"); close.textContent = "×";
   head.appendChild(brand); head.appendChild(close);
