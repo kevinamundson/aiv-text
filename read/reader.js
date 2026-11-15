@@ -51,58 +51,80 @@
   input.setAttribute("aria-label", "Find a book or chapter"); input.autocomplete = "off"; input.spellcheck = false;
   var go = el("a", "panel-go"); go.hidden = true;
   form.appendChild(input); form.appendChild(go);
+  /* Book list: rows of [Old Testament, New Testament] that meet at the centre line.
+     Tapping a book opens its chapter grid right under that row (one open at a time). */
   var listView = el("div", "panel-books");
   listView.appendChild(el("h2", "panel-h", "Books of the Bible"));
-  var cols = el("div", "panel-cols");
+  var rowsEl = el("div", "panel-rows");
   var empty = el("p", "panel-empty", "No book matches."); empty.hidden = true;
-  var items = [];
-  [["OT", "Old Testament"], ["NT", "New Testament"]].forEach(function (t) {
-    var ul = el("ul", "panel-list " + t[0].toLowerCase()); ul.setAttribute("aria-label", t[1]);
-    BOOKS.filter(function (b) { return b[3] === t[0]; }).forEach(function (b) {
-      var li = el("li"), a = el("a", "", b[1]); a.href = href(b[0], 1); a.dataset.book = b[0];
-      if (b[0] === curBook) a.setAttribute("aria-current", "true");
-      li.appendChild(a); ul.appendChild(li); items.push([li, b]);
+  var OT = BOOKS.filter(function (b) { return b[3] === "OT"; }), NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
+  var rows = [], cells = {};
+  for (var r = 0; r < Math.max(OT.length, NT.length); r++) {
+    var row = el("div", "panel-row"), pair = [];
+    [[OT[r], "ot"], [NT[r], "nt"]].forEach(function (x) {
+      var c = el("div", "panel-cell " + x[1]);
+      if (x[0]) {
+        var a = el("a", "", x[0][1]); a.href = href(x[0][0], 1); a.dataset.book = x[0][0];
+        a.setAttribute("aria-expanded", "false");
+        if (x[0][0] === curBook) a.setAttribute("aria-current", "true");
+        c.appendChild(a); cells[x[0][0]] = {cell: c, a: a, row: row};
+      }
+      row.appendChild(c); pair.push(x[0] ? [c, x[0]] : null);
     });
-    cols.appendChild(ul);
-  });
-  listView.appendChild(cols); listView.appendChild(empty);
-  var gridView = el("div", "panel-chapters"); gridView.hidden = true;
+    rowsEl.appendChild(row); rows.push([row, pair]);
+  }
+  listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
   foot.innerHTML = '<a href="/read/">All books, with the raw .usx files</a> · <a href="/">Home</a>';
-  panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(gridView); panel.appendChild(foot);
+  panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 
-  function showGrid(id) {
+  var openId = null, pop = null;
+  function closeGrid() {
+    if (pop) pop.remove();
+    if (openId && cells[openId]) { cells[openId].a.setAttribute("aria-expanded", "false"); cells[openId].cell.classList.remove("open"); }
+    pop = null; openId = null;
+  }
+  function showGrid(id, focus) {
     var b = byId[id]; if (!b) return;
-    gridView.innerHTML = "";
-    var back = el("button", "panel-back", "‹ Books"); back.type = "button";
-    back.addEventListener("click", function () { gridView.hidden = true; listView.hidden = false; input.focus(); });
-    var h = el("h2", "panel-h", b[1] + " ");
-    var usx = el("span", "usxp"); usx.append("(");
+    closeGrid();
+    var c = cells[id];
+    pop = el("div", "panel-pop " + (b[3] === "OT" ? "from-ot" : "from-nt")); pop.id = "chapters-" + id;
+    var usx = el("p", "usxp"); usx.append("(");
     var ua = el("a", "usx", b[0] + ".usx"); ua.href = "/usx/" + b[0] + ".usx"; ua.title = "USX source file";
-    usx.appendChild(ua); usx.append(")"); h.appendChild(usx);
-    var ul = el("ul", "panel-grid"); ul.setAttribute("aria-label", "Chapters of " + b[1]);
+    usx.appendChild(ua); usx.append(")");
+    var ul = el("ul", "panel-grid" + (b[2] < 5 ? " few" : "")); ul.setAttribute("aria-label", "Chapters of " + b[1]);
     for (var i = 1; i <= b[2]; i++) {
       var li = el("li"), a = el("a", "", String(i)); a.href = href(b[0], i);
+      a.setAttribute("aria-label", (b[0] === "PSA" ? "Psalm " : b[1] + " ") + i);
       if (b[0] === curBook && String(i) === curCh) a.setAttribute("aria-current", "page");
       li.appendChild(a); ul.appendChild(li);
     }
-    gridView.appendChild(back); gridView.appendChild(h); gridView.appendChild(ul);
-    listView.hidden = true; gridView.hidden = false;
-    (ul.querySelector('[aria-current="page"]') || ul.querySelector("a")).focus();
+    pop.appendChild(ul); pop.appendChild(usx);
+    c.row.after(pop);
+    c.a.setAttribute("aria-expanded", "true"); c.a.setAttribute("aria-controls", pop.id); c.cell.classList.add("open");
+    openId = id;
+    if (focus) (ul.querySelector('[aria-current="page"]') || ul.querySelector("a")).focus();
+    var cur = ul.querySelector('[aria-current="page"]');
+    (cur || c.a).scrollIntoView({block: "nearest"});
   }
-  cols.addEventListener("click", function (e) {
+  rowsEl.addEventListener("click", function (e) {
     var a = e.target.closest("a[data-book]"); if (!a) return;
-    var b = byId[a.dataset.book];
-    if (b[2] > 1) { e.preventDefault(); showGrid(b[0]); }
+    e.preventDefault();
+    if (openId === a.dataset.book) closeGrid(); else showGrid(a.dataset.book, false);
   });
 
   function filter() {
     var q = input.value, p = q.trim() ? parse(q) : null, n = 0;
-    gridView.hidden = true; listView.hidden = false;
-    items.forEach(function (it) {
-      var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
-      it[0].hidden = !show; if (show) n++;
+    closeGrid();
+    rows.forEach(function (r) {
+      var any = false;
+      r[1].forEach(function (it) {
+        if (!it) return;
+        var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
+        it[0].classList.toggle("off", !show); if (show) { any = true; n++; }
+      });
+      r[0].hidden = !any;
     });
     empty.hidden = n > 0;
     if (p && p.hits.length) {
@@ -123,9 +145,9 @@
     openers.forEach(function (o) { o.setAttribute("aria-expanded", String(open)); });
     document.querySelectorAll(".page, .fab").forEach(function (n) { if (open) n.setAttribute("inert", ""); else n.removeAttribute("inert"); });
     if (open) {
-      if (!focusSearch && curBook && byId[curBook][2] > 1) showGrid(curBook);
-      else { gridView.hidden = true; listView.hidden = false; }
-      if (focusSearch || !curBook || byId[curBook][2] === 1) input.focus();
+      if (curBook && byId[curBook] && openId !== curBook && !input.value.trim()) showGrid(curBook, false);
+      if (focusSearch || !curBook) input.focus();
+      else (pop && pop.querySelector('[aria-current="page"]') || close).focus();
     } else if (lastFocus) lastFocus.focus();
   }
   openers.forEach(function (o) {
