@@ -75,7 +75,7 @@
   }
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
-  foot.innerHTML = '<a href="/read/">All books, with the raw .usx files</a> · <a href="/">Home</a>';
+  foot.innerHTML = '<a class="raw" href="/read/">Raw USX files</a> · <a href="/">Home</a>';
   panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 
@@ -90,9 +90,6 @@
     closeGrid();
     var c = cells[id];
     pop = el("div", "panel-pop " + (b[3] === "OT" ? "from-ot" : "from-nt")); pop.id = "chapters-" + id;
-    var usx = el("p", "usxp"); usx.append("(");
-    var ua = el("a", "usx", b[0] + ".usx"); ua.href = "/usx/" + b[0] + ".usx"; ua.title = "USX source file";
-    usx.appendChild(ua); usx.append(")");
     var ul = el("ul", "panel-grid" + (b[2] < 5 ? " few" : "")); ul.setAttribute("aria-label", "Chapters of " + b[1]);
     for (var i = 1; i <= b[2]; i++) {
       var li = el("li"), a = el("a", "", String(i)); a.href = href(b[0], i);
@@ -100,7 +97,7 @@
       if (b[0] === curBook && String(i) === curCh) a.setAttribute("aria-current", "page");
       li.appendChild(a); ul.appendChild(li);
     }
-    pop.appendChild(ul); pop.appendChild(usx);
+    pop.appendChild(ul);
     c.row.after(pop);
     c.a.setAttribute("aria-expanded", "true"); c.a.setAttribute("aria-controls", pop.id); c.cell.classList.add("open");
     openId = id;

@@ -78,8 +78,12 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-close{appearance:none;border:0;background:none;color:var(--tan);font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;flex:none;border-radius:50%;cursor:pointer}
 .panel-close:hover,.panel-close:focus-visible{background:rgba(255,255,255,.1)}
 .panel-search{margin:.8rem 0 .4rem}
-.panel-search input{width:100%;font:inherit;font-size:.95rem;padding:.5rem .65rem;border-radius:.45rem;border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08);color:#f2ede2}
+.panel-search input{width:100%;font:inherit;font-size:.95rem;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
+  background:rgba(255,255,255,.08);color:#f2ede2;-webkit-appearance:none;appearance:none;box-shadow:none;outline:none}
+/* search box: book-selector gold instead of the browser's blue focus ring */
+.panel-search input:focus,.panel-search input:focus-visible{outline:2px solid var(--gold);outline-offset:1px;box-shadow:none;border-color:var(--gold)}
+.panel-search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.panel :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .panel-search input::placeholder{color:#a8a8a8}
 .panel-go{display:block;margin:.5rem 0 0;padding:.45rem .7rem;border-radius:.45rem;background:var(--gold);color:#1f1f1f!important;
   text-decoration:none;font-weight:600}
@@ -91,8 +95,9 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-cell.ot a{color:var(--tan)}
 .panel-cell.nt a{color:var(--gold)}
 .panel-cell.off a{visibility:hidden}
-.panel-cell a:hover,.panel-cell a:focus-visible,.panel-cell.open a{color:#fff}
-.panel-cell a[aria-current]{text-decoration:underline;text-underline-offset:.2em}
+@media (hover:hover){.panel-cell a:hover{color:#fff}}
+/* selected (expanded) book and the current book: selector gold, bold */
+.panel-cell.open a,.panel-cell a[aria-current],.panel-cell.open a:hover,.panel-cell a[aria-current]:hover{color:var(--gold);font-weight:700}
 .panel-empty{color:#a8a8a8;text-align:center}
 /* Chapter grid pops out under the tapped book's row, full panel width: 5 across; fewer than 5 are centred */
 .panel-pop{margin:.25rem 0 .55rem;padding:.55rem;border-radius:.5rem;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);
@@ -104,8 +109,6 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-grid a{display:block;text-align:center;padding:.4rem 0;border-radius:.35rem;background:rgba(255,255,255,.08);text-decoration:none;color:#f0e6cf}
 .panel-grid a:hover,.panel-grid a:focus-visible{background:rgba(255,255,255,.2)}
 .panel-grid a[aria-current]{background:var(--gold);color:#1f1f1f}
-.panel-pop .usxp{margin:.45rem 0 0;text-align:center;font-size:.75rem}
-.panel-pop .usxp,.panel-pop a.usx{color:#a8a8a8}
 .panel-foot{margin-top:1.6rem;font-size:.8rem;color:#a8a8a8;text-align:center}
 .panel-foot a{color:#cfcfcf}
 /* Index pages */
