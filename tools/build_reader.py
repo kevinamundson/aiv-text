@@ -198,6 +198,7 @@ def para_html(st, body, extra=""):
     return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
 
 
+# The bar sits outside .page (Kevin 15 Nov): full width, menu top-left, search top-right.
 HEAD = """<!doctype html>
 <html lang="en">
 <head>
@@ -214,12 +215,12 @@ HEAD = """<!doctype html>
 <script src="/read/reader.js" defer></script>
 {extra}</head>
 <body data-book="{book}" data-chapter="{chapter}">
-<div class="page">
 <header class="bar">
 <button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 <a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
 <span class="bar-right"><a class="status" href="/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
 </header>
+<div class="page">
 """
 
 
