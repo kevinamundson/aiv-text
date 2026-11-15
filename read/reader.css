@@ -91,7 +91,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
    the pane shifts by half the 24rem panel, which centres it in the space beside the panel,
    and the scrim is hidden so the pane stays fully visible. Below 1240px the 7/9 column plus
    a 24rem panel cannot both fit on screen, so the overlay behaviour stands. */
-@media (min-width:77.5rem){body.panel-open .page{transform:translateX(12rem)}body.panel-open .scrim{display:none}}
+@media (min-width:77.5rem){body.panel-open .page{transform:translateX(12rem)}body.panel-open .scrim{display:none}body.panel-open .fab{transform:translateX(12rem)}} /* the chapter buttons travel with the pane so they never cover its text */
 @media (prefers-reduced-motion:reduce){.panel{animation:none}.page{transition:none}}
 .panel a{color:inherit}
 .panel-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:.4rem;height:var(--bar);
