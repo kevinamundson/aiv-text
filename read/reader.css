@@ -1,73 +1,60 @@
 /* AIV reader layout and chrome (hand-written). Marker styles come from usfm.css,
    which tools/sty2css.py generates from the Paratext default stylesheet.
    Kevin's rulings (in usfm.css overrides) stand: no red letters for the words of Jesus,
-   d/qd/qs all-small-caps and not italic, d/qd flush left, qr right, qc centred, add italic. */
-:root{--ink:#26231f;--muted:#6a645b;--rule:#ddd5c6;--accent:#840000;--red:#b3261e;--bg:#f4f1ea;--paper:#fbf9f4;
+   d/qd/qs all-small-caps and not italic, d/qd flush left, qr right, qc centred, add italic.
+   Reading-pane colours and type are the original ones (as at aa950af); only the side panel has its own palette. */
+:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#fafafa;
+  --pane:1rem; /* page padding around the reading pane; also the space above and below the book title */
   --slate:#2f3a44;--slate2:#26303a;--tan:#bfae8a;--gold:#e2b75e;--bar:3.25rem}
 @media (max-width:600px){:root{--usfm-inch:3.5em}}
 *{box-sizing:border-box}
-html{background:var(--bg)}
-body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height:1.6;color:var(--ink);background:var(--bg);font-size:1.125rem;
-  -webkit-text-size-adjust:100%}
-a{color:var(--accent)}
-[id]{scroll-margin-top:calc(var(--bar) + .75rem)}
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.page{max-width:42rem;margin:0 auto;padding:0 1.1rem 6rem;transition:transform .25s ease}
+body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height:1.6;color:var(--ink);background:var(--bg);font-size:1.125rem}
+a{color:var(--accent)}
+[id]{scroll-margin-top:calc(var(--bar) + .75rem)}
+.page{max-width:42rem;margin:0 auto;padding:0 var(--pane) 6rem;transition:transform .25s ease}
 /* Top bar: menu, centred book + chapter (opens the panel), draft tag and search */
 header.bar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:3rem 1fr auto;align-items:center;height:var(--bar);
-  margin:0 -1.1rem;padding:0 .4rem;background:rgba(244,241,234,.96);border-bottom:1px solid var(--rule);
-  -webkit-backdrop-filter:saturate(1.2) blur(6px);backdrop-filter:saturate(1.2) blur(6px)}
+  margin:0 calc(-1 * var(--pane));padding:0 .4rem;background:var(--bg);border-bottom:1px solid var(--rule)}
 .bar-btn{appearance:none;border:0;background:none;color:var(--ink);width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0}
 .bar-btn:hover,.bar-btn:focus-visible{background:rgba(0,0,0,.06)}
-.bar-title{font-variant-numeric:lining-nums;justify-self:center;display:inline-flex;align-items:center;gap:.3rem;color:var(--ink);text-decoration:none;font-weight:600;
+.bar-title{justify-self:center;color:var(--ink);text-decoration:none;font-weight:600;
   font-size:1.12rem;padding:.3rem .7rem;border-radius:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .bar-title:hover,.bar-title:focus-visible{background:rgba(0,0,0,.06)}
-.bar-title svg{color:var(--muted);flex:none}
 .bar-right{display:flex;align-items:center;gap:.15rem}
-.status{display:inline-block;background:var(--accent);color:#fff;font-size:.62rem;font-weight:600;padding:.08rem .4rem;border-radius:3px;
-  letter-spacing:.06em;text-decoration:none;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.status{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:3px;letter-spacing:.06em;text-decoration:none}
 /* Scripture text */
-main.text{margin:1.2rem 0 2rem}
+main.text{margin:var(--pane) 0 2rem}
 :where(main.text) :is(h2,h3,h4){font-size:1em;font-weight:normal;margin:0;line-height:1.35}
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
 main.text :is(.usfm-h,.usfm-h1,.usfm-h2,.usfm-h3,.usfm-toc1,.usfm-toc2,.usfm-toc3,.usfm-toca1,.usfm-toca2,.usfm-toca3){display:none}
-/* Book title on chapter 1 (mt1 from the USX), large serif capitals */
-main.text .usfm-mt1{font-size:2rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--ink);margin:.8rem 0 1.2rem;line-height:1.2}
+/* Book title on chapter 1 (mt1): equal space above and below, each the pane padding */
+main.text .usfm-mt1{font-size:2rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:center;line-height:1.2;
+  margin:var(--pane) 0;padding:0}
+main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
 /* Editorial apparatus: headings and parallel references, set apart from Scripture */
 .apparatus{color:var(--muted)}
-main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-ms,.usfm-ms1,.usfm-ms2){font-variant-caps:small-caps;letter-spacing:.03em;font-weight:600;color:#4f4a43}
-main.text :is(.usfm-s,.usfm-s1){font-size:1.05em;margin-top:1.1em}
-/* Verse numbers: small, bold, red */
-.usfm-v{color:var(--red);padding:0 .14em 0 .22em;font-weight:700;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.6em}
+.usfm-v{color:var(--muted);padding:0 .12em 0 .2em;font-weight:600}
 .usfm-va{padding-right:.12em}
-/* Chapter number as a red drop cap at verse 1 */
-.usfm-v.dropcap{float:left;font-family:inherit;font-weight:500;font-size:3.6em;line-height:.82;vertical-align:baseline;
-  color:var(--red);padding:0;margin:.06em .14em 0 0;font-variant-numeric:lining-nums}
-main.text .has-dropcap{text-indent:0;display:flow-root}
-main.text .has-dropcap.usfm-q1{margin-left:calc(.25 * var(--usfm-inch))}
-main.text .usfm-d + .has-dropcap,main.text .usfm-d + .usfm-d{margin-top:.3em}
-main.text::after{content:"";display:block;clear:both}
 /* Notes: a separate block below the text */
-.fn-call{text-decoration:none;font-size:.78em;color:var(--red);padding:0 .06em;font-style:normal}
+.fn-call{text-decoration:none;font-size:.8em;color:var(--accent);padding:0 .08em}
 .fn-call sup{line-height:0}
-section.notes{border-top:1px solid var(--rule);margin-top:1.5rem;padding-top:.5rem;font-size:.88em;color:#3a3630}
-section.notes h2{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:.4rem 0}
+section.notes{border-top:2px solid var(--rule);margin-top:1.5rem;padding-top:.5rem;font-size:.88em;color:#3a3a3a}
+section.notes h2{font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:.4rem 0}
 section.notes ol{list-style:none;padding:0;margin:0}
 section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
-.fn-back{display:inline-block;min-width:1.4em;text-indent:0;text-decoration:none;font-weight:600;color:var(--red)}
-:target{background:#efe3c4}
-.usfm-v:target{background:none}
-/* Floating round prev/next chapter buttons */
+.fn-back{display:inline-block;min-width:1.4em;text-indent:0;text-decoration:none;font-weight:600}
+:target{background:#f3ead2}
+/* Floating round prev/next chapter buttons (original page colours) */
 .fab{position:fixed;bottom:max(1rem,env(safe-area-inset-bottom));z-index:15;width:3.1rem;height:3.1rem;border-radius:50%;
-  display:grid;place-items:center;background:var(--paper);color:var(--ink);border:1px solid var(--rule);
-  box-shadow:0 2px 8px rgba(40,30,10,.18),0 1px 2px rgba(40,30,10,.12);text-decoration:none;transition:transform .15s,box-shadow .15s}
-.fab:hover{box-shadow:0 4px 14px rgba(40,30,10,.24)}
+  display:grid;place-items:center;background:#fff;color:var(--ink);border:1px solid var(--rule);
+  box-shadow:0 2px 8px rgba(0,0,0,.16),0 1px 2px rgba(0,0,0,.1);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.fab:hover{box-shadow:0 4px 14px rgba(0,0,0,.22)}
 .fab:active{transform:scale(.94)}
 .fab.prev{left:max(1rem,env(safe-area-inset-left))}
 .fab.next{right:max(1rem,env(safe-area-inset-right))}
@@ -98,6 +85,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-list{list-style:none;margin:0;padding:0}
 .panel-list li{margin:0}
 .panel-list a{display:block;padding:.22rem 0;text-decoration:none;line-height:1.3}
+.panel-list.ot{text-align:right}
 .panel-list.ot a{color:var(--tan)}
 .panel-list.nt a{color:var(--gold)}
 .panel-list a:hover,.panel-list a:focus-visible{color:#fff}
@@ -107,7 +95,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-chapters .panel-h{font-size:1.15rem;letter-spacing:.02em;text-transform:none;color:var(--gold)}
 .panel-chapters .usxp,.panel-chapters a.usx{color:#9aa3ab}
 .panel-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(2.6rem,1fr));gap:.4rem}
-.panel-grid a{font-variant-numeric:lining-nums;display:block;text-align:center;padding:.45rem 0;border-radius:.4rem;background:rgba(255,255,255,.06);text-decoration:none;color:#f0e6cf}
+.panel-grid a{display:block;text-align:center;padding:.45rem 0;border-radius:.4rem;background:rgba(255,255,255,.06);text-decoration:none;color:#f0e6cf}
 .panel-grid a:hover,.panel-grid a:focus-visible{background:rgba(255,255,255,.16)}
 .panel-grid a[aria-current]{background:var(--gold);color:var(--slate2)}
 .panel-foot{margin-top:1.6rem;font-size:.85rem;color:#9aa3ab}
@@ -115,12 +103,12 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 /* Index pages */
 main.index h1{margin:1rem 0 .3rem}
 ul.chapters{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(3rem,1fr));gap:.4rem}
-ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:var(--paper)}
+ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:#fff}
 .draft{color:var(--accent)}
 section.key,section.dev{margin-top:2rem;font-size:.95rem}
 section.key h2,section.dev h2{font-size:1.1rem}
 code{font-size:.85em;color:#555}
-footer.site{margin-top:2.5rem;font-size:.85rem;color:#5a554d;border-top:1px solid var(--rule);padding-top:.8rem}
+footer.site{margin-top:2.5rem;font-size:.85rem;color:#555;border-top:1px solid var(--rule);padding-top:.8rem}
 footer.site p{margin:.3rem 0}
 /* Book lists: red reading link, then the raw USX file in gray, underlined */
 ul.books{columns:3 10rem;padding-left:1.1rem}

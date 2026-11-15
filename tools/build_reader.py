@@ -159,7 +159,66 @@ HEAD = """<!doctype html>
 <div class="page">
 <header class="bar">
 <button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-<a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></a>
+<a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
+<span class="bar-right"><a class="status" href="/read/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
+</header>
+"""
+
+
+def foot(source_links, fabs=""):
+    return f"""<footer class="site">
+<p class="draft">The AIV is a work in progress. It is not finished, and its wording may change.</p>
+<p>Amundson Interpretive Version (AIV), {esc(CREDIT)}.</p>
+<p>&copy; 2026 Kevin Amundson. Licensed under <a href="/LICENSE">CC BY 4.0</a>. {source_links}</p>
+</footer>
+</div>
+{fabs}</body>
+</html>
+"""
+
+
+def fabs(prev, nxt):
+    """Floating round prev/next chapter buttons (bottom corners); omitted at GEN 1 / REV 22."""
+    out = []
+    if prev:
+        out.append(f'<a class="fab prev" rel="prev" href="/read/{prev[0]}/{prev[1]}" '
+                   f'aria-label="Previous chapter: {attr(prev[2])}" title="{attr(prev[2])}">'
+                   '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 5l-7 7 7 7" '
+                   'stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>\n')
+    if nxt:
+        out.append(f'<a class="fab next" rel="next" href="/read/{nxt[0]}/{nxt[1]}" '
+                   f'aria-label="Next chapter: {attr(nxt[2])}" title="{attr(nxt[2])}">'
+                   '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" '
+                   'stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>\n')
+    return "".join(out)
+
+
+def para_html(st, body, extra=""):
+    kind = "apparatus" if is_apparatus(st) else "scripture"
+    tag = HEADING_TAG.get(st, "p")
+    return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
+
+
+HEAD = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/read/usfm.css">
+<link rel="stylesheet" href="/read/reader.css">
+<script src="/read/nav-data.js" defer></script>
+<script src="/read/reader.js" defer></script>
+{extra}</head>
+<body data-book="{book}" data-chapter="{chapter}">
+<div class="page">
+<header class="bar">
+<button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+<a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
 <span class="bar-right"><a class="status" href="/read/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
 </header>
 """
@@ -234,13 +293,7 @@ def build():
                  f'<main class="text" lang="en" data-book="{b}" data-chapter="{n}">\n']
         if n == chs[0].n:
             parts += [para_html(s, body) + "\n" for s, body in intro.paras]
-        done = False
-        for s_, body in ch.paras:
-            extra = ""
-            if not done and DROP_FROM in body:
-                body, extra, done = body.replace(DROP_FROM, dropcap(n), 1), " has-dropcap", True
-            parts.append(para_html(s_, body, extra) + "\n")
-        assert done, f"{b} {n}: no verse 1 for the chapter number"
+        parts += [para_html(s_, body) + "\n" for s_, body in ch.paras]
         parts.append("</main>\n")
         if ch.notes:
             parts.append('<section class="notes" aria-label="Notes">\n<h2 class="chrome">Notes</h2>\n<ol>\n')
