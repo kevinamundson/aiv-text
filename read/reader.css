@@ -135,3 +135,7 @@ a.usx{color:#777;text-decoration:underline}
 /* Side panel text is system-ui sans (Kevin 14 Nov 8:23 PM); the name "Amundson Interpretive Version" stays in Vollkorn */
 .panel-brand .brand-name{font-family:"Vollkorn",Georgia,"Times New Roman",serif}
 .panel button,.panel input{font-family:var(--sans)}
+/* d/qd/qs use Vollkorn SC (Kevin 14 Nov 10:33 PM). Vollkorn SC has no italic, so supplied words (add)
+   inside them use Vollkorn italic with matching small caps; note letters keep Vollkorn. */
+main.text .usfm-d .usfm-add,main.text .usfm-qd .usfm-add,main.text .usfm-qs .usfm-add{font-family:"Vollkorn",Georgia,"Times New Roman",serif;font-style:italic;font-variant-caps:all-small-caps}
+main.text .usfm-d .fn-call,main.text .usfm-qd .fn-call{font-family:"Vollkorn",Georgia,"Times New Roman",serif;text-transform:none}

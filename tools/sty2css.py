@@ -43,17 +43,17 @@ OVERRIDES = {
     "wj": ({"color": "inherit"},
            "sty gives wj Color 255 (red); Kevin ruled 14 Nov 2026: no red letters, "
            "words of Jesus in normal ink"),
-    "d": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-transform": "none", "font-size": "1.2em", "line-height": "1.2", "color": "inherit", "text-align": "left"},
+    "d": ({"font-family": "\"Vollkorn SC\", \"Vollkorn\", Georgia, serif", "font-style": "normal", "font-variant-caps": "normal", "text-transform": "lowercase", "font-size": "1.2em", "line-height": "1.2", "color": "inherit", "text-align": "left"},
           "sty gives d Italic, centred; Kevin ruled 14 Nov 2026: superscriptions/colophons in small caps, "
-          "no italics (supplied words keep add italic), left-aligned; all-small-caps per 14 Nov 3:26 PM; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour"),
-    "qs": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-transform": "none", "font-size": "1.2em", "line-height": "1.2", "color": "inherit"},
-           "sty gives qs Italic; Kevin ruled 14 Nov 2026: Selah in small caps, no italics; 14 Nov 3:26 PM: all-small-caps; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour"),
+          "no italics (supplied words keep add italic), left-aligned; all-small-caps per 14 Nov 3:26 PM; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour; 10:33 PM: true small caps from Vollkorn SC (lowercase so every letter is a small cap)"),
+    "qs": ({"font-family": "\"Vollkorn SC\", \"Vollkorn\", Georgia, serif", "font-style": "normal", "font-variant-caps": "normal", "text-transform": "lowercase", "font-size": "1.2em", "line-height": "1.2", "color": "inherit"},
+           "sty gives qs Italic; Kevin ruled 14 Nov 2026: Selah in small caps, no italics; 14 Nov 3:26 PM: all-small-caps; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour; 10:33 PM: true small caps from Vollkorn SC (lowercase so every letter is a small cap)"),
     "q2": ({"text-indent": "calc(-0.25 * var(--usfm-inch))"},
            "sty gives q2 LeftMargin .75, FirstLineIndent -.375 (first line at .375in); Kevin ruled 14 Nov 2026 7:50 PM: "
            "q2 first line twice q1's (q1 .75 - .5 = .25in, so q2 .5in: FirstLineIndent -.25); wrap unchanged at .75in"),
-    "qd": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-transform": "none", "font-size": "1.2em", "line-height": "1.2", "color": "inherit", "text-align": "left", "margin-left": "0"},
+    "qd": ({"font-family": "\"Vollkorn SC\", \"Vollkorn\", Georgia, serif", "font-style": "normal", "font-variant-caps": "normal", "text-transform": "lowercase", "font-size": "1.2em", "line-height": "1.2", "color": "inherit", "text-align": "left", "margin-left": "0"},
            "sty gives qd Italic, indented; Kevin ruled 14 Nov 2026: small caps, no italics "
-           "(supplied words keep add italic), flush left; all-small-caps per 14 Nov 3:26 PM; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour"),
+           "(supplied words keep add italic), flush left; all-small-caps per 14 Nov 3:26 PM; 8:23 PM: back to all-small-caps, 1.2em, line-height 1.2, dark gray #5c5c5c; 8:44 PM: body text colour; 10:33 PM: true small caps from Vollkorn SC (lowercase so every letter is a small cap)"),
 }
 
 

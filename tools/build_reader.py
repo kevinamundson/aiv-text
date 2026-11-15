@@ -148,7 +148,7 @@ HEAD = """<!doctype html>
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&family=Vollkorn+SC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/usfm.css">
 <link rel="stylesheet" href="/read/reader.css">
 <script src="/read/nav-data.js" defer></script>
@@ -207,7 +207,7 @@ HEAD = """<!doctype html>
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&family=Vollkorn+SC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/usfm.css">
 <link rel="stylesheet" href="/read/reader.css">
 <script src="/read/nav-data.js" defer></script>
