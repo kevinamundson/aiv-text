@@ -134,10 +134,10 @@ def parse_book(path):
     return intro, chapters, unknown
 
 
-def para_html(st, body):
+def para_html(st, body, extra=""):
     kind = "apparatus" if is_apparatus(st) else "scripture"
     tag = HEADING_TAG.get(st, "p")
-    return f'<{tag} class="usfm-{attr(st)} {kind}">{body}</{tag}>'
+    return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
 
 
 HEAD = """<!doctype html>
@@ -152,32 +152,54 @@ HEAD = """<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/usfm.css">
 <link rel="stylesheet" href="/read/reader.css">
+<script src="/read/nav-data.js" defer></script>
+<script src="/read/reader.js" defer></script>
 {extra}</head>
-<body>
-<header class="site"><a class="home" href="/read/">Amundson Interpretive Version</a> <span class="status">DRAFT</span></header>
+<body data-book="{book}" data-chapter="{chapter}">
+<div class="page">
+<header class="bar">
+<button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+<a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></a>
+<span class="bar-right"><a class="status" href="/read/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
+</header>
 """
 
 
-def foot(source_links):
+def foot(source_links, fabs=""):
     return f"""<footer class="site">
 <p class="draft">The AIV is a work in progress. It is not finished, and its wording may change.</p>
 <p>Amundson Interpretive Version (AIV), {esc(CREDIT)}.</p>
 <p>&copy; 2026 Kevin Amundson. Licensed under <a href="/LICENSE">CC BY 4.0</a>. {source_links}</p>
 </footer>
-</body>
+</div>
+{fabs}</body>
 </html>
 """
 
 
-def nav(book, name, n, total, prev, nxt):
-    p = f'<a rel="prev" href="/read/{prev[0]}/{prev[1]}">&lsaquo; {esc(prev[2])}</a>' if prev else "<span></span>"
-    x = f'<a rel="next" href="/read/{nxt[0]}/{nxt[1]}">{esc(nxt[2])} &rsaquo;</a>' if nxt else "<span></span>"
-    return (f'<nav class="chap">{p}<a class="up" href="/read/{book}/">{esc(name)} '
-            f'&middot; chapters</a>{x}</nav>\n')
+def fabs(prev, nxt):
+    """Floating round prev/next chapter buttons (bottom corners); omitted at GEN 1 / REV 22."""
+    out = []
+    if prev:
+        out.append(f'<a class="fab prev" rel="prev" href="/read/{prev[0]}/{prev[1]}" '
+                   f'aria-label="Previous chapter: {attr(prev[2])}" title="{attr(prev[2])}">'
+                   '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 5l-7 7 7 7" '
+                   'stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>\n')
+    if nxt:
+        out.append(f'<a class="fab next" rel="next" href="/read/{nxt[0]}/{nxt[1]}" '
+                   f'aria-label="Next chapter: {attr(nxt[2])}" title="{attr(nxt[2])}">'
+                   '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" '
+                   'stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>\n')
+    return "".join(out)
 
 
-def chapter_label(book, n):
-    return f"Psalm {n}" if book == "PSA" else f"Chapter {n}"
+DROP_FROM = '<sup class="usfm-v vn" id="v1">1</sup>'
+
+
+def dropcap(n):
+    """Verse 1 shown as the large chapter number; screen readers hear 'Chapter n, verse 1'."""
+    return (f'<span class="usfm-v vn dropcap" id="v1"><span class="sr">Chapter </span>{n}'
+            f'<span class="sr">, verse 1</span></span>')
 
 
 def build():
@@ -192,7 +214,13 @@ def build():
         parsed[b] = (intro, chs)
         unknown |= unk
     seq = [(b, ch.n) for b in ORDER for ch in parsed[b][1]]
-    lab = lambda b, n: (f"Psalm {n}" if b == "PSA" else f"{books[b]} {n}") if len(parsed[b][1]) > 1 else books[b]
+    lab = lambda b, n: f"Psalm {n}" if b == "PSA" else f"{books[b]} {n}"
+    testament = {b: ("NT" if t == "New Testament" else "OT") for t, _, s in GROUPS for b in s.split()}
+    data = [[b, books[b], len(parsed[b][1]), testament[b]] for b in ORDER]
+    (OUT / "nav-data.js").write_text(
+        "/* Generated by tools/build_reader.py: [id, name, chapters, testament] in reading order. */\n"
+        "window.AIV_BOOKS=" + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n",
+        encoding="utf-8")
     pages = 0
     for i, (b, n) in enumerate(seq):
         intro, chs = parsed[b]
@@ -201,13 +229,18 @@ def build():
         nxt = (seq[i + 1][0], seq[i + 1][1], lab(*seq[i + 1])) if i + 1 < len(seq) else None
         parts = [HEAD.format(title=f"{esc(lab(b, n))} · AIV (draft)",
                              desc=f"{attr(lab(b, n))} in the Amundson Interpretive Version (AIV), a draft English Bible text.",
-                             extra=f'<link rel="alternate" type="application/xml" href="/usx/{b}.usx" title="USX source">\n'),
-                 nav(b, books[b], n, len(chs), prev, nxt),
+                             extra=f'<link rel="alternate" type="application/xml" href="/usx/{b}.usx" title="USX source">\n',
+                             book=b, chapter=n, barhref=f"/read/{b}/", bartitle=esc(lab(b, n))),
                  f'<main class="text" lang="en" data-book="{b}" data-chapter="{n}">\n']
         if n == chs[0].n:
             parts += [para_html(s, body) + "\n" for s, body in intro.paras]
-        parts.append(f'<h2 class="usfm-c chrome">{esc(chapter_label(b, n))}</h2>\n')
-        parts += [para_html(s, body) + "\n" for s, body in ch.paras]
+        done = False
+        for s_, body in ch.paras:
+            extra = ""
+            if not done and DROP_FROM in body:
+                body, extra, done = body.replace(DROP_FROM, dropcap(n), 1), " has-dropcap", True
+            parts.append(para_html(s_, body, extra) + "\n")
+        assert done, f"{b} {n}: no verse 1 for the chapter number"
         parts.append("</main>\n")
         if ch.notes:
             parts.append('<section class="notes" aria-label="Notes">\n<h2 class="chrome">Notes</h2>\n<ol>\n')
@@ -216,8 +249,7 @@ def build():
                              f'aria-label="back to text">{esc(mark)}</a> '
                              f'<span class="usfm-{attr(st)} note-body">{body}</span></li>\n')
             parts.append("</ol>\n</section>\n")
-        parts.append(nav(b, books[b], n, len(chs), prev, nxt))
-        parts.append(foot(f'Source: <a href="/usx/{b}.usx">{b}.usx</a> (USX 3.1).'))
+        parts.append(foot(f'Source: <a href="/usx/{b}.usx">{b}.usx</a> (USX 3.1).', fabs(prev, nxt)))
         p = OUT / b / f"{n}.html"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("".join(parts), encoding="utf-8")
@@ -226,7 +258,8 @@ def build():
         chs = parsed[b][1]
         grid = "".join(f'<li><a href="/read/{b}/{c.n}">{c.n}</a></li>' for c in chs)
         page = (HEAD.format(title=f"{esc(books[b])} · AIV (draft)",
-                            desc=f"Chapters of {attr(books[b])} in the Amundson Interpretive Version (AIV).", extra="")
+                            desc=f"Chapters of {attr(books[b])} in the Amundson Interpretive Version (AIV).", extra="",
+                            book=b, chapter="", barhref="/read/", bartitle=esc(books[b]))
                 + f'<main class="index"><h1>{esc(books[b])}</h1>\n<ul class="chapters">{grid}</ul>\n'
                 + f'<p class="dev">Source file: <a href="/usx/{b}.usx">/usx/{b}.usx</a> (USX 3.1)</p>\n'
                 + '<p><a href="/read/">&lsaquo; All books</a></p></main>\n'
@@ -245,7 +278,7 @@ def build():
         groups.append(f'<ul class="books">{items}</ul>')
     landing = (HEAD.format(title="Read the AIV (draft)",
                            desc="Read the Amundson Interpretive Version (AIV), a draft English Bible text, book by book.",
-                           extra="")
+                           extra="", book="", chapter="", barhref="/read/", bartitle="Books of the Bible")
                + '<main class="index">\n<h1>Read the Bible</h1>\n'
                + '<p class="draft">This is a draft. The text is under active revision and may change.</p>\n'
                + "\n".join(groups) + "\n"
