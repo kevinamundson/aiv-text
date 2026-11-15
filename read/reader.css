@@ -81,7 +81,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-brand{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;text-decoration:none;color:var(--gold)!important;font-weight:600;font-size:.8rem;line-height:1.2;min-width:0}
 .panel-close{appearance:none;border:0;background:none;color:var(--tan);font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;flex:none;border-radius:50%;cursor:pointer}
 .panel-search{margin:.8rem 0 .4rem}
-.panel-search input{width:100%;font:inherit;font-family:var(--sans);font-size:.95rem;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
+.panel-search input{width:100%;font:inherit;font-family:var(--sans);font-size:16px;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
   background:rgba(255,255,255,.08);color:#f2ede2;-webkit-appearance:none;appearance:none;box-shadow:none;outline:none}
 /* search box: book-selector gold instead of the browser's blue focus ring */
 .panel-search input:focus,.panel-search input:focus-visible{outline:2px solid var(--gold);outline-offset:1px;box-shadow:none;border-color:var(--gold)}
@@ -142,3 +142,5 @@ main.text .usfm-d .fn-call,main.text .usfm-qd .fn-call{font-family:"Vollkorn",Ge
 .bar .bar-title,.bar .bar-title:hover,.bar .bar-title:focus,.bar .bar-title:focus-visible,.bar .bar-title:active,
 .panel .panel-close,.panel .panel-close:hover,.panel .panel-close:focus,.panel .panel-close:focus-visible,.panel .panel-close:active{
   outline:none;box-shadow:none;background:none;-webkit-tap-highlight-color:transparent}
+/* iOS Safari zooms in on any text field under 16px; keep every field at 16px or more (Kevin 15 Nov 12:21 AM). Pinch zoom stays on. */
+input,select,textarea{font-size:max(16px,1em)}
