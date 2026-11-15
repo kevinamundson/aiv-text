@@ -48,6 +48,9 @@ OVERRIDES = {
           "no italics (supplied words keep add italic), left-aligned; all-small-caps per 14 Nov 3:26 PM"),
     "qs": ({"font-style": "normal", "font-variant-caps": "all-small-caps"},
            "sty gives qs Italic; Kevin ruled 14 Nov 2026: Selah in small caps, no italics; 14 Nov 3:26 PM: all-small-caps (no full-size capitals)"),
+    "q2": ({"text-indent": "calc(-0.25 * var(--usfm-inch))"},
+           "sty gives q2 LeftMargin .75, FirstLineIndent -.375 (first line at .375in); Kevin ruled 14 Nov 2026 7:50 PM: "
+           "q2 first line twice q1's (q1 .75 - .5 = .25in, so q2 .5in: FirstLineIndent -.25); wrap unchanged at .75in"),
     "qd": ({"font-style": "normal", "font-variant-caps": "all-small-caps", "text-align": "left", "margin-left": "0"},
            "sty gives qd Italic, indented; Kevin ruled 14 Nov 2026: small caps, no italics "
            "(supplied words keep add italic), flush left; all-small-caps per 14 Nov 3:26 PM"),
