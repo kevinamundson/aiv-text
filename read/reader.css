@@ -31,7 +31,7 @@ main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
 /* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the 1.125rem body = 6px);
    d gets twice that after it, qd twice that before it; qs (inside qc) keeps the qc paragraph spacing unchanged. */
-main.text p.usfm-d{margin-bottom:calc(2 * .3333 * 1.125rem)}
+main.text p.usfm-d{margin-top:calc(2 * .3333 * 1.125rem);margin-bottom:calc(2 * .3333 * 1.125rem)} /* same before as after (Kevin 14 Nov 8:44 PM) */
 main.text p.usfm-qd{margin-top:calc(2 * .3333 * 1.125rem)}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
