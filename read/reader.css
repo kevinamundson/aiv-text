@@ -3,7 +3,7 @@
    Kevin's rulings (in usfm.css overrides) stand: no red letters for the words of Jesus,
    d/qd/qs all-small-caps and not italic, d/qd flush left, qr right, qc centred, add italic.
    Reading-pane colours and type are the original ones (as at aa950af); only the side panel has its own palette. */
-:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#fafafa;
+:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#f2f2ea;
   --pane:1rem;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; /* page padding around the reading pane; also the space above and below the book title */
   --tan:#bfae8a;--gold:#e2b75e;--bar:3.25rem}
 @media (max-width:600px){:root{--usfm-inch:3.5em}}
@@ -43,7 +43,7 @@ main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
 /* Editorial apparatus: headings and parallel references, set apart from Scripture */
 .apparatus{color:var(--muted)}
-.usfm-v{color:var(--accent);padding:0 .12em 0 .2em;font-weight:600;font-family:var(--sans)} /* same dark red as the note letters (Kevin 14 Nov 7:18 PM); system-ui sans (8:23 PM) */
+.usfm-v{color:var(--accent);padding:0 .12em 0 .2em;font-weight:600;font-family:var(--sans);font-size:.58em} /* same dark red as the note letters (Kevin 14 Nov 7:18 PM); system-ui sans (8:23 PM); one step smaller, .66em -> .58em (11:12 PM) */
 .usfm-va{font-family:var(--sans)}
 .usfm-va{padding-right:.12em}
 /* Notes: a separate block below the text */
