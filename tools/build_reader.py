@@ -196,7 +196,7 @@ _BOOK_NAMES = None
 
 
 def ref_target(body, book):
-    """Link target for an mr/sr reference: /read/{BOOK}/{chapter} of the first passage
+    """Link target for an mr/sr/r reference: /read/{BOOK}/{chapter} of the first passage
     cited. A bare range such as (1:1-2:4) cites the current book; a named reference
     such as 'Genesis 1:1' cites that book. Returns None when no chapter can be read."""
     global _BOOK_NAMES
@@ -219,7 +219,7 @@ def ref_target(body, book):
 def para_html(st, body, extra="", book=None):
     kind = "apparatus" if is_apparatus(st) else "scripture"
     tag = HEADING_TAG.get(st, "p")
-    if st in ("mr", "sr") and book:
+    if st in ("mr", "sr", "r") and book:
         href = ref_target(body, book)
         if href:
             body = f'<a href="{href}">{body}</a>'
