@@ -47,7 +47,7 @@ main.text{margin:var(--pane) 0 2rem}
    to override the generated stylesheet's bold: it changed only the family, not the weight or size,
    which is why ms/s still showed bold in Kevin's screenshot. ms keeps its 1.1667em size. */
 main.text :is(.usfm-ms,.usfm-ms1,.usfm-ms2,.usfm-ms3){font-family:var(--sans);font-weight:400;line-height:1.35}
-main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-s4){font-family:var(--sans);font-weight:400;font-size:1em;line-height:1.35}
+main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-s4){font-family:var(--sans);font-weight:400;font-size:0.8em;line-height:1.35}
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
 /* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the body size = 6px at 18px);
@@ -64,15 +64,16 @@ main.text .usfm-mt1{font-size:2rem;font-weight:500;letter-spacing:.12em;text-tra
 @media (max-width:31.9375rem){main.text .usfm-mt1{font-size:1.6rem}} /* title shrinks only below 512px */
 main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
-/* Section headings and references (Kevin 15 Nov rev 5–6): s1 left-aligned (s2 keeps its centred
-   italic sub-heading style); mr left-aligned and italic; sr and the cross-reference lines (r —
-   the marker behind what Kevin calls sr, 1,325 across the Bible) left-aligned, italic, body size,
-   all in system-ui sans. mr/sr/r cite a passage, and build_reader.py links them to it; the link
-   stays gray, unadorned. */
+/* Section headings and references (Kevin 15 Nov rev 5–7): s1 left-aligned (s2 keeps its centred
+   italic sub-heading style); mr back to centred and italic (Kevin 15 Nov rev 7); sr and the
+   cross-reference lines (r — the marker behind what Kevin calls sr, 1,325 across the Bible)
+   left-aligned, italic, body size, all in system-ui sans. s and r are 80% of body size
+   (Kevin 15 Nov rev 7). mr/sr/r cite passages, and build_reader.py links each reference
+   separately to the passage it cites; the links stay gray, unadorned. */
 main.text .usfm-s1{text-align:left}
-main.text .usfm-mr{text-align:left;font-style:italic;font-family:var(--sans)}
+main.text .usfm-mr{text-align:center;font-style:italic;font-family:var(--sans)}
 main.text .usfm-sr{text-align:left;font-style:italic;font-size:1em;font-family:var(--sans)}
-main.text .usfm-r{text-align:left;font-style:italic;font-size:1em;font-family:var(--sans)}
+main.text .usfm-r{text-align:left;font-style:italic;font-size:0.8em;font-family:var(--sans)}
 main.text :is(.usfm-mr,.usfm-sr,.usfm-r) a{color:inherit;text-decoration:none}
 main.text :is(.usfm-mr,.usfm-sr,.usfm-r) a:hover{color:inherit;text-decoration:none}
 /* Editorial apparatus: headings and parallel references, set apart from Scripture */
