@@ -193,36 +193,53 @@ def fabs(prev, nxt):
 
 
 _BOOK_NAMES = None
+_REF_RE = None
 
 
-def ref_target(body, book):
-    """Link target for an mr/sr/r reference: /read/{BOOK}/{chapter} of the first passage
-    cited. A bare range such as (1:1-2:4) cites the current book; a named reference
-    such as 'Genesis 1:1' cites that book. Returns None when no chapter can be read."""
-    global _BOOK_NAMES
+def _load_book_names():
+    """Book names for reference links (canonical names plus Psalm / Song of Solomon
+    aliases), and the reference pattern built from them, longest name first."""
+    global _BOOK_NAMES, _REF_RE
     if _BOOK_NAMES is None:
         books = {b["id"]: b["name"] for b in json.loads((ROOT / "books.json").read_text())}
         _BOOK_NAMES = {name: code for code, name in books.items()}
         _BOOK_NAMES.update({"Psalm": "PSA", "Song of Solomon": "SNG"})
-    text = html.unescape(re.sub(r"<[^>]+>", "", body or "")).strip().lstrip("(").strip()
-    code, rest = book, text
-    for name in sorted(_BOOK_NAMES, key=len, reverse=True):
-        if text.lower().startswith(name.lower()):
-            code, rest = _BOOK_NAMES[name], text[len(name):].strip()
-            break
-    m = re.search(r"\d+", rest)
-    if not m:
-        return None
-    return f"/read/{code}/{int(m.group())}"
+        book_alt = "|".join(re.escape(n) for n in sorted(_BOOK_NAMES, key=len, reverse=True))
+        cv = r"\d+:\d+[a-z]?(?:[–—\-]\d+(?::\d+)?[a-z]?)?"  # 1:1, 1:1-5, 1:1-2:4, 25:19b-37:2a
+        ch = r"\d+[–—\-]\d+"  # chapter-only range, e.g. Genesis 4-9
+        _REF_RE = re.compile(rf"(?:({book_alt})\s+)?(?:{cv}|{ch})", re.IGNORECASE)
+    return _BOOK_NAMES
+
+
+def link_refs(body, book):
+    """Wrap each Bible reference in an mr/sr/r line in its own link, /read/{BOOK}/{chapter}
+    of that reference. A bare range such as (1:1-2:4) cites the current book, or the last
+    book named in the same line; a chapter-only reference such as 'Genesis 4-9' links to
+    its first chapter. Text that is not a reference (parentheses, separators) stays plain.
+    Returns the body unchanged when it cites nothing linkable, e.g. (Joshua-Malachi)."""
+    names = _load_book_names()
+    by_lower = {n.lower(): c for n, c in names.items()}
+    text = html.unescape(re.sub(r"<[^>]+>", "", body or ""))
+    out, pos, last_code = [], 0, None
+    for m in _REF_RE.finditer(text):
+        name = m.group(1)
+        if name:
+            last_code = by_lower[name.lower()]
+        rest = m.group(0)[len(name):].strip() if name else m.group(0)
+        chapter = int(re.split(r"[:–—-]", rest)[0])
+        code = last_code if last_code else book
+        out.append(text[pos:m.start()])
+        out.append(f'<a href="/read/{code}/{chapter}">{m.group(0)}</a>')
+        pos = m.end()
+    out.append(text[pos:])
+    return "".join(out)
 
 
 def para_html(st, body, extra="", book=None):
     kind = "apparatus" if is_apparatus(st) else "scripture"
     tag = HEADING_TAG.get(st, "p")
     if st in ("mr", "sr", "r") and book:
-        href = ref_target(body, book)
-        if href:
-            body = f'<a href="{href}">{body}</a>'
+        body = link_refs(body, book)
     return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
 
 
