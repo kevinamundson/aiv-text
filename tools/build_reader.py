@@ -13,7 +13,7 @@ The raw USX, manifest.json, books.json and metadata.json are left untouched.
 
 Usage: python3 tools/sty2css.py && python3 tools/build_reader.py && python3 tools/verify_reader.py
 """
-import hashlib, html, json, pathlib, shutil, sys
+import hashlib, html, json, pathlib, re, shutil, sys
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -192,9 +192,37 @@ def fabs(prev, nxt):
     return "".join(out)
 
 
-def para_html(st, body, extra=""):
+_BOOK_NAMES = None
+
+
+def ref_target(body, book):
+    """Link target for an mr/sr reference: /read/{BOOK}/{chapter} of the first passage
+    cited. A bare range such as (1:1-2:4) cites the current book; a named reference
+    such as 'Genesis 1:1' cites that book. Returns None when no chapter can be read."""
+    global _BOOK_NAMES
+    if _BOOK_NAMES is None:
+        books = {b["id"]: b["name"] for b in json.loads((ROOT / "books.json").read_text())}
+        _BOOK_NAMES = {name: code for code, name in books.items()}
+        _BOOK_NAMES.update({"Psalm": "PSA", "Song of Solomon": "SNG"})
+    text = html.unescape(re.sub(r"<[^>]+>", "", body or "")).strip().lstrip("(").strip()
+    code, rest = book, text
+    for name in sorted(_BOOK_NAMES, key=len, reverse=True):
+        if text.lower().startswith(name.lower()):
+            code, rest = _BOOK_NAMES[name], text[len(name):].strip()
+            break
+    m = re.search(r"\d+", rest)
+    if not m:
+        return None
+    return f"/read/{code}/{int(m.group())}"
+
+
+def para_html(st, body, extra="", book=None):
     kind = "apparatus" if is_apparatus(st) else "scripture"
     tag = HEADING_TAG.get(st, "p")
+    if st in ("mr", "sr") and book:
+        href = ref_target(body, book)
+        if href:
+            body = f'<a href="{href}">{body}</a>'
     return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
 
 
@@ -298,8 +326,8 @@ def build():
                              book=b, chapter=n, barhref="/#books", bartitle=esc(lab(b, n))),
                  f'<main class="text" lang="en" data-book="{b}" data-chapter="{n}">\n']
         if n == chs[0].n:
-            parts += [para_html(s, body) + "\n" for s, body in intro.paras]
-        parts += [para_html(s_, body) + "\n" for s_, body in ch.paras]
+            parts += [para_html(s, body, book=b) + "\n" for s, body in intro.paras]
+        parts += [para_html(s_, body, book=b) + "\n" for s_, body in ch.paras]
         parts.append("</main>\n")
         if ch.notes:
             parts.append('<section class="notes" aria-label="Notes">\n<h2 class="chrome">Notes</h2>\n<ol>\n')
