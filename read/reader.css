@@ -81,7 +81,7 @@ main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
    (Kevin 15 Nov rev 7). mr/sr/r cite passages, and build_reader.py links each reference
    separately to the passage it cites; the links stay gray, unadorned. */
 main.text .usfm-s1{text-align:left}
-main.text .usfm-s2{font-size:0.7em;font-style:italic;text-align:center} /* s2 subordinate to s1 (Kevin 16 Nov, Gen 36 structure) */
+main.text .usfm-s2{font-size:0.7em;font-style:normal;text-align:left} /* s2 subordinate to s1: smaller, left-aligned, no italics (Kevin 16 Nov, Gen 36 structure) */
 main.text .usfm-mr{text-align:center;font-style:italic;font-family:var(--sans)}
 main.text .usfm-sr{text-align:left;font-style:italic;font-size:1em;font-family:var(--sans)}
 main.text .usfm-r{text-align:left;font-style:italic;font-size:0.8em;font-family:var(--sans)}
