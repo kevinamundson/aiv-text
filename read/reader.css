@@ -58,10 +58,14 @@ main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
 main.text :is(.usfm-h,.usfm-h1,.usfm-h2,.usfm-h3,.usfm-toc1,.usfm-toc2,.usfm-toc3,.usfm-toca1,.usfm-toca2,.usfm-toca3){display:none}
-/* Book title on chapter 1 (mt1): 3 blank lines above, 2 below (Kevin 15 Nov rev 5) — em of the title size */
-main.text .usfm-mt1{font-size:2rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:center;line-height:1.2;
+/* Book title on chapter 1 (mt1): 3 blank lines above, 2 below (Kevin 15 Nov rev 5) — em of the title size.
+   Not bold (Kevin 16 Nov rev 10): weight 400 overrides the generated stylesheet's bold.
+   Tracking tightened 0.12em -> 0.04em (Kevin 16 Nov rev 10).
+   Size scales with the stepped body type (Kevin 16 Nov rev 10): 1.7778em of body, so 32px at the
+   18px body, 33.8px at 19px (768-1239px), 37.3px at 21px (1240px+). */
+main.text .usfm-mt1{font-size:1.7778em;font-weight:400;letter-spacing:.04em;text-transform:uppercase;text-align:center;line-height:1.2;
   margin:3em 0 2em;padding:0}
-@media (max-width:31.9375rem){main.text .usfm-mt1{font-size:1.6rem}} /* title shrinks only below 512px */
+@media (max-width:31.9375rem){main.text .usfm-mt1{font-size:1.4222em}} /* title shrinks only below 512px: same 25.6px as before at the 18px body */
 main.text .usfm-mt1 + *{margin-top:0}
 main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
 /* Section headings and references (Kevin 15 Nov rev 5–7): s1 left-aligned (s2 keeps its centred
