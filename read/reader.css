@@ -55,6 +55,12 @@ main.text .usfm-p{margin-top:.15em}
    The em is relative, so the spacing scales with the stepped body size above. */
 main.text p.usfm-d{margin-top:calc(2 * .3333em);margin-bottom:calc(2 * .3333em)} /* same before as after (Kevin 14 Nov 8:44 PM) */
 main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
+/* Blank line (b): the build renders it as an empty <p>, and the generated
+   stylesheet gives it only a font-size, so in the browser it collapses to
+   zero height and the blank line BSB intends never appears. Give it one
+   line at its own size (0.8333em x the 1.6 line-height). (Kevin 16 Nov,
+   found in the Genesis 49 preview check: no blank line before each son.) */
+main.text p.usfm-b{height:1.6em}
 /* Running header and table-of-contents lines (h, toc1-3) are USX metadata for apps, not reading text:
    kept in the page (the verifier still checks them) but not displayed. */
 main.text :is(.usfm-h,.usfm-h1,.usfm-h2,.usfm-h3,.usfm-toc1,.usfm-toc2,.usfm-toc3,.usfm-toca1,.usfm-toca2,.usfm-toca3){display:none}
@@ -75,6 +81,7 @@ main.text :is(.usfm-mt2,.usfm-mt3){text-align:center}
    (Kevin 15 Nov rev 7). mr/sr/r cite passages, and build_reader.py links each reference
    separately to the passage it cites; the links stay gray, unadorned. */
 main.text .usfm-s1{text-align:left}
+main.text .usfm-s2{font-size:0.7em;font-style:normal;text-align:left} /* s2 subordinate to s1: smaller, left-aligned, no italics (Kevin 16 Nov, Gen 36 structure) */
 main.text .usfm-mr{text-align:center;font-style:italic;font-family:var(--sans)}
 main.text .usfm-sr{text-align:left;font-style:italic;font-size:1em;font-family:var(--sans)}
 main.text .usfm-r{text-align:left;font-style:italic;font-size:0.8em;font-family:var(--sans)}
