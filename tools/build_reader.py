@@ -13,7 +13,7 @@ The raw USX, manifest.json, books.json and metadata.json are left untouched.
 
 Usage: python3 tools/sty2css.py && python3 tools/build_reader.py && python3 tools/verify_reader.py
 """
-import hashlib, html, json, pathlib, shutil, sys
+import hashlib, html, json, pathlib, re, shutil, sys
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -192,12 +192,58 @@ def fabs(prev, nxt):
     return "".join(out)
 
 
-def para_html(st, body, extra=""):
+_BOOK_NAMES = None
+_REF_RE = None
+
+
+def _load_book_names():
+    """Book names for reference links (canonical names plus Psalm / Song of Solomon
+    aliases), and the reference pattern built from them, longest name first."""
+    global _BOOK_NAMES, _REF_RE
+    if _BOOK_NAMES is None:
+        books = {b["id"]: b["name"] for b in json.loads((ROOT / "books.json").read_text())}
+        _BOOK_NAMES = {name: code for code, name in books.items()}
+        _BOOK_NAMES.update({"Psalm": "PSA", "Song of Solomon": "SNG"})
+        book_alt = "|".join(re.escape(n) for n in sorted(_BOOK_NAMES, key=len, reverse=True))
+        cv = r"\d+:\d+[a-z]?(?:[–—\-]\d+(?::\d+)?[a-z]?)?"  # 1:1, 1:1-5, 1:1-2:4, 25:19b-37:2a
+        ch = r"\d+[–—\-]\d+"  # chapter-only range, e.g. Genesis 4-9
+        _REF_RE = re.compile(rf"(?:({book_alt})\s+)?(?:{cv}|{ch})", re.IGNORECASE)
+    return _BOOK_NAMES
+
+
+def link_refs(body, book):
+    """Wrap each Bible reference in an mr/sr/r line in its own link, /read/{BOOK}/{chapter}
+    of that reference. A bare range such as (1:1-2:4) cites the current book, or the last
+    book named in the same line; a chapter-only reference such as 'Genesis 4-9' links to
+    its first chapter. Text that is not a reference (parentheses, separators) stays plain.
+    Returns the body unchanged when it cites nothing linkable, e.g. (Joshua-Malachi)."""
+    names = _load_book_names()
+    by_lower = {n.lower(): c for n, c in names.items()}
+    text = html.unescape(re.sub(r"<[^>]+>", "", body or ""))
+    out, pos, last_code = [], 0, None
+    for m in _REF_RE.finditer(text):
+        name = m.group(1)
+        if name:
+            last_code = by_lower[name.lower()]
+        rest = m.group(0)[len(name):].strip() if name else m.group(0)
+        chapter = int(re.split(r"[:–—-]", rest)[0])
+        code = last_code if last_code else book
+        out.append(text[pos:m.start()])
+        out.append(f'<a href="/read/{code}/{chapter}">{m.group(0)}</a>')
+        pos = m.end()
+    out.append(text[pos:])
+    return "".join(out)
+
+
+def para_html(st, body, extra="", book=None):
     kind = "apparatus" if is_apparatus(st) else "scripture"
     tag = HEADING_TAG.get(st, "p")
+    if st in ("mr", "sr", "r") and book:
+        body = link_refs(body, book)
     return f'<{tag} class="usfm-{attr(st)} {kind}{extra}">{body}</{tag}>'
 
 
+# The bar sits outside .page (Kevin 15 Nov): full width, menu top-left, search top-right.
 HEAD = """<!doctype html>
 <html lang="en">
 <head>
@@ -214,12 +260,12 @@ HEAD = """<!doctype html>
 <script src="/read/reader.js" defer></script>
 {extra}</head>
 <body data-book="{book}" data-chapter="{chapter}">
-<div class="page">
 <header class="bar">
 <button class="bar-btn menu" type="button" aria-label="Open the book list" aria-controls="panel" aria-expanded="false" data-open="panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 <a class="bar-title" href="{barhref}" aria-controls="panel" aria-expanded="false" data-open="panel" title="Choose a book and chapter">{bartitle}</a>
 <span class="bar-right"><a class="status" href="/" title="Amundson Interpretive Version: a draft">DRAFT</a><button class="bar-btn search" type="button" aria-label="Search for a book or chapter" aria-controls="panel" aria-expanded="false" data-open="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span>
 </header>
+<div class="page">
 """
 
 
@@ -297,8 +343,8 @@ def build():
                              book=b, chapter=n, barhref="/#books", bartitle=esc(lab(b, n))),
                  f'<main class="text" lang="en" data-book="{b}" data-chapter="{n}">\n']
         if n == chs[0].n:
-            parts += [para_html(s, body) + "\n" for s, body in intro.paras]
-        parts += [para_html(s_, body) + "\n" for s_, body in ch.paras]
+            parts += [para_html(s, body, book=b) + "\n" for s, body in intro.paras]
+        parts += [para_html(s_, body, book=b) + "\n" for s_, body in ch.paras]
         parts.append("</main>\n")
         if ch.notes:
             parts.append('<section class="notes" aria-label="Notes">\n<h2 class="chrome">Notes</h2>\n<ol>\n')
