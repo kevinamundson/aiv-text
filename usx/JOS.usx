@@ -8,6 +8,8 @@
 <para style="mt1">Joshua</para>
 <para style="rem">id=eng_aiv name=Amundson Interpretive Version (AIV) status=draft spec=USFM-USX 3.1.1 export=2026-11-02 char:add=translator-addition-italic char:wj=words-of-Jesus-as-received-unmapped note:f=footnotes para:r=parallel-passage-references para:d=psalm-superscriptions</para>
 <chapter number="1" style="c" sid="JOS 1"/>
+<para style="ms1">Conquest of the Land</para>
+<para style="mr">(1–12)</para>
 <para style="s1">God Instructs Joshua</para>
 <para style="r">(Deuteronomy 11:8–17)</para>
 <para style="p"><verse number="1" style="v" sid="JOS 1:1"/>And it came to pass after the death of Moses the servant of YHWH, that YHWH spoke to Joshua son of Nun, minister of Moses, saying, <verse eid="JOS 1:1"/><verse number="2" style="v" sid="JOS 1:2"/>“Moses My servant is dead. And now arise, pass over this Jordan, you and all this people, to the land that I am giving to them, the sons of Israel. <verse eid="JOS 1:2"/></para>
@@ -262,6 +264,8 @@
 <para style="m" vid="JOS 12:24">all the kings <char style="add">are</char> thirty and one. <verse eid="JOS 12:24"/></para>
 <chapter eid="JOS 12"/>
 <chapter number="13" style="c" sid="JOS 13"/>
+<para style="ms1">Distribution of the Land</para>
+<para style="mr">(13–21)</para>
 <para style="s1">Lands Yet Unconquered</para>
 <para style="r">(Judges 1:1–7)</para>
 <para style="p"><verse number="1" style="v" sid="JOS 13:1"/>And Joshua was old, advanced in years, and YHWH said to him, “You are old, advanced in years, and very much of the land remains to be possessed. <verse eid="JOS 13:1"/><verse number="2" style="v" sid="JOS 13:2"/>This <char style="add">is</char> the land that remains: All the territory of the Philistines and all of the Geshurite, <verse eid="JOS 13:2"/></para>
@@ -481,6 +485,8 @@
 <para style="p"><verse number="45" style="v" sid="JOS 21:45"/>Not a word failed of any good thing that YHWH had spoken to the house of Israel; everything came to pass. <verse eid="JOS 21:45"/></para>
 <chapter eid="JOS 21"/>
 <chapter number="22" style="c" sid="JOS 22"/>
+<para style="ms1">Future of the Land</para>
+<para style="mr">(22–24)</para>
 <para style="s1">The Eastern Tribes Return Home</para>
 <para style="p"><verse number="1" style="v" sid="JOS 22:1"/>Then Joshua called the Reubenite and the Gadite and the half-tribe of Manasseh, <verse eid="JOS 22:1"/><verse number="2" style="v" sid="JOS 22:2"/>and he said to them, “You⁺ have kept all that Moses the servant of YHWH commanded you⁺, and you⁺ have listened to my voice in all that I commanded you⁺. <verse eid="JOS 22:2"/><verse number="3" style="v" sid="JOS 22:3"/>You⁺ have not left your⁺ brothers these many days up to this day, and you⁺ have kept the charge of the commandment of YHWH your⁺ God. <verse eid="JOS 22:3"/></para>
 <para style="p"><verse number="4" style="v" sid="JOS 22:4"/>And YHWH your⁺ God has given rest to your⁺ brothers as He promised to them, and now return and go for yourselves to your⁺ tents <char style="add">and</char> to the land of your⁺ possession, which Moses the servant of YHWH gave to you⁺ beyond the Jordan. <verse eid="JOS 22:4"/><verse number="5" style="v" sid="JOS 22:5"/>Only greatly take heed to do the commandment and the law that Moses the servant of YHWH commanded you⁺, to love YHWH your⁺ God, and to walk in all His ways, and to keep His commandments, and to hold fast to Him, and to serve Him with all your⁺ heart and with all your⁺ soul.” <verse eid="JOS 22:5"/></para>
