@@ -114,28 +114,31 @@ section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 @media (min-width:77.5rem) and (max-width:108.3125rem){.fab.prev{left:calc(50% - 30.09375rem - 4.5rem)}.fab.next{right:calc(50% - 30.09375rem - 4.5rem)}} /* docked beside the 963px plateau column */
 @media (min-width:108.375rem){.fab.prev{left:calc(50% - 27.7778% - 4.5rem)}.fab.next{right:calc(50% - 27.7778% - 4.5rem)}} /* docked beside the 5/9 column */
 /* Side panel: neutral gray gradient (dark gray left to darker gray right), tan Old Testament, gold New Testament.
-   At most two thirds of the screen width; on desktop and larger screens it is the narrow-phone width
-   (250px — 66.667vw at a 375px phone, Kevin 15 Nov rev 5), so the chapter grid reads as it does on a phone. */
+   Width 18rem at all screen sizes (Kevin 17 Nov) — wide enough for the brand line, narrow enough
+   not to crowd the pane; capped at the viewport so it never overflows a very small screen. */
 .scrim{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45)}
-.panel{position:fixed;top:0;left:0;bottom:0;z-index:40;width:min(66.667vw,24rem);
+.panel{position:fixed;top:0;left:0;bottom:0;z-index:40;width:min(18rem,100vw);
   background:linear-gradient(to right,#3a3a3a,#1f1f1f);color:var(--tan);font-family:var(--sans);
   overflow-y:auto;overscroll-behavior:contain;padding:0 .8rem 2rem;font-size:.95rem;box-shadow:4px 0 18px rgba(0,0,0,.35);
   animation:slidein .22s ease}
-@media (min-width:77.5rem){.panel{width:15.625rem}} /* desktop panel at the narrow-phone width (250px) */
 @keyframes slidein{from{transform:translateX(-100%)}to{transform:none}}
 html,body{overflow-x:clip}
 body.panel-open{overflow:hidden}
 body.panel-open .page{transform:translateX(min(6rem,12vw))}
 /* Desktop (1240px+): the open panel pushes the pane aside instead of overlaying it —
-   the pane shifts by half the 15.625rem panel, which centres it in the space beside the panel,
+   the pane shifts by half the 18rem panel, which centres it in the space beside the panel,
    and the scrim is hidden so the pane stays fully visible. Below 1240px the 7/9 column plus
    the panel cannot both fit on screen, so the overlay behaviour stands. */
-@media (min-width:77.5rem){body.panel-open .page{transform:translateX(7.8125rem)}body.panel-open .scrim{display:none}body.panel-open .fab{transform:translateX(7.8125rem)}} /* the chapter buttons travel with the pane so they never cover its text */
+@media (min-width:77.5rem){body.panel-open .page{transform:translateX(9rem)}body.panel-open .scrim{display:none}body.panel-open .fab{transform:translateX(9rem)}} /* the chapter buttons travel with the pane so they never cover its text */
 @media (prefers-reduced-motion:reduce){.panel{animation:none}.page{transition:none}}
 .panel a{color:inherit}
 .panel-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:.4rem;height:var(--bar);
-  margin:0 -.8rem;padding:0 .3rem 0 .8rem;background:linear-gradient(to right,#333,#1a1a1a);border-bottom:1px solid rgba(255,255,255,.08)}
+  margin:0 -.8rem;padding:0 .3rem 0 .8rem;background:linear-gradient(to right,#333,#1a1a1a);border-bottom:1px solid rgba(255,255,255,.08);
+  container-type:inline-size} /* head is a container so DRAFT can shrink when it wraps (Kevin 17 Nov) */
 .panel-brand{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;text-decoration:none;color:var(--gold)!important;font-weight:600;font-size:.8rem;line-height:1.2;min-width:0}
+/* If DRAFT drops below the name, it shrinks (Kevin 17 Nov): the head is narrower than the
+   brand line needs (~18rem), so the badge wraps and renders smaller. */
+@container (max-width:18rem){.panel-brand .status{font-size:.6rem;padding:.05rem .35rem}}
 .panel-close{appearance:none;border:0;background:none;color:var(--tan);font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;flex:none;border-radius:50%;cursor:pointer}
 .panel-search{margin:.8rem 0 .4rem}
 .panel-search input{width:100%;font:inherit;font-family:var(--sans);font-size:16px;padding:.5rem .65rem;border-radius:.45rem;border:1px solid var(--gold);
