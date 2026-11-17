@@ -16,6 +16,10 @@
 
 <chapter number="1" style="c" sid="PSA 1"/>
 
+<para style="ms1">Book I</para>
+
+<para style="mr">(1-41)</para>
+
 <para style="s1">BOOK I</para>
 
 <para style="s1">Psalms 1–41</para>
@@ -3560,6 +3564,10 @@
 
 <chapter number="42" style="c" sid="PSA 42"/>
 
+<para style="ms1">Book II</para>
+
+<para style="mr">(42–72)</para>
+
 <para style="s1">BOOK II</para>
 
 <para style="s1">Psalms 42–72</para>
@@ -6364,6 +6372,10 @@
 
 <chapter number="73" style="c" sid="PSA 73"/>
 
+<para style="ms1">Book III</para>
+
+<para style="mr">(73-89)</para>
+
 <para style="s1">BOOK III</para>
 
 <para style="s1">Psalms 73–89</para>
@@ -8180,6 +8192,10 @@
 
 <chapter number="90" style="c" sid="PSA 90"/>
 
+<para style="ms1">Book IV</para>
+
+<para style="mr">(90-106)</para>
+
 <para style="s1">BOOK IV</para>
 
 <para style="s1">Psalms 90–106</para>
@@ -9795,6 +9811,10 @@
 <chapter eid="PSA 106"/>
 
 <chapter number="107" style="c" sid="PSA 107"/>
+
+<para style="ms1">Book V.</para>
+
+<para style="mr">(107-150)</para>
 
 <para style="s1">BOOK V</para>
 
