@@ -8,6 +8,8 @@
 <para style="mt1">Judges</para>
 <para style="rem">id=eng_aiv name=Amundson Interpretive Version (AIV) status=draft spec=USFM-USX 3.1.1 export=2026-11-02 char:add=translator-addition-italic char:wj=words-of-Jesus-as-received-unmapped note:f=footnotes para:r=parallel-passage-references para:d=psalm-superscriptions</para>
 <chapter number="1" style="c" sid="JDG 1"/>
+<para style="ms1">Introduction</para>
+<para style="mr">(1:1–3:6)</para>
 <para style="s1">The Conquest of Canaan Proceeds</para>
 <para style="r">(Joshua 13:1–7)</para>
 <para style="p"><verse number="1" style="v" sid="JDG 1:1"/>And it came to pass after the death of Joshua, that the sons of Israel asked of YHWH, saying, “Who shall go up for us against the Canaanite as the first to fight against them?” <verse eid="JDG 1:1"/></para>
@@ -62,6 +64,8 @@
 <para style="s1">Nations Left to Test Israel</para>
 <para style="p"><verse number="1" style="v" sid="JDG 3:1"/>And these <char style="add">are</char> the nations that YHWH left, that He might test by them Israel, all who had not known any of the wars of Canaan, <verse eid="JDG 3:1"/><verse number="2" style="v" sid="JDG 3:2"/>only so that the generations of the sons of Israel might be taught to know war, only those who formerly had not known it: <verse eid="JDG 3:2"/><verse number="3" style="v" sid="JDG 3:3"/>Five princes of the Philistines, and all the Canaanite, and the Sidonian, and the Hivite that dwelt in Mount Lebanon, from Mount Baal-hermon to Lebo-hamath. <verse eid="JDG 3:3"/></para>
 <para style="p"><verse number="4" style="v" sid="JDG 3:4"/>And they were to test by them Israel, to know whether they would heed the commandments of YHWH, which He had commanded their fathers by the hand of Moses. <verse eid="JDG 3:4"/><verse number="5" style="v" sid="JDG 3:5"/>And the sons of Israel dwelt among the Canaanite, the Hittite, and the Amorite, and the Perizzite, and the Hivite, and the Jebusite. <verse eid="JDG 3:5"/><verse number="6" style="v" sid="JDG 3:6"/>And they took their daughters to be their wives, and they gave their daughters to their sons, and they served their gods. <verse eid="JDG 3:6"/></para>
+<para style="ms1">Histories</para>
+<para style="mr">(3:7–16:31)</para>
 <para style="s1">Othniel</para>
 <para style="p"><verse number="7" style="v" sid="JDG 3:7"/>And the sons of Israel did evil in the eyes of YHWH, and they forgot YHWH their God, and they served the Baals and the Asherahs. <verse eid="JDG 3:7"/><verse number="8" style="v" sid="JDG 3:8"/>And the anger of YHWH was hot against Israel, and He sold them into the hand of Cushan-rishathaim king of Aram-naharaim,<note caller="+" style="f"><char style="fr" closed="false">3.8 </char><char style="ft" closed="false"> That is, Mesopotamia; </char><char style="fq" closed="false">Aram-naharaim</char><char style="ft" closed="false"> means </char><char style="fq" closed="false">Aram of the two rivers</char><char style="ft" closed="false">, likely the region between the Euphrates and Balih Rivers in northwestern Mesopotamia.</char></note> and the sons of Israel served Cushan-rishathaim eight years. <verse eid="JDG 3:8"/></para>
 <para style="p"><verse number="9" style="v" sid="JDG 3:9"/>And the sons of Israel cried out to YHWH, and YHWH raised up a deliverer for the sons of Israel, and he delivered them—Othniel son of Kenaz, the younger brother of Caleb—from it. <verse eid="JDG 3:9"/><verse number="10" style="v" sid="JDG 3:10"/>And the Spirit of YHWH came upon him, and he judged Israel and he went out to war. And YHWH delivered into his hand Cushan-rishathaim king of Aram, and his hand prevailed over Cushan-rishathaim. <verse eid="JDG 3:10"/></para>
@@ -571,6 +575,8 @@
 <para style="p"><verse number="31" style="v" sid="JDG 16:31"/>And his brothers and all the house of his father came down, and they lifted him and brought <char style="add">him</char> up and buried him between Zorah and between Eshtaol in the tomb of Manoah his father. And He had judged Israel twenty years. <verse eid="JDG 16:31"/></para>
 <chapter eid="JDG 16"/>
 <chapter number="17" style="c" sid="JDG 17"/>
+<para style="ms1">Appendix I</para>
+<para style="mr">(17:1–18:31)</para>
 <para style="s1">Micah’s Idolatry</para>
 <para style="p"><verse number="1" style="v" sid="JDG 17:1"/>And there was a man from the hill country of Ephraim, and his name <char style="add">was</char> Micah. <verse eid="JDG 17:1"/><verse number="2" style="v" sid="JDG 17:2"/>And he said to his mother, “The thousand and a hundred <char style="add">shekels</char> of silver<note caller="+" style="f"><char style="fr" closed="false">17.2 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">1,100 shekels</char><char style="ft" closed="false"> is approximately 27.6 pounds or 12.5 kilograms of silver; also in verse 3.</char></note> that were taken from you, and on which you put a curse, and even saying it in my ears, here <char style="add">is</char> the silver with me. I took it.” </para>
 <para style="p" vid="JDG 17:2">And his mother said, “Blessed <char style="add">is</char> my son of YHWH!” <verse eid="JDG 17:2"/></para>
@@ -612,6 +618,8 @@
 <para style="p"><verse number="31" style="v" sid="JDG 18:31"/>And they set up for themselves the carved image from Micah, which he had made, all the days of the house of God being in Shiloh. <verse eid="JDG 18:31"/></para>
 <chapter eid="JDG 18"/>
 <chapter number="19" style="c" sid="JDG 19"/>
+<para style="ms1">Appendix II</para>
+<para style="mr">(19:1–21:25)</para>
 <para style="s1">The Crime of the Benjamites</para>
 <para style="r">(Genesis 19:1–11)</para>
 <para style="p"><verse number="1" style="v" sid="JDG 19:1"/>And it came to pass in those days, when <char style="add">there was</char> no king in Israel, that there was a certain Levite staying in the sides of the hill country of Ephraim, and He took for himself a woman, a concubine from Bethlehem <char style="add">in</char> Judah. <verse eid="JDG 19:1"/><verse number="2" style="v" sid="JDG 19:2"/>And his concubine committed prostitution against him<note caller="+" style="f"><char style="fr" closed="false">19.2 </char><char style="ft" closed="false"> LXX </char><char style="fq" closed="false">became angry with him</char></note> and went away from him to the house of her father at Bethlehem <char style="add">in</char> Judah. And she was there days—four months. <verse eid="JDG 19:2"/></para>
