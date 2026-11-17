@@ -71,7 +71,7 @@
 <para style="s1">Othniel</para>
 <para style="p"><verse number="7" style="v" sid="JDG 3:7"/>And the sons of Israel did evil in the eyes of YHWH, and they forgot YHWH their God, and they served the Baals and the Asherahs. <verse eid="JDG 3:7"/><verse number="8" style="v" sid="JDG 3:8"/>And the anger of YHWH was hot against Israel, and He sold them into the hand of Cushan-rishathaim king of Aram-naharaim,<note caller="+" style="f"><char style="fr" closed="false">3.8 </char><char style="ft" closed="false"> That is, Mesopotamia; </char><char style="fq" closed="false">Aram-naharaim</char><char style="ft" closed="false"> means </char><char style="fq" closed="false">Aram of the two rivers</char><char style="ft" closed="false">, likely the region between the Euphrates and Balih Rivers in northwestern Mesopotamia.</char></note> and the sons of Israel served Cushan-rishathaim eight years. <verse eid="JDG 3:8"/></para>
 <para style="p"><verse number="9" style="v" sid="JDG 3:9"/>And the sons of Israel cried out to YHWH, and YHWH raised up a deliverer for the sons of Israel, and he delivered them—Othniel son of Kenaz, the younger brother of Caleb—from it. <verse eid="JDG 3:9"/><verse number="10" style="v" sid="JDG 3:10"/>And the Spirit of YHWH came upon him, and he judged Israel and he went out to war. And YHWH delivered into his hand Cushan-rishathaim king of Aram, and his hand prevailed over Cushan-rishathaim. <verse eid="JDG 3:10"/></para>
-<para style="p"><verse number="11" style="v" sid="JDG 3:11"/>And the land had rest forty years. And Othniel son of Kenaz died. <verse eid="JDG 3:11"/></para>
+<para style="qd"><verse number="11" style="v" sid="JDG 3:11"/>And the land had rest forty years. And Othniel son of Kenaz died. <verse eid="JDG 3:11"/></para>
 <para style="ms2">Salvation of Ehud</para>
 <para style="mr">(3:12–30)</para>
 <para style="s1">Ehud</para>
@@ -86,11 +86,13 @@
 <para style="p"><verse number="26" style="v" sid="JDG 3:26"/>And Ehud had escaped while they delayed, and he passed beyond the stone images and escaped to Seirah. <verse eid="JDG 3:26"/></para>
 <para style="p"><verse number="27" style="v" sid="JDG 3:27"/>And it came to pass when he arrived, that he blew on the shofar in the hill country of Ephraim, and went down with him the sons of Israel from the hills, and he <char style="add">was</char> before their faces. <verse eid="JDG 3:27"/><verse number="28" style="v" sid="JDG 3:28"/>And he said to them, “Follow after me, for YHWH has delivered your⁺ enemies the Moabites into your⁺ hands.” And they went down after him and seized the fords of the Jordan leading to Moab, and did not allow anyone to pass over. <verse eid="JDG 3:28"/></para>
 <para style="p"><verse number="29" style="v" sid="JDG 3:29"/>And they struck down at that time about ten thousand men of Moab, all stout and men of valor, and not a man escaped. <verse eid="JDG 3:29"/></para>
-<para style="p"><verse number="30" style="v" sid="JDG 3:30"/>And Moab was subdued that day under the hand of Israel. And the land had rest <char style="add">for</char> eighty years. <verse eid="JDG 3:30"/></para>
+<para style="p"><verse number="30" style="v" sid="JDG 3:30"/>And Moab was subdued that day under the hand of Israel. </para>
+<para style="qd" vid="JDG 3:30">And the land had rest <char style="add">for</char> eighty years. <verse eid="JDG 3:30"/></para>
 <para style="ms2">Salvation of Shamgar</para>
 <para style="mr">(3:31)</para>
 <para style="s1">Shamgar</para>
-<para style="p"><verse number="31" style="v" sid="JDG 3:31"/>And after him was Shamgar son of Anath, who killed six hundred men of the Philistines with an oxgoad. And he also delivered Israel. <verse eid="JDG 3:31"/></para>
+<para style="p"><verse number="31" style="v" sid="JDG 3:31"/>And after him was Shamgar son of Anath, who killed six hundred men of the Philistines with an oxgoad. </para>
+<para style="qd" vid="JDG 3:31">And he also delivered Israel. <verse eid="JDG 3:31"/></para>
 <chapter eid="JDG 3"/>
 <chapter number="4" style="c" sid="JDG 4"/>
 <para style="ms2">Deliverance of Deborah &amp; Barak</para>
@@ -115,6 +117,8 @@
 <para style="p"><verse number="23" style="v" sid="JDG 4:23"/>And God subdued on that day Jabin king of Canaan before the faces of the sons of Israel. <verse eid="JDG 4:23"/><verse number="24" style="v" sid="JDG 4:24"/>And the hand of the sons of Israel grew stronger, going on and becoming hard against Jabin king of Canaan, until that they had destroyed Jabin king of Canaan. <verse eid="JDG 4:24"/></para>
 <chapter eid="JDG 4"/>
 <chapter number="5" style="c" sid="JDG 5"/>
+<para style="ms3">Deborah's Victory Song</para>
+<para style="mr">(5:1–31)</para>
 <para style="s1">The Song of Deborah and Barak</para>
 <para style="r">(Exodus 15:1–21)</para>
 <para style="p"><verse number="1" style="v" sid="JDG 5:1"/>And Deborah and Barak son of Abinoam sang on that day, saying, <verse eid="JDG 5:1"/></para>
@@ -238,7 +242,7 @@
 <para style="q2" vid="JDG 5:31">O YHWH; </para>
 <para style="q1" vid="JDG 5:31">and <char style="add">let</char> those who love Him <char style="add">be</char> of the sun </para>
 <para style="q2" vid="JDG 5:31">like the going forth in full strength.” </para>
-<para style="m" vid="JDG 5:31">And the land had rest forty years. <verse eid="JDG 5:31"/></para>
+<para style="qd" vid="JDG 5:31">And the land had rest forty years. <verse eid="JDG 5:31"/></para>
 <chapter eid="JDG 5"/>
 <chapter number="6" style="c" sid="JDG 6"/>
 <para style="ms2">Salvation of Gideon</para>
@@ -322,7 +326,11 @@
 <para style="p"><verse number="26" style="v" sid="JDG 8:26"/>And the weight of the gold rings that he requested was a thousand and seven hundred <char style="add">shekels</char> of gold,<note caller="+" style="f"><char style="fr" closed="false">8.26 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">1,700 shekels</char><char style="ft" closed="false"> is approximately 42.7 pounds or 19.4 kilograms.</char></note> apart from the crescent ornaments and pendants and purple robes that <char style="add">were</char> on the kings of Midian, and apart from the chains that <char style="add">were</char> around the necks of their camels. <verse eid="JDG 8:26"/></para>
 <para style="p"><verse number="27" style="v" sid="JDG 8:27"/>And Gideon made it into an ephod and set it up in his city, in Ophrah. And all Israel played the prostitute with it there, and it became a snare to Gideon and to his house. <verse eid="JDG 8:27"/></para>
 <para style="s1">Forty Years of Peace</para>
-<para style="p"><verse number="28" style="v" sid="JDG 8:28"/>And Midian was subdued before the faces of the sons of Israel, so that no more they lifted up their head. And the country was quiet forty years in the days of Gideon. <verse eid="JDG 8:28"/><verse number="29" style="v" sid="JDG 8:29"/>And Jerubbaal<note caller="+" style="f"><char style="fr" closed="false">8.29 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">Jerubbaal</char><char style="ft" closed="false"> is another name for </char><char style="fq" closed="false">Gideon</char><char style="ft" closed="false"> and probably means </char><char style="fq" closed="false">let Baal contend</char><char style="ft" closed="false">; also in verse 35; see Judges 6:32.</char></note> son of Joash went and dwelt in his own house. <verse eid="JDG 8:29"/></para>
+<para style="p"><verse number="28" style="v" sid="JDG 8:28"/>And Midian was subdued before the faces of the sons of Israel, so that no more they lifted up their head. </para>
+<para style="qd" vid="JDG 8:28">And the country was quiet forty years in the days of Gideon. <verse eid="JDG 8:28"/></para>
+<para style="ms3">Epilogue</para>
+<para style="mr">(8:29–35)</para>
+<para style="p"><verse number="29" style="v" sid="JDG 8:29"/>And Jerubbaal<note caller="+" style="f"><char style="fr" closed="false">8.29 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">Jerubbaal</char><char style="ft" closed="false"> is another name for </char><char style="fq" closed="false">Gideon</char><char style="ft" closed="false"> and probably means </char><char style="fq" closed="false">let Baal contend</char><char style="ft" closed="false">; also in verse 35; see Judges 6:32.</char></note> son of Joash went and dwelt in his own house. <verse eid="JDG 8:29"/></para>
 <para style="p"><verse number="30" style="v" sid="JDG 8:30"/>And Gideon had seventy sons coming from his loin,<note caller="+" style="f"><char style="fr" closed="false">8.30 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">coming from his thigh</char></note> for unto him were many wives, <verse eid="JDG 8:30"/><verse number="31" style="v" sid="JDG 8:31"/>and his concubine who <char style="add">was</char> in Shechem, and she also bore him a son, and he called his name Abimelech. <verse eid="JDG 8:31"/></para>
 <para style="s1">Gideon’s Death</para>
 <para style="p"><verse number="32" style="v" sid="JDG 8:32"/>And Gideon son of Joash died at a good old age, and he was buried in the tomb of Joash his father in Ophrah of the Abi-ezrites. <verse eid="JDG 8:32"/></para>
@@ -401,7 +409,7 @@
 <para style="p"><verse number="50" style="v" sid="JDG 9:50"/>And Abimelech went to Thebez, and he encamped against Thebez and took it. <verse eid="JDG 9:50"/><verse number="51" style="v" sid="JDG 9:51"/>And there was a strong tower in the midst of the city, and there fled all the men and the women, and all the masters of the city, and shut themselves in. And they went up to the top of the tower. <verse eid="JDG 9:51"/></para>
 <para style="p"><verse number="52" style="v" sid="JDG 9:52"/>And Abimelech came as far as the tower and fought against it, and he drew near the door of the tower to burn it with the fire. <verse eid="JDG 9:52"/><verse number="53" style="v" sid="JDG 9:53"/>And one woman dropped an upper millstone on the head of Abimelech, and it crushed his skull. <verse eid="JDG 9:53"/><verse number="54" style="v" sid="JDG 9:54"/>And he called quickly to the young man bearing his armor and said to him, “Draw your sword and kill me, lest they say of me, ‘A woman killed him.’” And his young man thrust him through, and he died. <verse eid="JDG 9:54"/></para>
 <para style="p"><verse number="55" style="v" sid="JDG 9:55"/>And the men of Israel saw that Abimelech was dead, and every man departed to his place. <verse eid="JDG 9:55"/></para>
-<para style="p"><verse number="56" style="v" sid="JDG 9:56"/>And God repaid the wickedness of Abimelech, which he had done to his father by killing his seventy brothers. <verse eid="JDG 9:56"/><verse number="57" style="v" sid="JDG 9:57"/>And all the evil of the men of Shechem God returned on their own heads, and came upon them the curse of Jotham son of Jerubbaal. <verse eid="JDG 9:57"/></para>
+<para style="qd"><verse number="56" style="v" sid="JDG 9:56"/>And God repaid the wickedness of Abimelech, which he had done to his father by killing his seventy brothers. <verse eid="JDG 9:56"/><verse number="57" style="v" sid="JDG 9:57"/>And all the evil of the men of Shechem God returned on their own heads, and came upon them the curse of Jotham son of Jerubbaal. <verse eid="JDG 9:57"/></para>
 <chapter eid="JDG 9"/>
 <chapter number="10" style="c" sid="JDG 10"/>
 <para style="ms2">Rule of Tola &amp; Jair</para>
@@ -461,7 +469,7 @@
 <para style="p"><verse number="5" style="v" sid="JDG 12:5"/>And Gilead seized the fords of the Jordan to Ephraim, and when a fugitive from Ephraim said, “Let me pass over,” the men of Gilead would say to him, “<char style="add">Are</char> you an Ephraimite?” And if he said, “No,” <verse eid="JDG 12:5"/></para>
 <para style="p"><verse number="6" style="v" sid="JDG 12:6"/>they would say to him, “Say, please, Shibboleth.” </para>
 <para style="p" vid="JDG 12:6">And he would say, “Sibboleth,” for he could not pronounce <char style="add">it</char> correctly. And they would take him and kill him at the fords of the Jordan. And there fell at that time of Ephraim forty-two thousand. <verse eid="JDG 12:6"/></para>
-<para style="p"><verse number="7" style="v" sid="JDG 12:7"/>And Jephthah judged Israel six years. And Jephthah the Gileadite died, and was buried among the cities of Gilead.<note caller="+" style="f"><char style="fr" closed="false">12.7 </char><char style="ft" closed="false"> LXX </char><char style="fq" closed="false">in his city in Gilead</char></note> <verse eid="JDG 12:7"/></para>
+<para style="qd"><verse number="7" style="v" sid="JDG 12:7"/>And Jephthah judged Israel six years. And Jephthah the Gileadite died, and was buried among the cities of Gilead.<note caller="+" style="f"><char style="fr" closed="false">12.7 </char><char style="ft" closed="false"> LXX </char><char style="fq" closed="false">in his city in Gilead</char></note> <verse eid="JDG 12:7"/></para>
 <para style="ms2">Rule of Ibzan, Elon, and Abdon</para>
 <para style="mr">(12:8–15)</para>
 <para style="s1">Ibzan, Elon, and Abdon</para>
@@ -592,7 +600,7 @@
 <para style="p"><verse number="28" style="v" sid="JDG 16:28"/>And Samson called to YHWH and said, “O Lord YHWH, remember me, please, and Strengthen me, please, just this once, O God, that I may take vengeance <char style="add">with</char> one vengeful blow for my two eyes against the Philistines.” <verse eid="JDG 16:28"/></para>
 <para style="p"><verse number="29" style="v" sid="JDG 16:29"/>And Samson took hold of the middle two pillars on which the temple was established, and he braced himself against them, one on his right and one on his left. <verse eid="JDG 16:29"/><verse number="30" style="v" sid="JDG 16:30"/>And Samson said, “Let me die with the Philistines.” </para>
 <para style="p" vid="JDG 16:30">And he pushed with power, and the temple fell on the lords and all the people who <char style="add">were</char> in it. And the dead that he killed at his death were more than he had killed in his life. <verse eid="JDG 16:30"/></para>
-<para style="p"><verse number="31" style="v" sid="JDG 16:31"/>And his brothers and all the house of his father came down, and they lifted him and brought <char style="add">him</char> up and buried him between Zorah and between Eshtaol in the tomb of Manoah his father. And He had judged Israel twenty years. <verse eid="JDG 16:31"/></para>
+<para style="qd"><verse number="31" style="v" sid="JDG 16:31"/>And his brothers and all the house of his father came down, and they lifted him and brought <char style="add">him</char> up and buried him between Zorah and between Eshtaol in the tomb of Manoah his father. And He had judged Israel twenty years. <verse eid="JDG 16:31"/></para>
 <chapter eid="JDG 16"/>
 <chapter number="17" style="c" sid="JDG 17"/>
 <para style="ms1">Appendix I: Failure to Guard Worship</para>

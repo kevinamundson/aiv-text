@@ -47,6 +47,7 @@ main.text{margin:var(--pane) 0 2rem}
    to override the generated stylesheet's bold: it changed only the family, not the weight or size,
    which is why ms/s still showed bold in Kevin's screenshot. ms keeps its 1.1667em size. */
 main.text :is(.usfm-ms,.usfm-ms1,.usfm-ms2,.usfm-ms3){font-family:var(--sans);font-weight:400;line-height:1.35;color:#840000} /* ms in dark red (Kevin 15 Nov rev 8) */
+main.text .usfm-ms3{font-size:1em} /* ms3 same as ms2 only smaller (Kevin 17 Nov) */
 main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-s4){font-family:var(--sans);font-weight:400;font-size:0.8em;line-height:1.35}
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
