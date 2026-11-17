@@ -8,6 +8,8 @@
 <para style="mt1">Exodus</para>
 <para style="rem">id=eng_aiv name=Amundson Interpretive Version (AIV) status=draft spec=USFM-USX 3.1.1 export=2026-11-02 char:add=translator-addition-italic char:wj=words-of-Jesus-as-received-unmapped note:f=footnotes para:r=parallel-passage-references para:d=psalm-superscriptions</para>
 <chapter number="1" style="c" sid="EXO 1"/>
+<para style="ms1">Prologue</para>
+<para style="mr">(1:1–7)</para>
 <para style="s1">The Israelites Multiply in Egypt</para>
 <para style="r">(Genesis 46:7–27)</para>
 <para style="p"><verse number="1" style="v" sid="EXO 1:1"/>And these <char style="add">are</char> the names of the sons of Israel who came to Egypt with Jacob; each man and his house they came: <verse eid="EXO 1:1"/></para>
@@ -18,6 +20,8 @@
 <para style="li1" vid="EXO 1:4">Gad and Asher. <verse eid="EXO 1:4"/></para>
 <para style="m"><verse number="5" style="v" sid="EXO 1:5"/>And all the souls coming out of the loins of Jacob were seventy souls, and Joseph was in Egypt. <note caller="+" style="f"><char style="fr" closed="false">1.5 </char><char style="ft" closed="false"> MT (see also Genesis 46:27); DSS and LXX (see also Acts 7:14) </char><char style="fq" closed="false">seventy-five souls</char></note><verse eid="EXO 1:5"/></para>
 <para style="p"><verse number="6" style="v" sid="EXO 1:6"/>And Joseph died, and all his brothers, and all that generation. <verse eid="EXO 1:6"/><verse number="7" style="v" sid="EXO 1:7"/>And the sons of Israel were fruitful and they swarmed, and they multiplied, and they grew mighty exceedingly, exceedingly, and the land was filled with them. <verse eid="EXO 1:7"/></para>
+<para style="ms1">The Redemption of God's People</para>
+<para style="mr">(1:8–18:27)</para>
 <para style="s1">Oppression by a New King</para>
 <para style="r">(Acts 7:15–19)</para>
 <para style="p"><verse number="8" style="v" sid="EXO 1:8"/>And there arose a new king over Egypt, who had not known Joseph. <verse eid="EXO 1:8"/><verse number="9" style="v" sid="EXO 1:9"/>And he said to his people, “Behold, the people of the sons of Israel <char style="add">are</char> many and mightier than us. <verse eid="EXO 1:9"/><verse number="10" style="v" sid="EXO 1:10"/>Come, let us act wisely with him, lest he multiply, and it comes to pass when war meets us, that he also may join himself to those hating us and fight against us and go up out of the land.<note caller="+" style="f"><char style="fr" closed="false">1.10 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">and take the country</char></note>” <verse eid="EXO 1:10"/></para>
@@ -473,6 +477,8 @@
 <para style="p"><verse number="27" style="v" sid="EXO 18:27"/>And Moses sent away his father-in-law, and he went on his way to his land. <verse eid="EXO 18:27"/></para>
 <chapter eid="EXO 18"/>
 <chapter number="19" style="c" sid="EXO 19"/>
+<para style="ms1">The Reconstruction of God's People</para>
+<para style="mr">(19–24)</para>
 <para style="s1">Israel at Mount Sinai</para>
 <para style="p"><verse number="1" style="v" sid="EXO 19:1"/>In the third month of the going out of the sons of Israel from the land of Egypt,<note caller="+" style="f"><char style="fr" closed="false">19.1 </char><char style="ft" closed="false"> That is, two months after leaving Egypt; see Numbers 33:3.</char></note> on that day, they entered the Wilderness of Sinai. <verse eid="EXO 19:1"/><verse number="2" style="v" sid="EXO 19:2"/>And they journeyed from Rephidim and entered the Wilderness of Sinai and camped in the wilderness. And Israel camped there before the mountain. <verse eid="EXO 19:2"/></para>
 <para style="p"><verse number="3" style="v" sid="EXO 19:3"/>And Moses went up to God, and YHWH called to him from the mountain, saying, “Thus you shall say to the house of Jacob and you shall tell to the sons of Israel: <verse eid="EXO 19:3"/><verse number="4" style="v" sid="EXO 19:4"/>‘You⁺ yourselves have seen what I did to Egypt, and I bore you⁺ up on wings of eagles, and I brought you⁺ to Myself. <verse eid="EXO 19:4"/><verse number="5" style="v" sid="EXO 19:5"/>And now if you⁺ will listen carefully to My voice and keep My covenant, then you⁺ shall be to Me a treasured possession from among all the peoples—for all the earth belongs to Me. <verse eid="EXO 19:5"/><verse number="6" style="v" sid="EXO 19:6"/>And you⁺—you⁺ shall be to Me a kingdom of priests and a holy nation.’ These <char style="add">are</char> the words that you shall speak to the sons of Israel.” <verse eid="EXO 19:6"/></para>
@@ -618,6 +624,8 @@
 <para style="p"><verse number="18" style="v" sid="EXO 24:18"/>And Moses entered into the midst of the cloud, and he went up to the mountain. And Moses was on the mountain forty days and forty nights. <verse eid="EXO 24:18"/></para>
 <chapter eid="EXO 24"/>
 <chapter number="25" style="c" sid="EXO 25"/>
+<para style="ms1">The Reconciliation of God's People</para>
+<para style="mr">(25–40)</para>
 <para style="s1">Offerings for the Tabernacle</para>
 <para style="r">(Exodus 35:4–9)</para>
 <para style="p"><verse number="1" style="v" sid="EXO 25:1"/>And YHWH spoke to Moses, saying, <verse eid="EXO 25:1"/><verse number="2" style="v" sid="EXO 25:2"/>“Speak to the sons of Israel, and they shall take for Me a contribution. From every man whose heart impels him, you⁺ shall take My contribution. <verse eid="EXO 25:2"/><verse number="3" style="v" sid="EXO 25:3"/>And this <char style="add">is</char> the contribution that you⁺ shall take from them: </para>

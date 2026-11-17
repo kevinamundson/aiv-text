@@ -8,6 +8,8 @@
 <para style="mt1">Leviticus</para>
 <para style="rem">id=eng_aiv name=Amundson Interpretive Version (AIV) status=draft spec=USFM-USX 3.1.1 export=2026-11-02 char:add=translator-addition-italic char:wj=words-of-Jesus-as-received-unmapped note:f=footnotes para:r=parallel-passage-references para:d=psalm-superscriptions</para>
 <chapter number="1" style="c" sid="LEV 1"/>
+<para style="ms1">Sacrifice</para>
+<para style="mr">(1–7)</para>
 <para style="s1">Laws for Burnt Offerings</para>
 <para style="r">(Leviticus 6:8–13)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 1:1"/>And He called to Moses, and YHWH spoke to him from the Tent of Meeting, saying, <verse eid="LEV 1:1"/><verse number="2" style="v" sid="LEV 1:2"/>“Speak to the sons of Israel, and say to them: When any man from you⁺ brings near an offering to YHWH—from the livestock, from the herd, or from the flock—you⁺ shall bring near your⁺ offering. <verse eid="LEV 1:2"/></para>
@@ -107,6 +109,8 @@
 <para style="p"><verse number="37" style="v" sid="LEV 7:37"/>This <char style="add">is</char> the law for the burnt offering, for the grain offering, and for the sin offering, and for the guilt offering, and for the ordination offerings, and for the sacrifice of the peace offerings, <verse eid="LEV 7:37"/><verse number="38" style="v" sid="LEV 7:38"/>that YHWH commanded Moses on Mount Sinai, on the day of His commanding the sons of Israel to bring near their offerings to YHWH in the Wilderness of Sinai. <verse eid="LEV 7:38"/></para>
 <chapter eid="LEV 7"/>
 <chapter number="8" style="c" sid="LEV 8"/>
+<para style="ms1">Mediation</para>
+<para style="mr">(8–10)</para>
 <para style="s1">Moses Consecrates Aaron and His Sons</para>
 <para style="r">(Exodus 29:1–9)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 8:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 8:1"/><verse number="2" style="v" sid="LEV 8:2"/>“Take Aaron and his sons with him, and the garments, and the anointing oil, and the bull of the sin offering, and the two rams, and the basket of the unleavened <char style="add">bread</char>; <verse eid="LEV 8:2"/><verse number="3" style="v" sid="LEV 8:3"/>and assemble all the congregation at the door of the Tent of Meeting.” <verse eid="LEV 8:3"/></para>
@@ -167,6 +171,8 @@
 <para style="p"><verse number="20" style="v" sid="LEV 10:20"/>And Moses listened, and it was good in his eyes. <verse eid="LEV 10:20"/></para>
 <chapter eid="LEV 10"/>
 <chapter number="11" style="c" sid="LEV 11"/>
+<para style="ms1">Purification</para>
+<para style="mr">(11–15)</para>
 <para style="s1">Clean and Unclean Animals</para>
 <para style="r">(Deuteronomy 14:1–21; Acts 10:9–16)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 11:1"/>And YHWH spoke to Moses and to Aaron, saying to them, <verse eid="LEV 11:1"/><verse number="2" style="v" sid="LEV 11:2"/>“Speak to the sons of Israel, saying, ‘This <char style="add">is</char> the living thing that you⁺ may eat from among all the beasts that <char style="add">are</char> on the earth: <verse eid="LEV 11:2"/><verse number="3" style="v" sid="LEV 11:3"/>Every one dividing the hoof, and cleaving the cleft of the hooves, <char style="add">and</char> bringing up the cud among the beasts, it you⁺ may eat. <verse eid="LEV 11:3"/></para>
@@ -290,6 +296,8 @@
 <para style="p"><verse number="32" style="v" sid="LEV 15:32"/>This <char style="add">is</char> the law of the one discharging, and of the one whose seed <char style="add">from</char> lying goes from him, to be unclean by it, <verse eid="LEV 15:32"/><verse number="33" style="v" sid="LEV 15:33"/>and the menstruating <char style="add">woman</char> in her menstruation, and the one discharging his discharge, for the male and for the female, and for a man who lies with an unclean woman.’” <verse eid="LEV 15:33"/></para>
 <chapter eid="LEV 15"/>
 <chapter number="16" style="c" sid="LEV 16"/>
+<para style="ms1">Propitiation</para>
+<para style="mr">(16)</para>
 <para style="s1">The Day of Atonement</para>
 <para style="r">(Leviticus 23:26–32; Numbers 29:7–11)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 16:1"/>And YHWH spoke to Moses after the death of the two sons of Aaron, when they drew near before the face of YHWH, and they died. <verse eid="LEV 16:1"/><verse number="2" style="v" sid="LEV 16:2"/>And YHWH said to Moses, “Speak to Aaron your brother, and he shall not come in at any time to the Holy Place<note caller="+" style="f"><char style="fr" closed="false">16.2 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">the Most Holy Place</char><char style="ft" closed="false">; also in verses 16, 17, 20, 23, and 27</char></note> inside the veil before the face of the mercy seat<note caller="+" style="f"><char style="fr" closed="false">16.2 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">atonement cover</char><char style="ft" closed="false">; here and throughout this chapter</char></note> that <char style="add">is</char> on the ark, and he will not die. For in the cloud I appear above the mercy seat. <verse eid="LEV 16:2"/></para>
@@ -309,6 +317,8 @@
 <para style="p" vid="LEV 16:34">And he did as YHWH had commanded Moses. <verse eid="LEV 16:34"/></para>
 <chapter eid="LEV 16"/>
 <chapter number="17" style="c" sid="LEV 17"/>
+<para style="ms1">Blood</para>
+<para style="mr">(17)</para>
 <para style="s1">The Place of Sacrifice</para>
 <para style="p"><verse number="1" style="v" sid="LEV 17:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 17:1"/><verse number="2" style="v" sid="LEV 17:2"/>“Speak to Aaron and to his sons and to all the sons of Israel, and you shall say to them: This <char style="add">is</char> the word that YHWH has commanded, saying, <verse eid="LEV 17:2"/><verse number="3" style="v" sid="LEV 17:3"/>‘Any man of the house of Israel who slaughters an ox<note caller="+" style="f"><char style="fr" closed="false">17.3 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">a bull</char><char style="ft" closed="false"> or </char><char style="fq" closed="false">a cow</char></note> or lamb or goat in the camp, or who slaughters <char style="add">it</char> outside of the camp, <verse eid="LEV 17:3"/><verse number="4" style="v" sid="LEV 17:4"/>and does not bring it to the door of the Tent of Meeting to bring it near <char style="add">as</char> an offering to YHWH before the face of the tabernacle of YHWH—blood shall be reckoned to that man; he has shed blood, and that man shall be cut off from among his people, <verse eid="LEV 17:4"/></para>
 <para style="p"><verse number="5" style="v" sid="LEV 17:5"/>in order that the sons of Israel bring their sacrifices, which they are sacrificing upon the face of the field, and bring them to YHWH, to the door of the Tent of Meeting, to the priest, and sacrifice them <char style="add">as</char> sacrifices of peace offerings to YHWH. <verse eid="LEV 17:5"/><verse number="6" style="v" sid="LEV 17:6"/>And the priest shall sprinkle the blood on the altar of YHWH <char style="add">at</char> the door of the Tent of Meeting, and he shall burn the fat for a pleasing aroma to YHWH. <verse eid="LEV 17:6"/></para>
@@ -320,6 +330,8 @@
 <para style="p"><verse number="15" style="v" sid="LEV 17:15"/>And any soul who eats a carcass or torn thing, among the native and among the sojourner, he shall both wash his clothes, and he shall bathe in the water, and he shall be unclean until the evening; then he shall be clean. <verse eid="LEV 17:15"/><verse number="16" style="v" sid="LEV 17:16"/>And if he does not wash <char style="add">them</char> and does not bathe his flesh, then he shall bear his iniquity.” <verse eid="LEV 17:16"/></para>
 <chapter eid="LEV 17"/>
 <chapter number="18" style="c" sid="LEV 18"/>
+<para style="ms1">Family</para>
+<para style="mr">(18)</para>
 <para style="s1">Unlawful Sexual Relations</para>
 <para style="r">(Matthew 5:27–30)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 18:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 18:1"/><verse number="2" style="v" sid="LEV 18:2"/>“Speak to the sons of Israel, and you shall say to them: I <char style="add">am</char> YHWH your⁺ God. <verse eid="LEV 18:2"/><verse number="3" style="v" sid="LEV 18:3"/>You⁺ shall not do according to the work of the land of Egypt in which you⁺ dwelt, and according to the work of the land of Canaan where I am bringing you⁺, you⁺ shall not do, and in their statutes you⁺ shall not walk. <verse eid="LEV 18:3"/></para>
@@ -347,6 +359,8 @@
 <para style="p"><verse number="29" style="v" sid="LEV 18:29"/>For anyone who does from all these abominations—then the soul who do <char style="add">them</char>—shall be cut off from among their people. <verse eid="LEV 18:29"/><verse number="30" style="v" sid="LEV 18:30"/>And you⁺ shall keep My charge, to not do from the statutes of the abominations that have been done before your⁺ faces, and you⁺ shall not defile yourselves by them. I <char style="add">am</char> YHWH your⁺ God.” <verse eid="LEV 18:30"/></para>
 <chapter eid="LEV 18"/>
 <chapter number="19" style="c" sid="LEV 19"/>
+<para style="ms1">Law</para>
+<para style="mr">(19)</para>
 <para style="s1">Commandments for Holiness</para>
 <para style="p"><verse number="1" style="v" sid="LEV 19:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 19:1"/><verse number="2" style="v" sid="LEV 19:2"/>“Speak to all the congregation of the sons of Israel, and you shall say to them: You⁺ shall be holy, for I <char style="add">am</char> holy—YHWH your⁺ God. <note caller="+" style="f"><char style="fr" closed="false">19.2 </char><char style="ft" closed="false"> Cited in 1 Peter 1:16</char></note><verse eid="LEV 19:2"/></para>
 <para style="p"><verse number="3" style="v" sid="LEV 19:3"/>Each man shall fear his mother and his father, and you⁺ shall keep My Sabbaths. I <char style="add">am</char> YHWH your⁺ God. <verse eid="LEV 19:3"/></para>
@@ -381,6 +395,8 @@
 <para style="p"><verse number="37" style="v" sid="LEV 19:37"/>And you⁺ shall keep all My statutes and all My judgments, and you⁺ shall do them. I <char style="add">am</char> YHWH.” <verse eid="LEV 19:37"/></para>
 <chapter eid="LEV 19"/>
 <chapter number="20" style="c" sid="LEV 20"/>
+<para style="ms1">Holiness</para>
+<para style="mr">(20)</para>
 <para style="s1">Punishments for Disobedience</para>
 <para style="r">(Leviticus 26:14–39; Deuteronomy 28:15–68)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 20:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 20:1"/><verse number="2" style="v" sid="LEV 20:2"/>“And to the sons of Israel you shall say, ‘Any man from the sons of Israel and from the sojourner who is sojourning in Israel who gives from his seed to Molech, he must surely be put to death. The people of the land shall stone him with stones. <verse eid="LEV 20:2"/><verse number="3" style="v" sid="LEV 20:3"/>And I will set My face against that man, and I will cut him off from among his people, for from his seed he has given to Molech, to defile My sanctuary and to profane My holy name. <verse eid="LEV 20:3"/></para>
@@ -409,6 +425,8 @@
 <para style="p"><verse number="27" style="v" sid="LEV 20:27"/>And a man or a woman—when there is among them a medium or spiritist, they must surely be put to death. With stones they shall stone them. Their blood <char style="add">is</char> on them.’” <verse eid="LEV 20:27"/></para>
 <chapter eid="LEV 20"/>
 <chapter number="21" style="c" sid="LEV 21"/>
+<para style="ms1">Worship</para>
+<para style="mr">(21–22)</para>
 <para style="s1">Holiness Required of Priests</para>
 <para style="p"><verse number="1" style="v" sid="LEV 21:1"/>And YHWH said to Moses, “Speak to the priests, the sons of Aaron, and you shall say to them: No one shall make himself unlcean for a <char style="add">dead</char> soul among his people, <verse eid="LEV 21:1"/><verse number="2" style="v" sid="LEV 21:2"/>except for his close relative <char style="add">who are</char> near to him—for his mother, and for his father, and for his son, and for his daughter, and for his brother, <verse eid="LEV 21:2"/><verse number="3" style="v" sid="LEV 21:3"/>and for his sister, the virgin, who is near to him, who has not had a husband. He shall make himself unlean for her. <verse eid="LEV 21:3"/><verse number="4" style="v" sid="LEV 21:4"/>He shall not make himself unclean <char style="add">as a</char> husband among his people, to profane himself. <verse eid="LEV 21:4"/></para>
 <para style="p"><verse number="5" style="v" sid="LEV 21:5"/>They shall not make baldness on their heads, and they shall not shave the edges of their beards, and they shall not cut a cutting in their flesh. <verse eid="LEV 21:5"/><verse number="6" style="v" sid="LEV 21:6"/>They shall be holy to their God, and they shall not profane the name of their God. For they bring near the fire offerings of YHWH, the bread of their God; and they shall be holy. <verse eid="LEV 21:6"/></para>
@@ -439,6 +457,8 @@
 <para style="p"><verse number="31" style="v" sid="LEV 22:31"/>And you⁺ shall keep My commandments, and you⁺ shall do them. I <char style="add">am</char> YHWH. <verse eid="LEV 22:31"/><verse number="32" style="v" sid="LEV 22:32"/>And you⁺ shall not profane My holy name, and I shall be shown holy in the midst of the sons of Israel. I <char style="add">am</char> YHWH who sanctifies you⁺, <verse eid="LEV 22:32"/><verse number="33" style="v" sid="LEV 22:33"/>the One bringing you⁺ out of the land of Egypt, to be your⁺ God. I <char style="add">am</char> YHWH.” <verse eid="LEV 22:33"/></para>
 <chapter eid="LEV 22"/>
 <chapter number="23" style="c" sid="LEV 23"/>
+<para style="ms1">Sabbath</para>
+<para style="mr">(23–25)</para>
 <para style="s1">Feasts and Sabbaths</para>
 <para style="r">(Exodus 23:14–19)</para>
 <para style="p"><verse number="1" style="v" sid="LEV 23:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 23:1"/><verse number="2" style="v" sid="LEV 23:2"/>“Speak to the sons of Israel, and you shall say to them, ‘The appointed times of YHWH that you⁺ shall proclaim <char style="add">to be</char> holy convocations—these are My appointed times. <verse eid="LEV 23:2"/></para>
@@ -530,6 +550,8 @@
 <para style="p"><verse number="54" style="v" sid="LEV 25:54"/>And if he is not redeemed in these <char style="add">years</char>, then he shall be released in the Year of the Jubilee—he and his children with him. <verse eid="LEV 25:54"/><verse number="55" style="v" sid="LEV 25:55"/>For the sons of Israel <char style="add">are</char> servants to Me. They <char style="add">are</char> My servants, whom I brought out of the land of Egypt. I <char style="add">am</char> YHWH your⁺ God. <verse eid="LEV 25:55"/></para>
 <chapter eid="LEV 25"/>
 <chapter number="26" style="c" sid="LEV 26"/>
+<para style="ms1">Blessings &amp; Curses</para>
+<para style="mr">(26)</para>
 <para style="s1">Additional Blessings of Obedience</para>
 <para style="p"><verse number="1" style="v" sid="LEV 26:1"/><char style="add">“</char> You⁺ shall not make for yourselves idols; and a carved image and a pillar you⁺ shall not raise up for yourselves; and an engraved stone you⁺ shall not place in your⁺ land, to bow down upon it; for I <char style="add">am</char> YHWH your⁺ God. <verse eid="LEV 26:1"/></para>
 <para style="p"><verse number="2" style="v" sid="LEV 26:2"/>You⁺ shall keep My Sabbaths and you⁺ shall revere My sanctuary. I <char style="add">am</char> YHWH. <verse eid="LEV 26:2"/></para>
@@ -555,6 +577,8 @@
 <para style="p"><verse number="46" style="v" sid="LEV 26:46"/>And these <char style="add">are</char> the statutes and the ordinances and the laws that YHWH made between Himself and between the sons of Israel on Mount Sinai by the hand of Moses. <verse eid="LEV 26:46"/></para>
 <chapter eid="LEV 26"/>
 <chapter number="27" style="c" sid="LEV 27"/>
+<para style="ms1">Devotion</para>
+<para style="mr">(27)</para>
 <para style="s1">Rules about Valuations</para>
 <para style="p"><verse number="1" style="v" sid="LEV 27:1"/>And YHWH spoke to Moses, saying, <verse eid="LEV 27:1"/><verse number="2" style="v" sid="LEV 27:2"/>“Speak to the sons of Israel, and say to them, ‘When a man makes a wonderful vow, in your valuation of souls to YHWH, <verse eid="LEV 27:2"/><verse number="3" style="v" sid="LEV 27:3"/>your valuation, if it is a male from a son of twenty years and up to sixty years old, then your valuation shall be fifty shekels of silver,<note caller="+" style="f"><char style="fr" closed="false">27.3 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">50 shekels</char><char style="ft" closed="false"> is approximately 1.26 pounds or 569.8 grams of silver; also in verse 16.</char></note> according to the shekel of the sanctuary.<note caller="+" style="f"><char style="fr" closed="false">27.3 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">A shekel</char><char style="ft" closed="false"> weighed approximately 0.4 ounces or 11.4 grams; also in verse 25.</char></note> <verse eid="LEV 27:3"/><verse number="4" style="v" sid="LEV 27:4"/>And if it <char style="add">is</char> a female, then your valuation shall be thirty shekels;<note caller="+" style="f"><char style="fr" closed="false">27.4 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">30 shekels</char><char style="ft" closed="false"> is approximately 12 ounces or 342 grams of silver.</char></note> <verse eid="LEV 27:4"/><verse number="5" style="v" sid="LEV 27:5"/>and if from a son of five years and up to twenty years old, then your valuation shall be for the male twenty shekels,<note caller="+" style="f"><char style="fr" closed="false">27.5 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">20 shekels</char><char style="ft" closed="false"> is approximately 8 ounces or 228 grams of silver.</char></note> and for the female ten shekels;<note caller="+" style="f"><char style="fr" closed="false">27.5 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">10 shekels</char><char style="ft" closed="false"> is approximately 4 ounces or 114 grams of silver; also in verse 7.</char></note> <verse eid="LEV 27:5"/></para>
 <para style="p"><verse number="6" style="v" sid="LEV 27:6"/>and if from a son of a month and up to five years old, then your valuation shall be for the male five shekels of silver,<note caller="+" style="f"><char style="fr" closed="false">27.6 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">5 shekels</char><char style="ft" closed="false"> is approximately 2 ounces or 57 grams of silver.</char></note> and for the female your valuation <char style="add">is</char> three shekels of silver;<note caller="+" style="f"><char style="fr" closed="false">27.6 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">3 shekels</char><char style="ft" closed="false"> is approximately 1.2 ounces or 34.2 grams of silver.</char></note> <verse eid="LEV 27:6"/><verse number="7" style="v" sid="LEV 27:7"/>and if from a son of sixty years and above, if <char style="add">it is</char> a male, then your valuation shall be fifteen shekels,<note caller="+" style="f"><char style="fr" closed="false">27.7 </char><char style="ft" closed="false"> </char><char style="fq" closed="false">15 shekels</char><char style="ft" closed="false"> is approximately 6 ounces or 171 grams of silver.</char></note> and for the female ten shekels. <verse eid="LEV 27:7"/><verse number="8" style="v" sid="LEV 27:8"/>And if he is poorer than your valuation, then he shall present him<note caller="+" style="f"><char style="fr" closed="false">27.8 </char><char style="ft" closed="false"> Or </char><char style="fq" closed="false">present himself</char></note> before the face of the priest, and the priest shall value him according to mouth, after the reach of the hand who vowed, the priest shall value him. <verse eid="LEV 27:8"/></para>
