@@ -51,28 +51,121 @@
   input.setAttribute("aria-label", "Find a book or chapter"); input.autocomplete = "off"; input.spellcheck = false;
   var go = el("a", "panel-go"); go.hidden = true;
   form.appendChild(input); form.appendChild(go);
-  /* Book list: rows of [Old Testament, New Testament] that meet at the centre line.
-     Tapping a book opens its chapter grid right under that row (one open at a time). */
+  /* OT orders (Kevin 20 Nov): Tanakh in Torah / Nevi'im / Ketuvim, Conventional in
+     Law / History / Poetry & Wisdom / Prophets. The NT order is the same in both.
+     The switch below the heading toggles the OT order; the choice is remembered. */
+  var OT_ORDERS = {
+    tanakh: [
+      {title: "The Torah (Law)", books: ["GEN", "EXO", "LEV", "NUM", "DEU"]},
+      {title: "Nevi'im (Prophets)", books: ["JOS", "JDG", "1SA", "2SA", "1KI", "2KI", "ISA", "JER", "EZK", "HOS", "JOL", "AMO", "OBA", "JON", "MIC", "NAM", "HAB", "ZEP", "HAG", "ZEC", "MAL"]},
+      {title: "Ketuvim (Writings)", books: ["PSA", "PRO", "JOB", "SNG", "RUT", "LAM", "ECC", "EST", "DAN", "EZR", "NEH", "1CH", "2CH"]}
+    ],
+    conventional: [
+      {title: "Law", books: ["GEN", "EXO", "LEV", "NUM", "DEU"]},
+      {title: "History", books: ["JOS", "JDG", "RUT", "1SA", "2SA", "1KI", "2KI", "1CH", "2CH", "EZR", "NEH", "EST"]},
+      {title: "Poetry & Wisdom", books: ["JOB", "PSA", "PRO", "ECC", "SNG"]},
+      {title: "Prophets", books: ["ISA", "JER", "LAM", "EZK", "DAN", "HOS", "JOL", "AMO", "OBA", "JON", "MIC", "NAM", "HAB", "ZEP", "HAG", "ZEC", "MAL"]}
+    ]
+  };
+  var ORDER_KEY = "aiv-ot-order";
+  var order = "tanakh";
+  try { var savedOrder = localStorage.getItem(ORDER_KEY); if (savedOrder === "conventional" || savedOrder === "tanakh") order = savedOrder; } catch (e) {}
+  /* Book list: Old Testament in sections (per the order above), then New Testament.
+     Tapping a book opens its chapter grid right under that book (one open at a time). */
   var listView = el("div", "panel-books");
   listView.appendChild(el("h2", "panel-h", "Books of the Bible"));
+  var switchEl = el("div", "panel-switch");
+  switchEl.setAttribute("role", "group"); switchEl.setAttribute("aria-label", "Old Testament book order");
+  var btnConv = el("button", "panel-switch-btn", "Conventional"); btnConv.type = "button";
+  var btnTan = el("button", "panel-switch-btn", "Tanakh"); btnTan.type = "button";
+  btnConv.setAttribute("aria-pressed", String(order === "conventional"));
+  btnTan.setAttribute("aria-pressed", String(order === "tanakh"));
+  switchEl.appendChild(btnConv); switchEl.appendChild(btnTan);
+  listView.appendChild(switchEl);
   var rowsEl = el("div", "panel-rows");
   var empty = el("p", "panel-empty", "No book matches."); empty.hidden = true;
-  var OT = BOOKS.filter(function (b) { return b[3] === "OT"; }), NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
-  var rows = [], cells = {};
-  for (var r = 0; r < Math.max(OT.length, NT.length); r++) {
-    var row = el("div", "panel-row"), pair = [];
-    [[OT[r], "ot"], [NT[r], "nt"]].forEach(function (x) {
-      var c = el("div", "panel-cell " + x[1]);
-      if (x[0]) {
-        var a = el("a", "", x[0][1]); a.href = href(x[0][0], 1); a.dataset.book = x[0][0];
+  var cells = {}, rows = [], sections = [];
+  /* Book list: rows of [Old Testament, New Testament] that meet at the centre line,
+     as before. The OT section heading sits in the OT cell of a row, and every row —
+     heading rows included — carries the next NT book while any remain, so the NT
+     line never breaks for an OT division. Tapping a book opens its chapter grid
+     right under that row (one open at a time). */
+  function buildRows() {
+    rowsEl.innerHTML = ""; cells = {}; rows = []; sections = [];
+    var NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
+    var ni = 0;
+    /* Next NT book's cell for a row; empty once the NT is exhausted. */
+    function ntCell(row) {
+      var c = el("div", "panel-cell nt");
+      var ntb = NT[ni] || null;
+      if (ntb) {
+        var a = el("a", "", ntb[1]); a.href = href(ntb[0], 1); a.dataset.book = ntb[0];
         a.setAttribute("aria-expanded", "false");
-        if (x[0][0] === curBook) a.setAttribute("aria-current", "true");
-        c.appendChild(a); cells[x[0][0]] = {cell: c, a: a, row: row};
+        if (ntb[0] === curBook) a.setAttribute("aria-current", "true");
+        c.appendChild(a);
+        cells[ntb[0]] = {cell: c, a: a, row: row, b: ntb};
+        ni++;
+        return {cell: c, b: ntb};
       }
-      row.appendChild(c); pair.push(x[0] ? [c, x[0]] : null);
+      return {cell: c, b: null};
+    }
+    function otCell(b, row) {
+      var c = el("div", "panel-cell ot");
+      var a = el("a", "", b[1]); a.href = href(b[0], 1); a.dataset.book = b[0];
+      a.setAttribute("aria-expanded", "false");
+      if (b[0] === curBook) a.setAttribute("aria-current", "true");
+      c.appendChild(a);
+      cells[b[0]] = {cell: c, a: a, row: row, b: b};
+      return {cell: c, b: b};
+    }
+    OT_ORDERS[order].forEach(function (sec) {
+      var hrow = el("div", "panel-row panel-sec-row");
+      var hc = el("div", "panel-cell ot");
+      hc.appendChild(el("h3", "panel-sec", sec.title + " |"));
+      hrow.appendChild(hc);
+      var nt = ntCell(hrow);
+      hrow.appendChild(nt.cell);
+      rowsEl.appendChild(hrow);
+      var secRec = {row: hrow, items: []};
+      rows.push([hrow, nt.b ? [[nt.cell, nt.b]] : [], secRec]);
+      sections.push(secRec);
+      sec.books.forEach(function (id) {
+        var b = byId[id]; if (!b) return;
+        var row = el("div", "panel-row");
+        var ot = otCell(b, row);
+        row.appendChild(ot.cell);
+        var nt2 = ntCell(row);
+        row.appendChild(nt2.cell);
+        var pair = [[ot.cell, ot.b]];
+        if (nt2.b) pair.push([nt2.cell, nt2.b]); else pair.push(null);
+        rowsEl.appendChild(row); rows.push([row, pair, null]);
+        secRec.items.push({cell: ot.cell, b: ot.b});
+      });
     });
-    rowsEl.appendChild(row); rows.push([row, pair]);
+    while (ni < NT.length) {
+      var row2 = el("div", "panel-row");
+      row2.appendChild(el("div", "panel-cell ot"));
+      var nt3 = ntCell(row2);
+      row2.appendChild(nt3.cell);
+      var pair2 = [null];
+      if (nt3.b) pair2.push([nt3.cell, nt3.b]); else pair2.push(null);
+      rowsEl.appendChild(row2); rows.push([row2, pair2, null]);
+    }
   }
+  buildRows();
+  function setOrder(next) {
+    if (next === order) return;
+    var wasOpen = openId;
+    order = next;
+    try { localStorage.setItem(ORDER_KEY, order); } catch (e) {}
+    btnConv.setAttribute("aria-pressed", String(order === "conventional"));
+    btnTan.setAttribute("aria-pressed", String(order === "tanakh"));
+    closeGrid();
+    buildRows();
+    if (wasOpen && cells[wasOpen]) showGrid(wasOpen, false);
+  }
+  btnConv.addEventListener("click", function () { setOrder("conventional"); });
+  btnTan.addEventListener("click", function () { setOrder("tanakh"); });
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
   foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
@@ -115,13 +208,29 @@
     var q = input.value, p = q.trim() ? parse(q) : null, n = 0;
     closeGrid();
     rows.forEach(function (r) {
-      var any = false;
-      r[1].forEach(function (it) {
+      var row = r[0], pair = r[1], sec = r[2];
+      if (sec) {
+        // section heading row: show if some book in the section matches,
+        // or if the NT book sharing this row matches
+        var any = false;
+        sec.items.forEach(function (it) {
+          if (!q.trim() || (p && p.hits.indexOf(it.b) >= 0)) any = true;
+        });
+        pair.forEach(function (it) {
+          if (!it) return;
+          var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
+          it[0].classList.toggle("off", !show); if (show) { any = true; n++; }
+        });
+        row.hidden = q.trim() ? !any : false;
+        return;
+      }
+      var anyRow = false;
+      pair.forEach(function (it) {
         if (!it) return;
         var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
-        it[0].classList.toggle("off", !show); if (show) { any = true; n++; }
+        it[0].classList.toggle("off", !show); if (show) { anyRow = true; n++; }
       });
-      r[0].hidden = !any;
+      row.hidden = !anyRow;
     });
     empty.hidden = n > 0;
     if (p && p.hits.length) {
