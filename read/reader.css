@@ -61,11 +61,17 @@ main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
    stylesheet right-aligns; centre only the qr paragraphs that carry a qs (Selah) span.
    The other qr lines (prophetic declarations, Amen responses, refrains) stay right-aligned. */
 main.text p.usfm-qr:has(.usfm-qs){text-align:center}
-/* First verse of every chapter: 2x the line height above it (Kevin 20 Nov).
-   The verse-1 marker (sup#v1) sits in the first verse paragraph — or, in the Psalms,
-   in the superscript that carries verse 1's number — so target that paragraph.
-   Line height is 1.6em, so 2x is 3.2em. */
-main.text p.scripture:has(sup#v1){margin-top:3.2em}
+/* Chapter-opening gap (Kevin 20 Nov, revised): 2x the line height above the chapter's
+   opening s heading when one precedes the first verse; else above the first verse.
+   The space rides above the s heading, not above the superscript — so in the Psalms
+   it sits above "Deliver Me, O LORD!" and the like, and the superscript stays tight
+   against verse 1. Line height is 1.6em, so 2x is 3.2em. */
+main.text h3:is(.usfm-s,.usfm-s1):first-of-type:has(~ p.scripture:has(sup#v1)){margin-top:3.2em}
+main.text:not(:has(h3:is(.usfm-s,.usfm-s1):has(~ p.scripture:has(sup#v1)))) p.scripture:has(sup#v1){margin-top:3.2em}
+/* Superscript tight against its verse (Kevin 20 Nov): the verse-1 superscript (d)
+   carries verse 1's number, so its bottom margin is removed — no extra break
+   between the superscript and verse 1. */
+main.text p.usfm-d:has(sup#v1){margin-bottom:0}
 /* Blank line (b): the build renders it as an empty <p>, and the generated
    stylesheet gives it only a font-size, so in the browser it collapses to
    zero height and the blank line BSB intends never appears. Give it one
