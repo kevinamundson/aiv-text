@@ -94,8 +94,11 @@
     var NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
     var ni = 0;
     OT_ORDERS[order].forEach(function (sec) {
-      var hrow = el("div", "panel-sec-row");
-      hrow.appendChild(el("h3", "panel-sec", sec.title));
+      var hrow = el("div", "panel-row panel-sec-row");
+      var hc = el("div", "panel-cell ot");
+      hc.appendChild(el("h3", "panel-sec", sec.title + " |"));
+      hrow.appendChild(hc);
+      hrow.appendChild(el("div", "panel-cell nt"));
       rowsEl.appendChild(hrow);
       var secRec = {row: hrow, items: []};
       rows.push([hrow, [], secRec]);
