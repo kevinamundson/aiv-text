@@ -86,52 +86,69 @@
   var empty = el("p", "panel-empty", "No book matches."); empty.hidden = true;
   var cells = {}, rows = [], sections = [];
   /* Book list: rows of [Old Testament, New Testament] that meet at the centre line,
-     as before — the OT column now carries full-width section headings (one row each)
-     at the section boundaries, and the NT books stay paired with the OT books by index.
-     Tapping a book opens its chapter grid right under that row (one open at a time). */
+     as before. The OT section heading sits in the OT cell of a row, and every row —
+     heading rows included — carries the next NT book while any remain, so the NT
+     line never breaks for an OT division. Tapping a book opens its chapter grid
+     right under that row (one open at a time). */
   function buildRows() {
     rowsEl.innerHTML = ""; cells = {}; rows = []; sections = [];
     var NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
     var ni = 0;
+    /* Next NT book's cell for a row; empty once the NT is exhausted. */
+    function ntCell(row) {
+      var c = el("div", "panel-cell nt");
+      var ntb = NT[ni] || null;
+      if (ntb) {
+        var a = el("a", "", ntb[1]); a.href = href(ntb[0], 1); a.dataset.book = ntb[0];
+        a.setAttribute("aria-expanded", "false");
+        if (ntb[0] === curBook) a.setAttribute("aria-current", "true");
+        c.appendChild(a);
+        cells[ntb[0]] = {cell: c, a: a, row: row, b: ntb};
+        ni++;
+        return {cell: c, b: ntb};
+      }
+      return {cell: c, b: null};
+    }
+    function otCell(b, row) {
+      var c = el("div", "panel-cell ot");
+      var a = el("a", "", b[1]); a.href = href(b[0], 1); a.dataset.book = b[0];
+      a.setAttribute("aria-expanded", "false");
+      if (b[0] === curBook) a.setAttribute("aria-current", "true");
+      c.appendChild(a);
+      cells[b[0]] = {cell: c, a: a, row: row, b: b};
+      return {cell: c, b: b};
+    }
     OT_ORDERS[order].forEach(function (sec) {
       var hrow = el("div", "panel-row panel-sec-row");
       var hc = el("div", "panel-cell ot");
       hc.appendChild(el("h3", "panel-sec", sec.title + " |"));
       hrow.appendChild(hc);
-      hrow.appendChild(el("div", "panel-cell nt"));
+      var nt = ntCell(hrow);
+      hrow.appendChild(nt.cell);
       rowsEl.appendChild(hrow);
       var secRec = {row: hrow, items: []};
-      rows.push([hrow, [], secRec]);
+      rows.push([hrow, nt.b ? [[nt.cell, nt.b]] : [], secRec]);
       sections.push(secRec);
       sec.books.forEach(function (id) {
         var b = byId[id]; if (!b) return;
-        var row = el("div", "panel-row"), pair = [];
-        var ntb = NT[ni] || null;
-        [[b, "ot"], [ntb, "nt"]].forEach(function (x) {
-          var c = el("div", "panel-cell " + x[1]);
-          if (x[0]) {
-            var a = el("a", "", x[0][1]); a.href = href(x[0][0], 1); a.dataset.book = x[0][0];
-            a.setAttribute("aria-expanded", "false");
-            if (x[0][0] === curBook) a.setAttribute("aria-current", "true");
-            c.appendChild(a); cells[x[0][0]] = {cell: c, a: a, row: row, b: x[0]};
-          }
-          row.appendChild(c); pair.push(x[0] ? [c, x[0]] : null);
-        });
-        if (ntb) ni++;
+        var row = el("div", "panel-row");
+        var ot = otCell(b, row);
+        row.appendChild(ot.cell);
+        var nt2 = ntCell(row);
+        row.appendChild(nt2.cell);
+        var pair = [[ot.cell, ot.b]];
+        if (nt2.b) pair.push([nt2.cell, nt2.b]); else pair.push(null);
         rowsEl.appendChild(row); rows.push([row, pair, null]);
-        if (pair[0]) secRec.items.push({cell: pair[0][0], b: pair[0][1]});
+        secRec.items.push({cell: ot.cell, b: ot.b});
       });
     });
     while (ni < NT.length) {
-      var row2 = el("div", "panel-row"), pair2 = [];
-      var c2 = el("div", "panel-cell ot"); row2.appendChild(c2); pair2.push(null);
-      var c3 = el("div", "panel-cell nt");
-      var a3 = el("a", "", NT[ni][1]); a3.href = href(NT[ni][0], 1); a3.dataset.book = NT[ni][0];
-      a3.setAttribute("aria-expanded", "false");
-      if (NT[ni][0] === curBook) a3.setAttribute("aria-current", "true");
-      c3.appendChild(a3); cells[NT[ni][0]] = {cell: c3, a: a3, row: row2, b: NT[ni]};
-      row2.appendChild(c3); pair2.push([c3, NT[ni]]);
-      ni++;
+      var row2 = el("div", "panel-row");
+      row2.appendChild(el("div", "panel-cell ot"));
+      var nt3 = ntCell(row2);
+      row2.appendChild(nt3.cell);
+      var pair2 = [null];
+      if (nt3.b) pair2.push([nt3.cell, nt3.b]); else pair2.push(null);
       rowsEl.appendChild(row2); rows.push([row2, pair2, null]);
     }
   }
@@ -193,10 +210,16 @@
     rows.forEach(function (r) {
       var row = r[0], pair = r[1], sec = r[2];
       if (sec) {
-        // section heading row: show only if some book in the section matches
+        // section heading row: show if some book in the section matches,
+        // or if the NT book sharing this row matches
         var any = false;
         sec.items.forEach(function (it) {
           if (!q.trim() || (p && p.hits.indexOf(it.b) >= 0)) any = true;
+        });
+        pair.forEach(function (it) {
+          if (!it) return;
+          var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
+          it[0].classList.toggle("off", !show); if (show) { any = true; n++; }
         });
         row.hidden = q.trim() ? !any : false;
         return;
