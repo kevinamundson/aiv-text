@@ -62,16 +62,21 @@ main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
    The other qr lines (prophetic declarations, Amen responses, refrains) stay right-aligned. */
 main.text p.usfm-qr:has(.usfm-qs){text-align:center}
 /* Chapter-opening gap (Kevin 20 Nov, revised): 2x the line height above the chapter's
-   opening s heading when one precedes the first verse; else above the first verse.
-   The space rides above the s heading, not above the superscript — so in the Psalms
-   it sits above "Deliver Me, O LORD!" and the like, and the superscript stays tight
-   against verse 1. Line height is 1.6em, so 2x is 3.2em. */
-main.text h3:is(.usfm-s,.usfm-s1):first-of-type:has(~ p.scripture:has(sup#v1)){margin-top:3.2em}
-main.text:not(:has(h3:is(.usfm-s,.usfm-s1):has(~ p.scripture:has(sup#v1)))) p.scripture:has(sup#v1){margin-top:3.2em}
+   opening s heading. The space rides above the s heading, not above the superscript —
+   so in the Psalms it sits above "Deliver Me, O LORD!" and the like, and the superscript
+   stays tight against verse 1. Line height is 1.6em, so 2x is 3.2em. */
+main.text h3:is(.usfm-s,.usfm-s1):first-of-type{margin-top:3.2em}
+/* Genesis 23 is the one chapter with no heading before verse 1: its first s heading
+   sits mid-chapter, so it keeps its normal margin and the first verse takes the gap. */
+main[data-book="GEN"][data-chapter="23"] h3:is(.usfm-s,.usfm-s1):first-of-type{margin-top:0.6667em}
+main[data-book="GEN"][data-chapter="23"] p.scripture:has(sup#v1){margin-top:3.2em}
 /* Superscript tight against its verse (Kevin 20 Nov): the verse-1 superscript (d)
-   carries verse 1's number, so its bottom margin is removed — no extra break
-   between the superscript and verse 1. */
+   carries verse 1's number, so its bottom margin is removed, and the blank line (b)
+   that follows it is hidden — no extra break between the superscript and verse 1.
+   (The b is also removed from the source in PR #35; this rule is the stylesheet
+   counterpart and becomes redundant once that merges.) */
 main.text p.usfm-d:has(sup#v1){margin-bottom:0}
+main.text p.usfm-d:has(sup#v1) + p.usfm-b{display:none}
 /* Blank line (b): the build renders it as an empty <p>, and the generated
    stylesheet gives it only a font-size, so in the browser it collapses to
    zero height and the blank line BSB intends never appears. Give it one
