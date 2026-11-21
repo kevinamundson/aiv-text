@@ -57,6 +57,15 @@ main.text .usfm-p{margin-top:.15em}
    The em is relative, so the spacing scales with the stepped body size above. */
 main.text p.usfm-d{margin-top:calc(2 * .3333em);margin-bottom:calc(2 * .3333em)} /* same before as after (Kevin 14 Nov 8:44 PM) */
 main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
+/* Selah (qs) centred (Kevin 20 Nov): Selah sits in a qr paragraph, which the generated
+   stylesheet right-aligns; centre only the qr paragraphs that carry a qs (Selah) span.
+   The other qr lines (prophetic declarations, Amen responses, refrains) stay right-aligned. */
+main.text p.usfm-qr:has(.usfm-qs){text-align:center}
+/* First verse of every chapter: 2x the line height above it (Kevin 20 Nov).
+   The verse-1 marker (sup#v1) sits in the first verse paragraph — or, in the Psalms,
+   in the superscript that carries verse 1's number — so target that paragraph.
+   Line height is 1.6em, so 2x is 3.2em. */
+main.text p.scripture:has(sup#v1){margin-top:3.2em}
 /* Blank line (b): the build renders it as an empty <p>, and the generated
    stylesheet gives it only a font-size, so in the browser it collapses to
    zero height and the blank line BSB intends never appears. Give it one
