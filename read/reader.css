@@ -53,10 +53,12 @@ main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-s4){font-family:var(--san
 main.text p{margin-top:0;margin-bottom:0}
 main.text .usfm-p{margin-top:.15em}
 /* Paragraph spacing (Kevin 14 Nov 8:23 PM): the stylesheet's d spacing is 4pt (.3333em of the body size = 6px at 18px);
-   d gets twice that after it, qd twice that before it; qs (inside qc) keeps the qc paragraph spacing unchanged.
-   The em is relative, so the spacing scales with the stepped body size above. */
+   d gets twice that after it; qs (inside qc) keeps the qc paragraph spacing unchanged.
+   The em is relative, so the spacing scales with the stepped body size above.
+   qd had twice that before it (same ruling) until Kevin removed it 20 Nov: no extra
+   space above the postscript. */
 main.text p.usfm-d{margin-top:calc(2 * .3333em);margin-bottom:calc(2 * .3333em)} /* same before as after (Kevin 14 Nov 8:44 PM) */
-main.text p.usfm-qd{margin-top:calc(2 * .3333em)}
+main.text p.usfm-qd{margin-top:0} /* no extra space above the postscript (Kevin 20 Nov) */
 /* Selah (qs) centred (Kevin 20 Nov): Selah sits in a qr paragraph, which the generated
    stylesheet right-aligns; centre only the qr paragraphs that carry a qs (Selah) span.
    The other qr lines (prophetic declarations, Amen responses, refrains) stay right-aligned. */
