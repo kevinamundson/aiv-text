@@ -51,29 +51,79 @@
   input.setAttribute("aria-label", "Find a book or chapter"); input.autocomplete = "off"; input.spellcheck = false;
   var go = el("a", "panel-go"); go.hidden = true;
   form.appendChild(input); form.appendChild(go);
-  /* Book list: rows of [Old Testament, New Testament] that meet at the centre line.
-     Tapping a book opens its chapter grid right under that row (one open at a time). */
+  /* OT orders (Kevin 20 Nov): Tanakh in Torah / Nevi'im / Ketuvim, Conventional in
+     Law / History / Poetry & Wisdom / Prophets. The NT order is the same in both.
+     The switch below the heading toggles the OT order; the choice is remembered. */
+  var OT_ORDERS = {
+    tanakh: [
+      {title: "The Torah (Law)", books: ["GEN", "EXO", "LEV", "NUM", "DEU"]},
+      {title: "Nevi'im (Prophets)", books: ["JOS", "JDG", "1SA", "2SA", "1KI", "2KI", "ISA", "JER", "EZK", "HOS", "JOL", "AMO", "OBA", "JON", "MIC", "NAM", "HAB", "ZEP", "HAG", "ZEC", "MAL"]},
+      {title: "Ketuvim (Writings)", books: ["PSA", "PRO", "JOB", "SNG", "RUT", "LAM", "ECC", "EST", "DAN", "EZR", "NEH", "1CH", "2CH"]}
+    ],
+    conventional: [
+      {title: "Law", books: ["GEN", "EXO", "LEV", "NUM", "DEU"]},
+      {title: "History", books: ["JOS", "JDG", "RUT", "1SA", "2SA", "1KI", "2KI", "1CH", "2CH", "EZR", "NEH", "EST"]},
+      {title: "Poetry & Wisdom", books: ["JOB", "PSA", "PRO", "ECC", "SNG"]},
+      {title: "Prophets", books: ["ISA", "JER", "LAM", "EZK", "DAN", "HOS", "JOL", "AMO", "OBA", "JON", "MIC", "NAM", "HAB", "ZEP", "HAG", "ZEC", "MAL"]}
+    ]
+  };
+  var ORDER_KEY = "aiv-ot-order";
+  var order = "tanakh";
+  try { var savedOrder = localStorage.getItem(ORDER_KEY); if (savedOrder === "conventional" || savedOrder === "tanakh") order = savedOrder; } catch (e) {}
+  /* Book list: Old Testament in sections (per the order above), then New Testament.
+     Tapping a book opens its chapter grid right under that book (one open at a time). */
   var listView = el("div", "panel-books");
   listView.appendChild(el("h2", "panel-h", "Books of the Bible"));
-  var rowsEl = el("div", "panel-rows");
+  var switchEl = el("div", "panel-switch");
+  switchEl.setAttribute("role", "group"); switchEl.setAttribute("aria-label", "Old Testament book order");
+  var btnConv = el("button", "panel-switch-btn", "Conventional"); btnConv.type = "button";
+  var btnTan = el("button", "panel-switch-btn", "Tanakh"); btnTan.type = "button";
+  btnConv.setAttribute("aria-pressed", String(order === "conventional"));
+  btnTan.setAttribute("aria-pressed", String(order === "tanakh"));
+  switchEl.appendChild(btnConv); switchEl.appendChild(btnTan);
+  listView.appendChild(switchEl);
+  var listEl = el("div", "panel-list");
   var empty = el("p", "panel-empty", "No book matches."); empty.hidden = true;
-  var OT = BOOKS.filter(function (b) { return b[3] === "OT"; }), NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
-  var rows = [], cells = {};
-  for (var r = 0; r < Math.max(OT.length, NT.length); r++) {
-    var row = el("div", "panel-row"), pair = [];
-    [[OT[r], "ot"], [NT[r], "nt"]].forEach(function (x) {
-      var c = el("div", "panel-cell " + x[1]);
-      if (x[0]) {
-        var a = el("a", "", x[0][1]); a.href = href(x[0][0], 1); a.dataset.book = x[0][0];
+  var cells = {}, sections = [];
+  function buildList() {
+    listEl.innerHTML = ""; cells = {}; sections = [];
+    var NT = BOOKS.filter(function (b) { return b[3] === "NT"; });
+    function addSection(title, test, ids) {
+      var sec = el("div", "panel-sec " + test);
+      sec.appendChild(el("h3", "panel-sec-h", title));
+      var booksEl = el("div", "panel-sec-books");
+      var items = [];
+      ids.forEach(function (id) {
+        var b = byId[id]; if (!b) return;
+        var item = el("div", "panel-book " + test);
+        var a = el("a", "", b[1]); a.href = href(b[0], 1); a.dataset.book = b[0];
         a.setAttribute("aria-expanded", "false");
-        if (x[0][0] === curBook) a.setAttribute("aria-current", "true");
-        c.appendChild(a); cells[x[0][0]] = {cell: c, a: a, row: row};
-      }
-      row.appendChild(c); pair.push(x[0] ? [c, x[0]] : null);
-    });
-    rowsEl.appendChild(row); rows.push([row, pair]);
+        if (b[0] === curBook) a.setAttribute("aria-current", "true");
+        item.appendChild(a); booksEl.appendChild(item);
+        cells[b[0]] = {item: item, a: a, b: b};
+        items.push(cells[b[0]]);
+      });
+      sec.appendChild(booksEl); listEl.appendChild(sec);
+      sections.push({sec: sec, items: items});
+    }
+    OT_ORDERS[order].forEach(function (s) { addSection(s.title, "ot", s.books); });
+    addSection("New Testament", "nt", NT.map(function (b) { return b[0]; }));
   }
-  listView.appendChild(rowsEl); listView.appendChild(empty);
+  buildList();
+  function setOrder(next) {
+    if (next === order) return;
+    var wasOpen = openId;
+    order = next;
+    try { localStorage.setItem(ORDER_KEY, order); } catch (e) {}
+    btnConv.setAttribute("aria-pressed", String(order === "conventional"));
+    btnTan.setAttribute("aria-pressed", String(order === "tanakh"));
+    closeGrid();
+    buildList();
+    if (wasOpen && cells[wasOpen]) showGrid(wasOpen, false);
+  }
+  btnConv.addEventListener("click", function () { setOrder("conventional"); });
+  btnTan.addEventListener("click", function () { setOrder("tanakh"); });
+  listView.appendChild(listEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
   foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
   panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
@@ -82,7 +132,7 @@
   var openId = null, pop = null;
   function closeGrid() {
     if (pop) pop.remove();
-    if (openId && cells[openId]) { cells[openId].a.setAttribute("aria-expanded", "false"); cells[openId].cell.classList.remove("open"); }
+    if (openId && cells[openId]) { cells[openId].a.setAttribute("aria-expanded", "false"); cells[openId].item.classList.remove("open"); }
     pop = null; openId = null;
   }
   function showGrid(id, focus) {
@@ -98,14 +148,14 @@
       li.appendChild(a); ul.appendChild(li);
     }
     pop.appendChild(ul);
-    c.row.after(pop);
-    c.a.setAttribute("aria-expanded", "true"); c.a.setAttribute("aria-controls", pop.id); c.cell.classList.add("open");
+    c.item.after(pop);
+    c.a.setAttribute("aria-expanded", "true"); c.a.setAttribute("aria-controls", pop.id); c.item.classList.add("open");
     openId = id;
     if (focus) (ul.querySelector('[aria-current="page"]') || ul.querySelector("a")).focus();
     var cur = ul.querySelector('[aria-current="page"]');
     (cur || c.a).scrollIntoView({block: "nearest"});
   }
-  rowsEl.addEventListener("click", function (e) {
+  listEl.addEventListener("click", function (e) {
     var a = e.target.closest("a[data-book]"); if (!a) return;
     e.preventDefault();
     if (openId === a.dataset.book) closeGrid(); else showGrid(a.dataset.book, false);
@@ -114,14 +164,13 @@
   function filter() {
     var q = input.value, p = q.trim() ? parse(q) : null, n = 0;
     closeGrid();
-    rows.forEach(function (r) {
+    sections.forEach(function (s) {
       var any = false;
-      r[1].forEach(function (it) {
-        if (!it) return;
-        var show = !q.trim() || (p && p.hits.indexOf(it[1]) >= 0);
-        it[0].classList.toggle("off", !show); if (show) { any = true; n++; }
+      s.items.forEach(function (it) {
+        var show = !q.trim() || (p && p.hits.indexOf(it.b) >= 0);
+        it.item.classList.toggle("off", !show); if (show) { any = true; n++; }
       });
-      r[0].hidden = !any;
+      s.sec.hidden = q.trim() ? !any : false;
     });
     empty.hidden = n > 0;
     if (p && p.hits.length) {
