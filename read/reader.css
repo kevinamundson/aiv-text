@@ -182,7 +182,7 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 /* OT section heading: sits over the Old Testament column only, right-aligned like the
    OT books, with a "|" at the centre line; small enough to fit the longest title. */
 .panel-sec-row{margin:.7rem 0 .2rem}
-.panel-sec{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tan);font-weight:600;margin:0}
+.panel-sec{font-size:.54rem;letter-spacing:.02em;text-transform:uppercase;color:var(--tan);font-weight:600;margin:0}
 .panel-row{display:grid;grid-template-columns:1fr 1fr;column-gap:1rem}
 .panel-cell.ot{text-align:right}
 .panel-cell.nt{text-align:left}
