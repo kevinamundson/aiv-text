@@ -50,7 +50,7 @@ def publishable(style):
 def is_apparatus(style):
     return STY.get(style, {}).get("TextType") in ("Section", "Title") or style == "qa"
 
-HEADING_TAG = {"ms": "h2", "ms1": "h2", "ms2": "h2", "ms3": "h2", "s": "h3", "s1": "h3",
+HEADING_TAG = {"ms": "h2", "ms1": "h2", "ms2": "h2", "ms3": "h2", "ms4": "h2", "s": "h3", "s1": "h3",
                "s2": "h4", "s3": "h4", "s4": "h4"}
 
 esc = lambda s: html.escape(s or "", quote=False)
