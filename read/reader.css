@@ -318,10 +318,12 @@ body.settings-open{overflow:hidden}
 .set-range{flex:1;min-width:0;accent-color:#3f4a5e}
 .set-font{font-family:var(--sans);font-size:16px;padding:.5rem .6rem;border:1px solid var(--rule);border-radius:.5rem;
   background:var(--surface);color:var(--ink);max-width:14rem}
-/* Toggle switch: gray track, white knob; blue-gray track when on (screenshots) */
-.switch{appearance:none;flex:none;width:3rem;height:1.7rem;border:0;border-radius:999px;background:#d4d4d4;cursor:pointer;position:relative;padding:0;transition:background .15s}
+/* Toggle switch: white knob; track follows the colour theme (Kevin 27 Nov) —
+   muted divider colour when off, the theme accent when on (dark red in Museum
+   and Light, light red in Dark). */
+.switch{appearance:none;flex:none;width:3rem;height:1.7rem;border:0;border-radius:999px;background:var(--rule);cursor:pointer;position:relative;padding:0;transition:background .15s}
 .switch .knob{position:absolute;top:.15rem;left:.15rem;width:1.4rem;height:1.4rem;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .15s}
-.switch.on{background:#8fa1bd}
+.switch.on{background:var(--accent)}
 .switch.on .knob{left:calc(100% - 1.55rem)}
 .switch:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* Segmented preset control: four equal segments; the active one is dark slate, white text */
