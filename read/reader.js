@@ -168,7 +168,8 @@
   btnTan.addEventListener("click", function () { setOrder("tanakh"); });
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
-  foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
+  foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a> · <button type="button" class="panel-settings">Settings</button>';
+  foot.querySelector(".panel-settings").addEventListener("click", function () { openSettings(); });
   panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 
@@ -262,6 +263,10 @@
   close.addEventListener("click", function () { setOpen(false); });
   scrim.addEventListener("click", function () { setOpen(false); });
   document.addEventListener("keydown", function (e) {
+    /* Escape closes the settings modal first (reverting), then the panel.
+       setModal/closeSettings are defined in the settings section below; the
+       handler only runs on a user keypress, after the IIFE has finished. */
+    if (e.key === "Escape" && !setModal.hidden) { e.preventDefault(); closeSettings(true); return; }
     if (e.key === "Escape" && !panel.hidden) { e.preventDefault(); setOpen(false); return; }
     if (!panel.hidden || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
     var t = e.target; if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
@@ -272,6 +277,249 @@
   panel.addEventListener("keydown", function (e) {
     if (e.key !== "Tab") return;
     var f = Array.prototype.filter.call(panel.querySelectorAll("a[href],button,input"), function (x) { return x.offsetParent !== null; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  /* ---- reader settings (aiv-settings) ---- */
+  /* Settings modal (Kevin 27 Nov, modelled on the Literal Word settings):
+     font size / font / justify, TEXT FEATURES presets + toggles, THEME swatches.
+     Every control applies live and saves to localStorage at once; OK closes,
+     Cancel / X / Escape / scrim revert to the snapshot taken on open. */
+  var SETTINGS_KEY = "aiv-settings";
+  var FEATURE_KEYS = ["verseByVerse", "footnotes", "crossRefs", "asterisks", "redLetters", "masterHeadings", "headings", "verseNumbers"];
+  var PRESETS = {
+    "default": {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+    "study":   {verseByVerse: true,  footnotes: true,  crossRefs: true,  asterisks: true,  redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+    "reader":  {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: false, headings: false, verseNumbers: false}
+  };
+  var PRESET_NAMES = ["default", "study", "reader"];
+  function defaultSettings() {
+    return {fontSize: 100, font: "vollkorn", justify: true, preset: "default",
+      features: {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+      theme: "museum"};
+  }
+  function presetForFeatures(f) {
+    for (var i = 0; i < PRESET_NAMES.length; i++) {
+      var name = PRESET_NAMES[i], p = PRESETS[name], match = true;
+      for (var j = 0; j < FEATURE_KEYS.length; j++) {
+        if (f[FEATURE_KEYS[j]] !== p[FEATURE_KEYS[j]]) { match = false; break; }
+      }
+      if (match) return name;
+    }
+    return "custom";
+  }
+  function loadSettings() {
+    var s = defaultSettings();
+    try {
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      if (!raw) return s;
+      var p = JSON.parse(raw);
+      if (!p || typeof p !== "object") return s;
+      if (typeof p.fontSize === "number" && isFinite(p.fontSize)) s.fontSize = Math.min(150, Math.max(80, Math.round(p.fontSize / 5) * 5));
+      if (p.font === "georgia" || p.font === "times" || p.font === "vollkorn") s.font = p.font;
+      if (typeof p.justify === "boolean") s.justify = p.justify;
+      if (p.features && typeof p.features === "object") {
+        for (var k = 0; k < FEATURE_KEYS.length; k++) {
+          var key = FEATURE_KEYS[k];
+          if (typeof p.features[key] === "boolean") s.features[key] = p.features[key];
+        }
+      }
+      if (p.theme === "light" || p.theme === "dark" || p.theme === "museum") s.theme = p.theme;
+      s.preset = presetForFeatures(s.features);
+    } catch (e) {}
+    return s;
+  }
+  var settings = loadSettings();
+  function saveSettings() {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
+  }
+  function applySettings() {
+    var f = settings.features;
+    document.documentElement.dataset.theme = settings.theme;
+    document.documentElement.style.setProperty("--fs", String(settings.fontSize / 100));
+    body.dataset.font = settings.font;
+    body.classList.toggle("justify", settings.justify);
+    body.classList.toggle("hide-vn", !f.verseNumbers);
+    body.classList.toggle("hide-master", !f.masterHeadings);
+    body.classList.toggle("hide-headings", !f.headings);
+    body.classList.toggle("hide-notes", !f.footnotes);
+    body.classList.toggle("hide-xrefs", !f.crossRefs);
+    body.classList.toggle("red-letters", f.redLetters);
+    body.classList.toggle("vbv", f.verseByVerse);
+    /* Asterisks: there is no asterisk markup in the AIV text, so this class has
+       no CSS rule; the state is still carried in the DOM like the other toggles. */
+    body.classList.toggle("hide-asterisks", !f.asterisks);
+  }
+  applySettings();
+
+  /* ---- settings modal ---- */
+  function switchRow(labelText, indent) {
+    var row = el("div", "set-row" + (indent ? " indent" : ""));
+    var lab = el("span", "set-label", labelText);
+    var btn = el("button", "switch"); btn.type = "button";
+    btn.setAttribute("role", "switch"); btn.setAttribute("aria-checked", "false"); btn.setAttribute("aria-label", labelText);
+    btn.appendChild(el("span", "knob"));
+    row.appendChild(lab); row.appendChild(btn);
+    return {row: row, btn: btn};
+  }
+  function setSwitch(btn, on) {
+    btn.setAttribute("aria-checked", String(on));
+    btn.classList.toggle("on", on);
+  }
+  var setScrim = el("div", "set-scrim"); setScrim.hidden = true;
+  var setModal = el("div", "set-modal"); setModal.hidden = true;
+  setModal.setAttribute("role", "dialog"); setModal.setAttribute("aria-modal", "true"); setModal.setAttribute("aria-labelledby", "set-title");
+  var setHead = el("div", "set-head");
+  var setTitle = el("h2", "", "Settings"); setTitle.id = "set-title";
+  var setClose = el("button", "set-close"); setClose.type = "button"; setClose.setAttribute("aria-label", "Close settings"); setClose.textContent = "×";
+  setHead.appendChild(setTitle); setHead.appendChild(setClose);
+  var setBody = el("div", "set-body");
+  /* Font size: label + (−, slider, +) */
+  var sizeRow = el("div", "set-row");
+  sizeRow.appendChild(el("span", "set-label", "Font Size"));
+  var sizeCtl = el("div", "set-size");
+  var sizeMinus = el("button", "set-step", "−"); sizeMinus.type = "button"; sizeMinus.setAttribute("aria-label", "Decrease font size");
+  var sizeRange = el("input", "set-range"); sizeRange.type = "range"; sizeRange.min = "80"; sizeRange.max = "150"; sizeRange.step = "5"; sizeRange.setAttribute("aria-label", "Font size");
+  var sizePlus = el("button", "set-step", "+"); sizePlus.type = "button"; sizePlus.setAttribute("aria-label", "Increase font size");
+  sizeCtl.appendChild(sizeMinus); sizeCtl.appendChild(sizeRange); sizeCtl.appendChild(sizePlus);
+  sizeRow.appendChild(sizeCtl);
+  setBody.appendChild(sizeRow);
+  /* Font: label + select */
+  var fontRow = el("div", "set-row");
+  fontRow.appendChild(el("span", "set-label", "Font"));
+  var fontSel = el("select", "set-font"); fontSel.setAttribute("aria-label", "Font");
+  [["vollkorn", "Vollkorn"], ["georgia", "Georgia"], ["times", "Times New Roman"]].forEach(function (f) {
+    var o = el("option", "", f[1]); o.value = f[0]; fontSel.appendChild(o);
+  });
+  fontRow.appendChild(fontSel);
+  setBody.appendChild(fontRow);
+  /* Justify: label + switch */
+  var justifySw = switchRow("Justify Text", false);
+  setBody.appendChild(justifySw.row);
+  justifySw.btn.addEventListener("click", function () {
+    settings.justify = !settings.justify;
+    applySettings(); saveSettings(); syncControls();
+  });
+  /* Text features: preset segments, then the eight toggles */
+  setBody.appendChild(el("h3", "set-sec", "Text Features"));
+  var seg = el("div", "set-seg");
+  seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Text feature preset");
+  var segBtns = {};
+  ["default", "study", "reader", "custom"].forEach(function (name) {
+    var b = el("button", "set-seg-btn", name.charAt(0).toUpperCase() + name.slice(1));
+    b.type = "button"; b.dataset.preset = name; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { applyPreset(name); });
+    seg.appendChild(b); segBtns[name] = b;
+  });
+  setBody.appendChild(seg);
+  function applyPreset(name) {
+    if (name === "custom") return; /* Custom has no state of its own; it is reached by hand-toggling */
+    var p = PRESETS[name];
+    for (var i = 0; i < FEATURE_KEYS.length; i++) settings.features[FEATURE_KEYS[i]] = p[FEATURE_KEYS[i]];
+    settings.preset = name;
+    applySettings(); saveSettings(); syncControls();
+  }
+  var FEATURE_LABELS = [
+    ["verseByVerse", "Verse by Verse"],
+    ["footnotes", "Footnotes"],
+    ["crossRefs", "Cross-References"],
+    ["asterisks", "Asterisks"],
+    ["redLetters", "Red Letters"],
+    ["masterHeadings", "Master Headings"],
+    ["headings", "Section Headings"],
+    ["verseNumbers", "Verse Numbers"]
+  ];
+  var featureBtns = {};
+  FEATURE_LABELS.forEach(function (fl) {
+    var sw = switchRow(fl[1], true);
+    setBody.appendChild(sw.row);
+    featureBtns[fl[0]] = sw.btn;
+    sw.btn.addEventListener("click", function () {
+      settings.features[fl[0]] = !settings.features[fl[0]];
+      settings.preset = presetForFeatures(settings.features);
+      applySettings(); saveSettings(); syncControls();
+    });
+  });
+  /* Theme: three swatches */
+  setBody.appendChild(el("h3", "set-sec", "Theme"));
+  var themeRow = el("div", "set-themes");
+  var themeBtns = {};
+  [["museum", "Museum"], ["light", "Light"], ["dark", "Dark"]].forEach(function (t) {
+    var b = el("button", "set-theme", t[1]); b.type = "button";
+    b.dataset.theme = t[0]; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      settings.theme = t[0];
+      applySettings(); saveSettings(); syncControls();
+    });
+    themeRow.appendChild(b); themeBtns[t[0]] = b;
+  });
+  setBody.appendChild(themeRow);
+  /* Footer: Cancel (revert) / OK (keep) */
+  var setFoot = el("div", "set-foot");
+  var setCancel = el("button", "set-cancel", "Cancel"); setCancel.type = "button";
+  var setOk = el("button", "set-ok", "OK"); setOk.type = "button";
+  setFoot.appendChild(setCancel); setFoot.appendChild(setOk);
+  setModal.appendChild(setHead); setModal.appendChild(setBody); setModal.appendChild(setFoot);
+  body.appendChild(setScrim); body.appendChild(setModal);
+  function syncControls() {
+    sizeRange.value = String(settings.fontSize);
+    fontSel.value = settings.font;
+    setSwitch(justifySw.btn, settings.justify);
+    for (var i = 0; i < FEATURE_KEYS.length; i++) setSwitch(featureBtns[FEATURE_KEYS[i]], settings.features[FEATURE_KEYS[i]]);
+    ["default", "study", "reader", "custom"].forEach(function (name) {
+      var on = settings.preset === name;
+      segBtns[name].setAttribute("aria-pressed", String(on));
+      segBtns[name].classList.toggle("active", on);
+    });
+    ["museum", "light", "dark"].forEach(function (name) {
+      var on = settings.theme === name;
+      themeBtns[name].setAttribute("aria-pressed", String(on));
+      themeBtns[name].classList.toggle("selected", on);
+    });
+  }
+  function setFontSize(n) {
+    n = Math.min(150, Math.max(80, Math.round(n / 5) * 5));
+    if (n === settings.fontSize) return;
+    settings.fontSize = n;
+    applySettings(); saveSettings(); syncControls();
+  }
+  sizeMinus.addEventListener("click", function () { setFontSize(settings.fontSize - 5); });
+  sizePlus.addEventListener("click", function () { setFontSize(settings.fontSize + 5); });
+  sizeRange.addEventListener("input", function () { setFontSize(parseInt(sizeRange.value, 10)); });
+  fontSel.addEventListener("change", function () {
+    settings.font = fontSel.value;
+    applySettings(); saveSettings();
+  });
+  var settingsSnapshot = null, settingsReturnFocus = null;
+  function openSettings() {
+    settingsSnapshot = JSON.parse(JSON.stringify(settings));
+    settingsReturnFocus = document.activeElement;
+    syncControls();
+    setScrim.hidden = setModal.hidden = false;
+    body.classList.add("settings-open");
+    panel.setAttribute("inert", ""); scrim.setAttribute("inert", "");
+    setClose.focus();
+  }
+  function closeSettings(revert) {
+    if (revert && settingsSnapshot) {
+      settings = settingsSnapshot;
+      applySettings(); saveSettings();
+    }
+    setScrim.hidden = setModal.hidden = true;
+    body.classList.remove("settings-open");
+    panel.removeAttribute("inert"); scrim.removeAttribute("inert");
+    if (settingsReturnFocus && settingsReturnFocus.focus) settingsReturnFocus.focus({preventScroll: true});
+    settingsSnapshot = null; settingsReturnFocus = null;
+  }
+  setClose.addEventListener("click", function () { closeSettings(true); });
+  setCancel.addEventListener("click", function () { closeSettings(true); });
+  setOk.addEventListener("click", function () { closeSettings(false); });
+  setScrim.addEventListener("click", function () { closeSettings(true); });
+  /* keep keyboard focus inside the open modal (same pattern as the panel) */
+  setModal.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var f = Array.prototype.filter.call(setModal.querySelectorAll("button,input,select"), function (x) { return x.offsetParent !== null; });
     if (!f.length) return;
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
     else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }

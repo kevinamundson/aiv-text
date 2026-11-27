@@ -3,20 +3,46 @@
    Kevin's rulings (in usfm.css overrides) stand: no red letters for the words of Jesus,
    d/qd/qs all-small-caps and not italic, d/qd flush left, qr right, qc centred, add italic.
    Reading-pane colours and type are the original ones (as at aa950af); only the side panel has its own palette. */
-:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#f6f3ed;
+:root{--ink:#222;--muted:#5c5c5c;--rule:#ddd;--accent:#840000;--bg:#f6f3ed;--surface:#fff;--target:#f3ead2;--red:#c00;
   --pane:1rem;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; /* page padding around the reading pane */
   --tan:#bfae8a;--gold:#e2b75e;--bar:3.25rem}
+/* Themes (reader settings): museum is the :root default above; light and dark
+   override the same variables so every themed surface follows the choice. */
+html[data-theme="light"]{--bg:#ffffff;--ink:#1a1a1a;--muted:#666;--rule:#ddd;--accent:#840000;--surface:#fff;--target:#f3ead2;--red:#c00}
+html[data-theme="dark"]{--bg:#161616;--ink:#e6e6e6;--muted:#a8a8a8;--rule:#3a3a3a;--accent:#d98c8c;--surface:#222;--target:#3a3226;--red:#e06c6c}
 @media (max-width:600px){:root{--usfm-inch:3.5em}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height:1.6;color:var(--ink);background:var(--bg);font-size:1.125rem}
+body{font-family:"Vollkorn",Georgia,"Times New Roman",serif;margin:0;line-height:1.6;color:var(--ink);background:var(--bg);font-size:calc(1.125rem * var(--fs,1))}
 /* Reading-pane type steps with viewport width (Kevin 15 Nov; measured from literalword.com Genesis 1,
    Default preset: ~21-22px at 1919/1242px, ~18px at 848px, ~15px at 513px).
    Revised twice: the descent is gentler — no step larger than 2px — and the floor is 18px
    (was 16px, then 17px). Full-width 21px unchanged; the 18px base covers everything below 768px. */
-@media (min-width:77.5rem){body{font-size:1.3125rem}} /* 21px at 1240px+ */
-@media (min-width:48rem) and (max-width:77.4375rem){body{font-size:1.1875rem}} /* 19px at 768-1239px */
+@media (min-width:77.5rem){body{font-size:calc(1.3125rem * var(--fs,1))}} /* 21px at 1240px+ */
+@media (min-width:48rem) and (max-width:77.4375rem){body{font-size:calc(1.1875rem * var(--fs,1))}} /* 19px at 768-1239px */
+/* Reader settings: font switch (Vollkorn is the default stack above; d/qd/qs keep
+   their Vollkorn SC from usfm.css, and ms/s headings keep system-ui sans). */
+body[data-font="georgia"]{font-family:Georgia,"Times New Roman",serif}
+body[data-font="times"]{font-family:"Times New Roman",Georgia,serif}
+/* Reader settings: feature visibility, applied by body class from the Settings modal.
+   Justify is prose only: poetry (q1-q4) stays left-aligned, and the d/qd
+   superscripts/postscripts keep their flush-left ruling. */
+body.justify main.text p.scripture:not(.usfm-q1):not(.usfm-q2):not(.usfm-q3):not(.usfm-q4):not(.usfm-d):not(.usfm-qd){text-align:justify}
+/* Verse numbers hidden, not display:none: the sup keeps its layout position (zero-size)
+   so #vN fragment links (panel search "Go to John 3:16") still scroll to the verse. */
+body.hide-vn .usfm-v{font-size:0;padding:0}
+body.hide-master main.text :is(.usfm-ms,.usfm-ms1,.usfm-ms2,.usfm-ms3,.usfm-ms4,.usfm-mr){display:none}
+body.hide-headings main.text :is(.usfm-s,.usfm-s1,.usfm-s2,.usfm-s3,.usfm-s4){display:none}
+body.hide-notes .fn-call,body.hide-notes section.notes{display:none}
+body.hide-xrefs main.text .usfm-r{display:none}
+body.red-letters .usfm-wj{color:var(--red)}
+/* Verse by Verse: a line break before each verse number except the first verse
+   of a paragraph. Scoped to p.scripture (the d superscript carries verse 1 as
+   its first child, so :not(:first-child) leaves it alone; qd carries no sup). */
+body.vbv main.text p.scripture sup.usfm-v:not(:first-child)::before{content:"\A";white-space:pre}
+/* Asterisks: no asterisk markup exists in the AIV text, so the hide-asterisks
+   class has no CSS rule; the toggle is carried in state only (reader.js). */
 a{color:var(--accent)}
 [id]{scroll-margin-top:calc(var(--bar) + .75rem)}
 .page{max-width:42rem;margin:0 auto;padding:0 var(--pane) 6rem;transition:transform .25s ease,max-width .35s ease}
@@ -46,7 +72,7 @@ main.text{margin:var(--pane) 0 2rem}
    set on the marker classes themselves, because the :where() heading rule in rev 5 was too weak
    to override the generated stylesheet's bold: it changed only the family, not the weight or size,
    which is why ms/s still showed bold in Kevin's screenshot. ms1 keeps its 1.1667em size. */
-main.text :is(.usfm-ms,.usfm-ms1,.usfm-ms2,.usfm-ms3,.usfm-ms4){font-family:var(--sans);font-weight:400;line-height:1.35;color:#840000} /* ms in dark red (Kevin 15 Nov rev 8) */
+main.text :is(.usfm-ms,.usfm-ms1,.usfm-ms2,.usfm-ms3,.usfm-ms4){font-family:var(--sans);font-weight:400;line-height:1.35;color:var(--accent)} /* ms in dark red (Kevin 15 Nov rev 8) */
 main.text .usfm-ms2{font-size:1.0833em} /* ms2 smaller than ms1 (Kevin 20 Nov): a subordinate collection, midway between ms1 1.1667em and ms3 1em */
 main.text .usfm-ms3{font-size:1em;font-style:normal} /* ms3 same as ms2 only smaller (Kevin 17 Nov); upright, not italic */
 main.text .usfm-ms4{font-size:.9167em;font-style:normal;text-align:center} /* ms4 smaller than ms3 (Kevin 21 Nov): one 1/12 step below ms3, upright, centered like ms1-ms3 */
@@ -120,15 +146,15 @@ main.text :is(.usfm-mr,.usfm-sr,.usfm-r) a:hover{color:inherit;text-decoration:n
 /* Notes: a separate block below the text */
 .fn-call{text-decoration:none;font-size:.8em;color:var(--accent);padding:0 .08em}
 .fn-call sup{line-height:0}
-section.notes{border-top:2px solid var(--rule);margin-top:1.5rem;padding-top:.5rem;font-size:.88em;color:#3a3a3a}
+section.notes{border-top:2px solid var(--rule);margin-top:1.5rem;padding-top:.5rem;font-size:.88em;color:var(--ink)}
 section.notes h2{font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:.4rem 0}
 section.notes ol{list-style:none;padding:0;margin:0}
 section.notes li{margin:.35rem 0;padding-left:1.6em;text-indent:-1.6em}
 .fn-back{display:inline-block;min-width:1.4em;text-indent:0;text-decoration:none;font-weight:600}
-:target{background:#f3ead2}
+:target{background:var(--target)}
 /* Floating round prev/next chapter buttons (original page colours) */
 .fab{position:fixed;bottom:max(1rem,env(safe-area-inset-bottom));z-index:15;width:3.1rem;height:3.1rem;border-radius:50%;
-  display:grid;place-items:center;background:#fff;color:var(--ink);border:1px solid var(--rule);
+  display:grid;place-items:center;background:var(--surface);color:var(--ink);border:1px solid var(--rule);
   box-shadow:0 2px 8px rgba(0,0,0,.16),0 1px 2px rgba(0,0,0,.1);text-decoration:none;transition:transform .15s,box-shadow .15s,right .35s ease,left .35s ease}
 .fab:hover{box-shadow:0 4px 14px rgba(0,0,0,.22)}
 .fab:active{transform:scale(.94)}
@@ -214,15 +240,18 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-grid a[aria-current]{background:var(--gold);color:#1f1f1f}
 .panel-foot{margin-top:1.6rem;font-size:.8rem;color:#a8a8a8;text-align:center}
 .panel-foot a{color:#cfcfcf}
+/* Settings button in the panel foot: looks like the foot links */
+.panel-foot button{appearance:none;border:0;background:none;padding:0;font:inherit;color:#cfcfcf;cursor:pointer;text-decoration:underline}
+.panel-foot button:hover{color:#fff}
 /* Index pages */
 main.index h1{margin:1rem 0 .3rem}
 ul.chapters{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(3rem,1fr));gap:.4rem}
-ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:#fff}
+ul.chapters a{display:block;text-align:center;padding:.45rem 0;border:1px solid var(--rule);border-radius:4px;text-decoration:none;background:var(--surface)}
 .draft{color:var(--accent)}
 section.key,section.dev{margin-top:2rem;font-size:.95rem}
 section.key h2,section.dev h2{font-size:1.1rem}
-code{font-size:.85em;color:#555}
-footer.site{margin-top:2.5rem;font-size:.85rem;color:#555;border-top:1px solid var(--rule);padding-top:.8rem}
+code{font-size:.85em;color:var(--muted)}
+footer.site{margin-top:2.5rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:.8rem}
 footer.site p{margin:.3rem 0}
 /* Book lists: red reading link, then the raw USX file in gray, underlined */
 ul.books{columns:3 10rem;padding-left:1.1rem}
@@ -237,9 +266,9 @@ body.index{max-width:52rem;margin:2rem auto;padding:0 1rem;line-height:1.5;font-
 body.index h1{margin-bottom:.2rem}
 body.index .status{display:inline-block;background:var(--accent);color:#fff;font:600 .8rem "Vollkorn",Georgia,serif;padding:.15rem .5rem;border-radius:3px;letter-spacing:.05em}
 body.index .wip{color:var(--accent)}
-body.index .readlink a{display:inline-block;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:var(--accent);background:#fff}
+body.index .readlink a{display:inline-block;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:var(--accent);background:var(--surface)}
 body.index code{font-family:"Vollkorn",Georgia,serif;font-size:.8em;color:#777}
-body.index footer{margin-top:3rem;font-size:.9rem;color:#555;border-top:1px solid var(--rule);padding-top:1rem}
+body.index footer{margin-top:3rem;font-size:.9rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:1rem}
 @media (max-width:600px){body.index ul.books{columns:2;column-gap:.8rem;list-style:none;padding-left:0;font-size:.95em} body.index .usxp{font-size:.7em}}
 body.notfound{max-width:40rem;margin:3rem auto;padding:0 1rem;font-size:1rem}
 /* Side panel text is system-ui sans (Kevin 14 Nov 8:23 PM); the name "Amundson Interpretive Version" stays in Vollkorn */
@@ -256,3 +285,53 @@ main.text .usfm-d .fn-call,main.text .usfm-qd .fn-call{font-family:"Vollkorn",Ge
   outline:none;box-shadow:none;background:none;-webkit-tap-highlight-color:transparent}
 /* iOS Safari zooms in on any text field under 16px; keep every field at 16px or more (Kevin 15 Nov 12:21 AM). Pinch zoom stays on. */
 input,select,textarea{font-size:max(16px,1em)}
+/* ---- Settings modal (aiv-settings, Kevin 27 Nov) ---- */
+/* Own scrim above the panel (panel scrim z-30, panel z-40); the modal sits above its scrim.
+   The modal is chrome, so it sets its own 1rem type and does not scale with --fs. */
+body.settings-open{overflow:hidden}
+.set-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
+.set-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
+  border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
+.set-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
+.set-head h2{margin:0;font-size:1.35rem;font-weight:700;color:var(--ink)}
+.set-close{position:absolute;top:-.4rem;right:-.4rem;appearance:none;border:0;background:none;color:var(--muted);
+  font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer}
+.set-close:hover{color:var(--ink)}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem 0}
+.set-row.indent{padding-left:1.25rem}
+.set-label{font-size:1rem;color:var(--ink)}
+.set-sec{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:1.25rem 0 .25rem}
+.set-size{display:flex;align-items:center;gap:.75rem;flex:1;max-width:22rem}
+.set-step{appearance:none;width:2.5rem;height:2.5rem;flex:none;border:1px solid var(--rule);border-radius:.5rem;
+  background:var(--surface);color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer}
+.set-step:hover{background:rgba(0,0,0,.04)}
+.set-range{flex:1;min-width:0;accent-color:#3f4a5e}
+.set-font{font-family:var(--sans);font-size:16px;padding:.5rem .6rem;border:1px solid var(--rule);border-radius:.5rem;
+  background:var(--surface);color:var(--ink);max-width:14rem}
+/* Toggle switch: gray track, white knob; blue-gray track when on (screenshots) */
+.switch{appearance:none;flex:none;width:3rem;height:1.7rem;border:0;border-radius:999px;background:#d4d4d4;cursor:pointer;position:relative;padding:0;transition:background .15s}
+.switch .knob{position:absolute;top:.15rem;left:.15rem;width:1.4rem;height:1.4rem;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .15s}
+.switch.on{background:#8fa1bd}
+.switch.on .knob{left:calc(100% - 1.55rem)}
+.switch:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* Segmented preset control: four equal segments; the active one is dark slate, white text */
+.set-seg{display:flex;margin:.5rem 0 .25rem;border:1px solid var(--rule);border-radius:.55rem;overflow:hidden;background:var(--surface)}
+.set-seg-btn{flex:1;appearance:none;border:0;border-right:1px solid var(--rule);background:none;color:var(--ink);
+  font-family:var(--sans);font-size:.95rem;font-weight:600;padding:.6rem .2rem;cursor:pointer}
+.set-seg-btn:last-child{border-right:0}
+.set-seg-btn.active{background:#3f4a5e;color:#fff}
+/* Theme swatches: circles in the theme's own background colour; the selected one gets a ring */
+.set-themes{display:flex;justify-content:center;gap:1rem;padding:.75rem 0 .25rem}
+.set-theme{appearance:none;width:4rem;height:4rem;border-radius:50%;border:2px solid var(--rule);
+  font-family:var(--sans);font-size:.8rem;font-weight:600;cursor:pointer;padding:0}
+.set-theme[data-theme="museum"]{background:#f6f3ed;color:#222}
+.set-theme[data-theme="light"]{background:#fff;color:#1a1a1a}
+.set-theme[data-theme="dark"]{background:#161616;color:#e6e6e6}
+.set-theme.selected{box-shadow:0 0 0 2px var(--surface),0 0 0 4px #3f4a5e}
+/* Footer: Cancel (outline) / OK (filled dark slate) */
+.set-foot{display:flex;gap:.75rem;border-top:1px solid var(--rule);padding-top:1rem;margin-top:1rem}
+.set-foot button{flex:1;appearance:none;font-family:var(--sans);font-size:1rem;font-weight:600;padding:.7rem .5rem;border-radius:.5rem;cursor:pointer}
+.set-cancel{border:1px solid var(--rule);background:none;color:var(--ink)}
+.set-ok{border:1px solid #3f4a5e;background:#3f4a5e;color:#fff}
