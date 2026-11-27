@@ -22,7 +22,7 @@
   var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
   function parse(q) {
-    var m = q.trim().match(/^(.*?[a-z’'.])\s*(\d+)?(?:\s*[:.]\s*(\d+))?\s*$/i);
+    var m = q.trim().match(/^(.*?[a-z’'.])\s*(\d+)?(?:\s*[:.]?\s*(\d+))?\s*$/i); /* verse separator: colon, period, or a bare space (Kevin 27 Nov) */
     if (!m) return null;
     var key = norm(m[1]); if (!key) return null;
     var hits = BOOKS.filter(function (b) {
@@ -51,6 +51,24 @@
   input.setAttribute("aria-label", "Find a book or chapter"); input.autocomplete = "off"; input.spellcheck = false;
   var go = el("a", "panel-go"); go.hidden = true;
   form.appendChild(input); form.appendChild(go);
+  /* Panel nav (Kevin 27 Nov): About and Settings buttons under the search bar,
+     icon on the left of each label. Panel order: search, About, Settings,
+     book order switch, book list, footer links. */
+  var INFO_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+  var GEAR_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>';
+  function navBtn(icon, label) {
+    var b = el("button", "panel-nav-btn"); b.type = "button";
+    b.innerHTML = icon + "<span>" + label + "</span>";
+    return b;
+  }
+  var nav = el("div", "panel-nav");
+  var aboutBtn = navBtn(INFO_SVG, "About");
+  var settingsBtn = navBtn(GEAR_SVG, "Settings");
+  nav.appendChild(aboutBtn); nav.appendChild(settingsBtn);
+  /* openAbout/openSettings are defined in the sections below; these listeners
+     only run on a click, after the IIFE has finished. */
+  aboutBtn.addEventListener("click", function () { openAbout(); });
+  settingsBtn.addEventListener("click", function () { openSettings(); });
   /* OT orders (Kevin 20 Nov): Tanakh in Torah / Nevi'im / Ketuvim, Conventional in
      Law / History / Poetry & Wisdom / Prophets. The NT order is the same in both.
      The switch below the heading toggles the OT order; the choice is remembered. */
@@ -169,7 +187,7 @@
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
   foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
-  panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
+  panel.appendChild(head); panel.appendChild(form); panel.appendChild(nav); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 
   var openId = null, pop = null;
@@ -262,6 +280,11 @@
   close.addEventListener("click", function () { setOpen(false); });
   scrim.addEventListener("click", function () { setOpen(false); });
   document.addEventListener("keydown", function (e) {
+    /* Escape closes the about or settings modal first, then the panel.
+       setModal/closeSettings/aboutModal/closeAbout are defined in the sections
+       below; the handler only runs on a user keypress, after the IIFE has finished. */
+    if (e.key === "Escape" && !aboutModal.hidden) { e.preventDefault(); closeAbout(); return; }
+    if (e.key === "Escape" && !setModal.hidden) { e.preventDefault(); closeSettings(true); return; }
     if (e.key === "Escape" && !panel.hidden) { e.preventDefault(); setOpen(false); return; }
     if (!panel.hidden || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
     var t = e.target; if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
@@ -272,6 +295,300 @@
   panel.addEventListener("keydown", function (e) {
     if (e.key !== "Tab") return;
     var f = Array.prototype.filter.call(panel.querySelectorAll("a[href],button,input"), function (x) { return x.offsetParent !== null; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  /* ---- reader settings (aiv-settings) ---- */
+  /* Settings modal (Kevin 27 Nov, modelled on the Literal Word settings):
+     font size / font / justify, TEXT FEATURES presets + toggles, THEME swatches.
+     Every control applies live and saves to localStorage at once; OK closes,
+     Cancel / X / Escape / scrim revert to the snapshot taken on open. */
+  var SETTINGS_KEY = "aiv-settings";
+  var FEATURE_KEYS = ["verseByVerse", "footnotes", "crossRefs", "asterisks", "redLetters", "masterHeadings", "headings", "verseNumbers"];
+  var PRESETS = {
+    "default": {verseByVerse: false, footnotes: true, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true}, /* Default shows footnotes, hides cross-references (Kevin 27 Nov) */
+    "study":   {verseByVerse: true,  footnotes: true,  crossRefs: true,  asterisks: true,  redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+    "reader":  {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: false, headings: false, verseNumbers: false}
+  };
+  var PRESET_NAMES = ["default", "study", "reader"];
+  function defaultSettings() {
+    return {fontSize: 100, font: "vollkorn", justify: true, preset: "default",
+      features: {verseByVerse: false, footnotes: true, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+      theme: "museum"};
+  }
+  function presetForFeatures(f) {
+    for (var i = 0; i < PRESET_NAMES.length; i++) {
+      var name = PRESET_NAMES[i], p = PRESETS[name], match = true;
+      for (var j = 0; j < FEATURE_KEYS.length; j++) {
+        if (f[FEATURE_KEYS[j]] !== p[FEATURE_KEYS[j]]) { match = false; break; }
+      }
+      if (match) return name;
+    }
+    return "custom";
+  }
+  function loadSettings() {
+    var s = defaultSettings();
+    try {
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      if (!raw) return s;
+      var p = JSON.parse(raw);
+      if (!p || typeof p !== "object") return s;
+      if (typeof p.fontSize === "number" && isFinite(p.fontSize)) s.fontSize = Math.min(150, Math.max(80, Math.round(p.fontSize / 5) * 5));
+      if (p.font === "georgia" || p.font === "times" || p.font === "vollkorn") s.font = p.font;
+      if (typeof p.justify === "boolean") s.justify = p.justify;
+      if (p.features && typeof p.features === "object") {
+        for (var k = 0; k < FEATURE_KEYS.length; k++) {
+          var key = FEATURE_KEYS[k];
+          if (typeof p.features[key] === "boolean") s.features[key] = p.features[key];
+        }
+      }
+      if (p.theme === "light" || p.theme === "dark" || p.theme === "museum") s.theme = p.theme;
+      s.preset = presetForFeatures(s.features);
+    } catch (e) {}
+    return s;
+  }
+  var settings = loadSettings();
+  function saveSettings() {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {}
+  }
+  function applySettings() {
+    var f = settings.features;
+    document.documentElement.dataset.theme = settings.theme;
+    document.documentElement.style.setProperty("--fs", String(settings.fontSize / 100));
+    body.dataset.font = settings.font;
+    body.classList.toggle("justify", settings.justify);
+    body.classList.toggle("hide-vn", !f.verseNumbers);
+    body.classList.toggle("hide-master", !f.masterHeadings);
+    body.classList.toggle("hide-headings", !f.headings);
+    body.classList.toggle("hide-notes", !f.footnotes);
+    body.classList.toggle("hide-xrefs", !f.crossRefs);
+    body.classList.toggle("red-letters", f.redLetters);
+    body.classList.toggle("vbv", f.verseByVerse);
+    /* Asterisks: there is no asterisk markup in the AIV text, so this class has
+       no CSS rule; the state is still carried in the DOM like the other toggles. */
+    body.classList.toggle("hide-asterisks", !f.asterisks);
+  }
+  applySettings();
+
+  /* ---- settings modal ---- */
+  function switchRow(labelText, indent) {
+    var row = el("div", "set-row" + (indent ? " indent" : ""));
+    var lab = el("span", "set-label", labelText);
+    var btn = el("button", "switch"); btn.type = "button";
+    btn.setAttribute("role", "switch"); btn.setAttribute("aria-checked", "false"); btn.setAttribute("aria-label", labelText);
+    btn.appendChild(el("span", "knob"));
+    row.appendChild(lab); row.appendChild(btn);
+    return {row: row, btn: btn};
+  }
+  function setSwitch(btn, on) {
+    btn.setAttribute("aria-checked", String(on));
+    btn.classList.toggle("on", on);
+  }
+  var setScrim = el("div", "set-scrim"); setScrim.hidden = true;
+  var setModal = el("div", "set-modal"); setModal.hidden = true;
+  setModal.setAttribute("role", "dialog"); setModal.setAttribute("aria-modal", "true"); setModal.setAttribute("aria-labelledby", "set-title");
+  var setHead = el("div", "set-head");
+  var setTitle = el("h2", "", "Settings"); setTitle.id = "set-title";
+  var setClose = el("button", "set-close"); setClose.type = "button"; setClose.setAttribute("aria-label", "Close settings"); setClose.textContent = "×";
+  setHead.appendChild(setTitle); setHead.appendChild(setClose);
+  var setBody = el("div", "set-body");
+  /* Font size: label + (−, slider, +) */
+  var sizeRow = el("div", "set-row");
+  sizeRow.appendChild(el("span", "set-label", "Font Size"));
+  var sizeCtl = el("div", "set-size");
+  var sizeMinus = el("button", "set-step", "−"); sizeMinus.type = "button"; sizeMinus.setAttribute("aria-label", "Decrease font size");
+  var sizeRange = el("input", "set-range"); sizeRange.type = "range"; sizeRange.min = "80"; sizeRange.max = "150"; sizeRange.step = "5"; sizeRange.setAttribute("aria-label", "Font size");
+  var sizePlus = el("button", "set-step", "+"); sizePlus.type = "button"; sizePlus.setAttribute("aria-label", "Increase font size");
+  sizeCtl.appendChild(sizeMinus); sizeCtl.appendChild(sizeRange); sizeCtl.appendChild(sizePlus);
+  sizeRow.appendChild(sizeCtl);
+  setBody.appendChild(sizeRow);
+  /* Font: label + select */
+  var fontRow = el("div", "set-row");
+  fontRow.appendChild(el("span", "set-label", "Font"));
+  var fontSel = el("select", "set-font"); fontSel.setAttribute("aria-label", "Font");
+  [["vollkorn", "Vollkorn"], ["georgia", "Georgia"], ["times", "Times New Roman"]].forEach(function (f) {
+    var o = el("option", "", f[1]); o.value = f[0]; fontSel.appendChild(o);
+  });
+  fontRow.appendChild(fontSel);
+  setBody.appendChild(fontRow);
+  /* Justify: label + switch */
+  var justifySw = switchRow("Justify Text", false);
+  setBody.appendChild(justifySw.row);
+  justifySw.btn.addEventListener("click", function () {
+    settings.justify = !settings.justify;
+    applySettings(); saveSettings(); syncControls();
+  });
+  /* Text features: preset segments, then the toggles (eight in state; seven shown — Asterisks hidden, see below) */
+  setBody.appendChild(el("h3", "set-sec", "Text Features"));
+  var seg = el("div", "set-seg");
+  seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Text feature preset");
+  var segBtns = {};
+  ["default", "study", "reader", "custom"].forEach(function (name) {
+    var b = el("button", "set-seg-btn", name.charAt(0).toUpperCase() + name.slice(1));
+    b.type = "button"; b.dataset.preset = name; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { applyPreset(name); });
+    seg.appendChild(b); segBtns[name] = b;
+  });
+  setBody.appendChild(seg);
+  function applyPreset(name) {
+    if (name === "custom") return; /* Custom has no state of its own; it is reached by hand-toggling */
+    var p = PRESETS[name];
+    for (var i = 0; i < FEATURE_KEYS.length; i++) settings.features[FEATURE_KEYS[i]] = p[FEATURE_KEYS[i]];
+    settings.preset = name;
+    applySettings(); saveSettings(); syncControls();
+  }
+  var FEATURE_LABELS = [
+    ["verseByVerse", "Verse by Verse"],
+    ["footnotes", "Footnotes"],
+    ["crossRefs", "Cross-References"],
+    ["asterisks", "Asterisks"],
+    ["redLetters", "Red Letters"],
+    ["masterHeadings", "Master Headings"],
+    ["headings", "Section Headings"],
+    ["verseNumbers", "Verse Numbers"]
+  ];
+  var featureBtns = {};
+  FEATURE_LABELS.forEach(function (fl) {
+    var sw = switchRow(fl[1], true);
+    /* Asterisks toggle hidden (Kevin 27 Nov — may be needed later): the row is not
+       shown, but the state key, presets, and apply logic still carry it, so
+       restoring it is only a matter of unhiding this row. */
+    if (fl[0] === "asterisks") sw.row.hidden = true;
+    setBody.appendChild(sw.row);
+    featureBtns[fl[0]] = sw.btn;
+    sw.btn.addEventListener("click", function () {
+      settings.features[fl[0]] = !settings.features[fl[0]];
+      settings.preset = presetForFeatures(settings.features);
+      applySettings(); saveSettings(); syncControls();
+    });
+  });
+  /* Theme: three swatches */
+  setBody.appendChild(el("h3", "set-sec", "Theme"));
+  var themeRow = el("div", "set-themes");
+  var themeBtns = {};
+  [["museum", "Museum"], ["light", "Light"], ["dark", "Dark"]].forEach(function (t) {
+    var b = el("button", "set-theme", t[1]); b.type = "button";
+    b.dataset.theme = t[0]; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      settings.theme = t[0];
+      applySettings(); saveSettings(); syncControls();
+    });
+    themeRow.appendChild(b); themeBtns[t[0]] = b;
+  });
+  setBody.appendChild(themeRow);
+  /* Footer: Cancel (revert) / OK (keep) */
+  var setFoot = el("div", "set-foot");
+  var setCancel = el("button", "set-cancel", "Cancel"); setCancel.type = "button";
+  var setOk = el("button", "set-ok", "OK"); setOk.type = "button";
+  setFoot.appendChild(setCancel); setFoot.appendChild(setOk);
+  setModal.appendChild(setHead); setModal.appendChild(setBody); setModal.appendChild(setFoot);
+  body.appendChild(setScrim); body.appendChild(setModal);
+  function syncControls() {
+    sizeRange.value = String(settings.fontSize);
+    fontSel.value = settings.font;
+    setSwitch(justifySw.btn, settings.justify);
+    for (var i = 0; i < FEATURE_KEYS.length; i++) setSwitch(featureBtns[FEATURE_KEYS[i]], settings.features[FEATURE_KEYS[i]]);
+    ["default", "study", "reader", "custom"].forEach(function (name) {
+      var on = settings.preset === name;
+      segBtns[name].setAttribute("aria-pressed", String(on));
+      segBtns[name].classList.toggle("active", on);
+    });
+    ["museum", "light", "dark"].forEach(function (name) {
+      var on = settings.theme === name;
+      themeBtns[name].setAttribute("aria-pressed", String(on));
+      themeBtns[name].classList.toggle("selected", on);
+    });
+  }
+  function setFontSize(n) {
+    n = Math.min(150, Math.max(80, Math.round(n / 5) * 5));
+    if (n === settings.fontSize) return;
+    settings.fontSize = n;
+    applySettings(); saveSettings(); syncControls();
+  }
+  sizeMinus.addEventListener("click", function () { setFontSize(settings.fontSize - 5); });
+  sizePlus.addEventListener("click", function () { setFontSize(settings.fontSize + 5); });
+  sizeRange.addEventListener("input", function () { setFontSize(parseInt(sizeRange.value, 10)); });
+  fontSel.addEventListener("change", function () {
+    settings.font = fontSel.value;
+    applySettings(); saveSettings();
+  });
+  var settingsSnapshot = null, settingsReturnFocus = null;
+  function openSettings() {
+    settingsSnapshot = JSON.parse(JSON.stringify(settings));
+    settingsReturnFocus = document.activeElement;
+    syncControls();
+    setScrim.hidden = setModal.hidden = false;
+    body.classList.add("settings-open");
+    panel.setAttribute("inert", ""); scrim.setAttribute("inert", "");
+    setClose.focus();
+  }
+  function closeSettings(revert) {
+    if (revert && settingsSnapshot) {
+      settings = settingsSnapshot;
+      applySettings(); saveSettings();
+    }
+    setScrim.hidden = setModal.hidden = true;
+    body.classList.remove("settings-open");
+    panel.removeAttribute("inert"); scrim.removeAttribute("inert");
+    if (settingsReturnFocus && settingsReturnFocus.focus) settingsReturnFocus.focus({preventScroll: true});
+    settingsSnapshot = null; settingsReturnFocus = null;
+  }
+  setClose.addEventListener("click", function () { closeSettings(true); });
+  setCancel.addEventListener("click", function () { closeSettings(true); });
+  setOk.addEventListener("click", function () { closeSettings(false); });
+  setScrim.addEventListener("click", function () { closeSettings(true); });
+  /* keep keyboard focus inside the open modal (same pattern as the panel) */
+  setModal.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var f = Array.prototype.filter.call(setModal.querySelectorAll("button,input,select"), function (x) { return x.offsetParent !== null; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  /* ---- about (Kevin 27 Nov) ---- */
+  /* About modal, opened from the About button under the search bar. The text
+     is the home page's own wording (index.html), so nothing here is invented;
+     Kevin can say what it should carry instead. */
+  var aboutScrim = el("div", "about-scrim"); aboutScrim.hidden = true;
+  var aboutModal = el("div", "about-modal"); aboutModal.hidden = true;
+  aboutModal.setAttribute("role", "dialog"); aboutModal.setAttribute("aria-modal", "true"); aboutModal.setAttribute("aria-labelledby", "about-title");
+  var aboutHead = el("div", "about-head");
+  var aboutTitle = el("h2", "", "About"); aboutTitle.id = "about-title";
+  var aboutClose = el("button", "about-close"); aboutClose.type = "button"; aboutClose.setAttribute("aria-label", "Close about"); aboutClose.textContent = "×";
+  aboutHead.appendChild(aboutTitle); aboutHead.appendChild(aboutClose);
+  var aboutBody = el("div", "about-body");
+  aboutBody.innerHTML = "<p><strong>Amundson Interpretive Version (AIV)</strong></p>"
+    + "<p>The Amundson Interpretive Version (AIV) is an English Bible text under active revision. It is not finished, and its wording may change.</p>"
+    + "<p>Based on a public-domain draft published at literalbible.com, with AIV corrections.</p>"
+    + "<p>Amundson Interpretive Version (AIV) &copy; 2026 Kevin Amundson. Licensed under the <a href=\"/LICENSE\">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>";
+  var aboutFoot = el("div", "about-foot");
+  var aboutOk = el("button", "about-ok", "Close"); aboutOk.type = "button";
+  aboutFoot.appendChild(aboutOk);
+  aboutModal.appendChild(aboutHead); aboutModal.appendChild(aboutBody); aboutModal.appendChild(aboutFoot);
+  body.appendChild(aboutScrim); body.appendChild(aboutModal);
+  var aboutReturnFocus = null;
+  function openAbout() {
+    aboutReturnFocus = document.activeElement;
+    aboutScrim.hidden = aboutModal.hidden = false;
+    body.classList.add("about-open");
+    panel.setAttribute("inert", ""); scrim.setAttribute("inert", "");
+    aboutClose.focus();
+  }
+  function closeAbout() {
+    aboutScrim.hidden = aboutModal.hidden = true;
+    body.classList.remove("about-open");
+    panel.removeAttribute("inert"); scrim.removeAttribute("inert");
+    if (aboutReturnFocus && aboutReturnFocus.focus) aboutReturnFocus.focus({preventScroll: true});
+    aboutReturnFocus = null;
+  }
+  aboutClose.addEventListener("click", closeAbout);
+  aboutOk.addEventListener("click", closeAbout);
+  aboutScrim.addEventListener("click", closeAbout);
+  /* keep keyboard focus inside the open modal (same pattern as the panel) */
+  aboutModal.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var f = Array.prototype.filter.call(aboutModal.querySelectorAll("button"), function (x) { return x.offsetParent !== null; });
     if (!f.length) return;
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
     else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
