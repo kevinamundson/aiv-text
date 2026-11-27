@@ -316,8 +316,12 @@ body.settings-open{overflow:hidden}
   background:var(--surface);color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer}
 .set-step:hover{background:rgba(0,0,0,.04)}
 .set-range{flex:1;min-width:0;accent-color:#3f4a5e}
-.set-font{font-family:var(--sans);font-size:16px;padding:.5rem .6rem;border:1px solid var(--rule);border-radius:.5rem;
-  background:var(--surface);color:var(--ink);max-width:14rem}
+.set-font{font-family:var(--sans);font-size:16px;padding:.5rem 2rem .5rem .6rem;border:1px solid var(--rule);border-radius:.5rem;
+  background-color:var(--surface);color:var(--ink);max-width:14rem;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23222' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .6rem center;background-size:1rem}
+/* Dark mode: the font selector chevron is light so it reads on the dark field (Kevin 27 Nov) */
+html[data-theme="dark"] .set-font{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6e6e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")}
 /* Toggle switch: white knob; track follows the colour theme (Kevin 27 Nov) —
    muted divider colour when off, the theme accent when on (dark red in Museum
    and Light, light red in Dark). */
@@ -326,12 +330,14 @@ body.settings-open{overflow:hidden}
 .switch.on{background:var(--accent)}
 .switch.on .knob{left:calc(100% - 1.55rem)}
 .switch:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-/* Segmented preset control: four equal segments; the active one is dark slate, white text */
+/* Segmented preset control: four equal segments; the active one follows the
+   theme accent (Kevin 27 Nov), with the theme surface as its text colour so it
+   reads in every theme (dark red + white in Museum/Light, light red + dark in Dark) */
 .set-seg{display:flex;margin:.5rem 0 .25rem;border:1px solid var(--rule);border-radius:.55rem;overflow:hidden;background:var(--surface)}
 .set-seg-btn{flex:1;appearance:none;border:0;border-right:1px solid var(--rule);background:none;color:var(--ink);
   font-family:var(--sans);font-size:.95rem;font-weight:600;padding:.6rem .2rem;cursor:pointer}
 .set-seg-btn:last-child{border-right:0}
-.set-seg-btn.active{background:#3f4a5e;color:#fff}
+.set-seg-btn.active{background:var(--accent);color:var(--surface)}
 /* Theme swatches: circles in the theme's own background colour; the selected one gets a ring */
 .set-themes{display:flex;justify-content:center;gap:1rem;padding:.75rem 0 .25rem}
 .set-theme{appearance:none;width:4rem;height:4rem;border-radius:50%;border:2px solid var(--rule);
@@ -344,7 +350,7 @@ body.settings-open{overflow:hidden}
 .set-foot{display:flex;gap:.75rem;border-top:1px solid var(--rule);padding-top:1rem;margin-top:1rem}
 .set-foot button{flex:1;appearance:none;font-family:var(--sans);font-size:1rem;font-weight:600;padding:.7rem .5rem;border-radius:.5rem;cursor:pointer}
 .set-cancel{border:1px solid var(--rule);background:none;color:var(--ink)}
-.set-ok{border:1px solid #3f4a5e;background:#3f4a5e;color:#fff}
+.set-ok{border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
 /* About modal (Kevin 27 Nov): same chrome as the Settings modal, informational only */
 body.about-open{overflow:hidden}
 .about-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
@@ -361,4 +367,4 @@ body.about-open{overflow:hidden}
 .about-body a{color:var(--accent)}
 .about-foot{display:flex;border-top:1px solid var(--rule);padding-top:1rem;margin-top:1rem}
 .about-foot button{flex:1;appearance:none;font-family:var(--sans);font-size:1rem;font-weight:600;padding:.7rem .5rem;border-radius:.5rem;cursor:pointer}
-.about-ok{border:1px solid #3f4a5e;background:#3f4a5e;color:#fff}
+.about-ok{border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
