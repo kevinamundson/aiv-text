@@ -51,6 +51,24 @@
   input.setAttribute("aria-label", "Find a book or chapter"); input.autocomplete = "off"; input.spellcheck = false;
   var go = el("a", "panel-go"); go.hidden = true;
   form.appendChild(input); form.appendChild(go);
+  /* Panel nav (Kevin 27 Nov): About and Settings buttons under the search bar,
+     icon on the left of each label. Panel order: search, About, Settings,
+     book order switch, book list, footer links. */
+  var INFO_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+  var GEAR_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>';
+  function navBtn(icon, label) {
+    var b = el("button", "panel-nav-btn"); b.type = "button";
+    b.innerHTML = icon + "<span>" + label + "</span>";
+    return b;
+  }
+  var nav = el("div", "panel-nav");
+  var aboutBtn = navBtn(INFO_SVG, "About");
+  var settingsBtn = navBtn(GEAR_SVG, "Settings");
+  nav.appendChild(aboutBtn); nav.appendChild(settingsBtn);
+  /* openAbout/openSettings are defined in the sections below; these listeners
+     only run on a click, after the IIFE has finished. */
+  aboutBtn.addEventListener("click", function () { openAbout(); });
+  settingsBtn.addEventListener("click", function () { openSettings(); });
   /* OT orders (Kevin 20 Nov): Tanakh in Torah / Nevi'im / Ketuvim, Conventional in
      Law / History / Poetry & Wisdom / Prophets. The NT order is the same in both.
      The switch below the heading toggles the OT order; the choice is remembered. */
@@ -168,9 +186,8 @@
   btnTan.addEventListener("click", function () { setOrder("tanakh"); });
   listView.appendChild(rowsEl); listView.appendChild(empty);
   var foot = el("p", "panel-foot");
-  foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a> · <button type="button" class="panel-settings">Settings</button>';
-  foot.querySelector(".panel-settings").addEventListener("click", function () { openSettings(); });
-  panel.appendChild(head); panel.appendChild(form); panel.appendChild(listView); panel.appendChild(foot);
+  foot.innerHTML = '<a class="raw" href="/#books">Raw USX files</a> · <a href="/">Home</a>';
+  panel.appendChild(head); panel.appendChild(form); panel.appendChild(nav); panel.appendChild(listView); panel.appendChild(foot);
   body.appendChild(scrim); body.appendChild(panel);
 
   var openId = null, pop = null;
@@ -263,9 +280,10 @@
   close.addEventListener("click", function () { setOpen(false); });
   scrim.addEventListener("click", function () { setOpen(false); });
   document.addEventListener("keydown", function (e) {
-    /* Escape closes the settings modal first (reverting), then the panel.
-       setModal/closeSettings are defined in the settings section below; the
-       handler only runs on a user keypress, after the IIFE has finished. */
+    /* Escape closes the about or settings modal first, then the panel.
+       setModal/closeSettings/aboutModal/closeAbout are defined in the sections
+       below; the handler only runs on a user keypress, after the IIFE has finished. */
+    if (e.key === "Escape" && !aboutModal.hidden) { e.preventDefault(); closeAbout(); return; }
     if (e.key === "Escape" && !setModal.hidden) { e.preventDefault(); closeSettings(true); return; }
     if (e.key === "Escape" && !panel.hidden) { e.preventDefault(); setOpen(false); return; }
     if (!panel.hidden || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
@@ -524,6 +542,53 @@
   setModal.addEventListener("keydown", function (e) {
     if (e.key !== "Tab") return;
     var f = Array.prototype.filter.call(setModal.querySelectorAll("button,input,select"), function (x) { return x.offsetParent !== null; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  /* ---- about (Kevin 27 Nov) ---- */
+  /* About modal, opened from the About button under the search bar. The text
+     is the home page's own wording (index.html), so nothing here is invented;
+     Kevin can say what it should carry instead. */
+  var aboutScrim = el("div", "about-scrim"); aboutScrim.hidden = true;
+  var aboutModal = el("div", "about-modal"); aboutModal.hidden = true;
+  aboutModal.setAttribute("role", "dialog"); aboutModal.setAttribute("aria-modal", "true"); aboutModal.setAttribute("aria-labelledby", "about-title");
+  var aboutHead = el("div", "about-head");
+  var aboutTitle = el("h2", "", "About"); aboutTitle.id = "about-title";
+  var aboutClose = el("button", "about-close"); aboutClose.type = "button"; aboutClose.setAttribute("aria-label", "Close about"); aboutClose.textContent = "×";
+  aboutHead.appendChild(aboutTitle); aboutHead.appendChild(aboutClose);
+  var aboutBody = el("div", "about-body");
+  aboutBody.innerHTML = "<p><strong>Amundson Interpretive Version (AIV)</strong></p>"
+    + "<p>The Amundson Interpretive Version (AIV) is an English Bible text under active revision. It is not finished, and its wording may change.</p>"
+    + "<p>Based on a public-domain draft published at literalbible.com, with AIV corrections.</p>"
+    + "<p>Amundson Interpretive Version (AIV) &copy; 2026 Kevin Amundson. Licensed under the <a href=\"/LICENSE\">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>";
+  var aboutFoot = el("div", "about-foot");
+  var aboutOk = el("button", "about-ok", "Close"); aboutOk.type = "button";
+  aboutFoot.appendChild(aboutOk);
+  aboutModal.appendChild(aboutHead); aboutModal.appendChild(aboutBody); aboutModal.appendChild(aboutFoot);
+  body.appendChild(aboutScrim); body.appendChild(aboutModal);
+  var aboutReturnFocus = null;
+  function openAbout() {
+    aboutReturnFocus = document.activeElement;
+    aboutScrim.hidden = aboutModal.hidden = false;
+    body.classList.add("about-open");
+    panel.setAttribute("inert", ""); scrim.setAttribute("inert", "");
+    aboutClose.focus();
+  }
+  function closeAbout() {
+    aboutScrim.hidden = aboutModal.hidden = true;
+    body.classList.remove("about-open");
+    panel.removeAttribute("inert"); scrim.removeAttribute("inert");
+    if (aboutReturnFocus && aboutReturnFocus.focus) aboutReturnFocus.focus({preventScroll: true});
+    aboutReturnFocus = null;
+  }
+  aboutClose.addEventListener("click", closeAbout);
+  aboutOk.addEventListener("click", closeAbout);
+  aboutScrim.addEventListener("click", closeAbout);
+  /* keep keyboard focus inside the open modal (same pattern as the panel) */
+  aboutModal.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var f = Array.prototype.filter.call(aboutModal.querySelectorAll("button"), function (x) { return x.offsetParent !== null; });
     if (!f.length) return;
     if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
     else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }

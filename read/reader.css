@@ -198,6 +198,14 @@ body.panel-open .page{transform:translateX(min(6rem,12vw))}
 .panel-search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
 .panel :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .panel-search input::placeholder{color:#a8a8a8}
+/* Panel nav (Kevin 27 Nov): About / Settings buttons under the search bar, icon on the left */
+.panel-nav{display:flex;flex-direction:column;gap:.15rem;margin:.35rem 0 .2rem}
+.panel-nav-btn{display:flex;align-items:center;gap:.6rem;appearance:none;width:100%;border:0;background:none;
+  color:var(--tan);font-family:var(--sans);font-size:.9rem;font-weight:600;text-align:left;
+  padding:.55rem .65rem;border-radius:.45rem;cursor:pointer}
+.panel-nav-btn:hover{background:rgba(255,255,255,.08);color:var(--gold)}
+.panel-nav-btn svg{flex:none;width:1.15rem;height:1.15rem}
+.panel-nav-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .panel-go{display:block;margin:.5rem 0 0;padding:.45rem .7rem;border-radius:.45rem;background:var(--gold);color:#1f1f1f!important;
   text-decoration:none;font-weight:600}
 .panel-h{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#d8c9a6;margin:1rem 0 .45rem;font-weight:600;text-align:center}
@@ -335,3 +343,20 @@ body.settings-open{overflow:hidden}
 .set-foot button{flex:1;appearance:none;font-family:var(--sans);font-size:1rem;font-weight:600;padding:.7rem .5rem;border-radius:.5rem;cursor:pointer}
 .set-cancel{border:1px solid var(--rule);background:none;color:var(--ink)}
 .set-ok{border:1px solid #3f4a5e;background:#3f4a5e;color:#fff}
+/* About modal (Kevin 27 Nov): same chrome as the Settings modal, informational only */
+body.about-open{overflow:hidden}
+.about-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
+.about-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
+  border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
+.about-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
+.about-head h2{margin:0;font-size:1.35rem;font-weight:700;color:var(--ink)}
+.about-close{position:absolute;top:-.4rem;right:-.4rem;appearance:none;border:0;background:none;color:var(--muted);
+  font-size:1.6rem;line-height:1;width:2.3rem;height:2.3rem;border-radius:50%;cursor:pointer}
+.about-close:hover{color:var(--ink)}
+.about-body p{margin:.75rem 0;line-height:1.55}
+.about-body a{color:var(--accent)}
+.about-foot{display:flex;border-top:1px solid var(--rule);padding-top:1rem;margin-top:1rem}
+.about-foot button{flex:1;appearance:none;font-family:var(--sans);font-size:1rem;font-weight:600;padding:.7rem .5rem;border-radius:.5rem;cursor:pointer}
+.about-ok{border:1px solid #3f4a5e;background:#3f4a5e;color:#fff}
