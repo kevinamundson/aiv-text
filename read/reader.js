@@ -22,7 +22,7 @@
   var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
   function parse(q) {
-    var m = q.trim().match(/^(.*?[a-z’'.])\s*(\d+)?(?:\s*[:.]\s*(\d+))?\s*$/i);
+    var m = q.trim().match(/^(.*?[a-z’'.])\s*(\d+)?(?:\s*[:.]?\s*(\d+))?\s*$/i); /* verse separator: colon, period, or a bare space (Kevin 27 Nov) */
     if (!m) return null;
     var key = norm(m[1]); if (!key) return null;
     var hits = BOOKS.filter(function (b) {
@@ -289,14 +289,14 @@
   var SETTINGS_KEY = "aiv-settings";
   var FEATURE_KEYS = ["verseByVerse", "footnotes", "crossRefs", "asterisks", "redLetters", "masterHeadings", "headings", "verseNumbers"];
   var PRESETS = {
-    "default": {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+    "default": {verseByVerse: false, footnotes: true, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true}, /* Default shows footnotes, hides cross-references (Kevin 27 Nov) */
     "study":   {verseByVerse: true,  footnotes: true,  crossRefs: true,  asterisks: true,  redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
     "reader":  {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: false, headings: false, verseNumbers: false}
   };
   var PRESET_NAMES = ["default", "study", "reader"];
   function defaultSettings() {
     return {fontSize: 100, font: "vollkorn", justify: true, preset: "default",
-      features: {verseByVerse: false, footnotes: false, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
+      features: {verseByVerse: false, footnotes: true, crossRefs: false, asterisks: false, redLetters: false, masterHeadings: true, headings: true, verseNumbers: true},
       theme: "museum"};
   }
   function presetForFeatures(f) {
@@ -401,7 +401,7 @@
     settings.justify = !settings.justify;
     applySettings(); saveSettings(); syncControls();
   });
-  /* Text features: preset segments, then the eight toggles */
+  /* Text features: preset segments, then the toggles (eight in state; seven shown — Asterisks hidden, see below) */
   setBody.appendChild(el("h3", "set-sec", "Text Features"));
   var seg = el("div", "set-seg");
   seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Text feature preset");
@@ -433,6 +433,10 @@
   var featureBtns = {};
   FEATURE_LABELS.forEach(function (fl) {
     var sw = switchRow(fl[1], true);
+    /* Asterisks toggle hidden (Kevin 27 Nov — may be needed later): the row is not
+       shown, but the state key, presets, and apply logic still carry it, so
+       restoring it is only a matter of unhiding this row. */
+    if (fl[0] === "asterisks") sw.row.hidden = true;
     setBody.appendChild(sw.row);
     featureBtns[fl[0]] = sw.btn;
     sw.btn.addEventListener("click", function () {
