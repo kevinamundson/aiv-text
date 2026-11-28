@@ -298,8 +298,12 @@ input,select,textarea{font-size:max(16px,1em)}
    The modal is chrome, so it sets its own 1rem type and does not scale with --fs. */
 body.settings-open{overflow:hidden}
 .set-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
+/* Modal fits the visible screen and scrolls within it (Kevin 27 Nov):
+   100dvh is the dynamic viewport height — on phones it tracks the space
+   actually visible once the browser chrome shows, where 100vh overstates
+   it and pushes the footer off-screen. The vh line is the fallback. */
 .set-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain;
   background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
   border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
 .set-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
@@ -355,7 +359,7 @@ html[data-theme="dark"] .set-font{background-image:url("data:image/svg+xml,%3Csv
 body.about-open{overflow:hidden}
 .about-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
 .about-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain;
   background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
   border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
 .about-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
