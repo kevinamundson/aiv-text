@@ -404,6 +404,14 @@
   sizeCtl.appendChild(sizeMinus); sizeCtl.appendChild(sizeRange); sizeCtl.appendChild(sizePlus);
   sizeRow.appendChild(sizeCtl);
   setBody.appendChild(sizeRow);
+  /* Default size: a reset line under the font size row (Kevin 28 Nov) —
+     tapping Reset returns the type size to the default 100%. */
+  var sizeResetRow = el("div", "set-row indent");
+  sizeResetRow.appendChild(el("span", "set-label", "Default size"));
+  var sizeReset = el("button", "set-reset", "Reset"); sizeReset.type = "button"; sizeReset.setAttribute("aria-label", "Reset font size to default");
+  sizeReset.addEventListener("click", function () { setFontSize(100); });
+  sizeResetRow.appendChild(sizeReset);
+  setBody.appendChild(sizeResetRow);
   /* Font: label + select */
   var fontRow = el("div", "set-row");
   fontRow.appendChild(el("span", "set-label", "Font"));
@@ -488,6 +496,7 @@
   body.appendChild(setScrim); body.appendChild(setModal);
   function syncControls() {
     sizeRange.value = String(settings.fontSize);
+    sizeReset.disabled = settings.fontSize === 100;
     fontSel.value = settings.font;
     setSwitch(justifySw.btn, settings.justify);
     for (var i = 0; i < FEATURE_KEYS.length; i++) setSwitch(featureBtns[FEATURE_KEYS[i]], settings.features[FEATURE_KEYS[i]]);
