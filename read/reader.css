@@ -298,9 +298,16 @@ input,select,textarea{font-size:max(16px,1em)}
    The modal is chrome, so it sets its own 1rem type and does not scale with --fs. */
 body.settings-open{overflow:hidden}
 .set-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
+/* Modal fits the visible screen and scrolls within it (Kevin 27 Nov):
+   100dvh is the dynamic viewport height — on phones it tracks the space
+   actually visible once the browser chrome shows, where 100vh overstates
+   it and pushes the footer off-screen. The vh line is the fallback. */
+/* Modal background matches the selected theme (Kevin 27 Nov): the theme's
+   own background colour — #f6f3ed in Museum, #fff in Light, #161616 in Dark —
+   rather than the card surface. Controls inside keep their surface colour. */
 .set-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
-  background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;
   border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
 .set-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
 .set-head h2{margin:0;font-size:1.35rem;font-weight:700;color:var(--ink)}
@@ -322,6 +329,18 @@ body.settings-open{overflow:hidden}
   background-repeat:no-repeat;background-position:right .6rem center;background-size:1rem}
 /* Dark mode: the font selector chevron is light so it reads on the dark field (Kevin 27 Nov) */
 html[data-theme="dark"] .set-font{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6e6e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")}
+/* Quick taps and focus rings in the modals (Kevin 28 Nov):
+   touch-action:manipulation disables double-tap zoom on the buttons that are
+   tapped repeatedly (the font-size −/+), while keeping panning and pinch-zoom;
+   the range slider is left out so dragging it still works. Focus rings follow
+   the theme accent instead of the browser's default blue. */
+.set-modal button,.set-modal select,.about-modal button{touch-action:manipulation}
+.set-font:focus{outline:2px solid var(--accent);outline-offset:2px}
+.set-modal button:focus-visible,.about-modal button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* Default-size reset button (Kevin 28 Nov): an outline button that returns
+   the type size to 100%; dimmed when the size is already the default. */
+.set-reset{appearance:none;border:1px solid var(--rule);background:none;color:var(--ink);font-family:var(--sans);font-size:.9rem;font-weight:600;padding:.45rem .9rem;border-radius:.5rem;cursor:pointer}
+.set-reset:disabled{opacity:.45;cursor:default}
 /* Toggle switch: white knob; track follows the colour theme (Kevin 27 Nov) —
    muted divider colour when off, the theme accent when on (dark red in Museum
    and Light, light red in Dark). */
@@ -355,8 +374,8 @@ html[data-theme="dark"] .set-font{background-image:url("data:image/svg+xml,%3Csv
 body.about-open{overflow:hidden}
 .about-scrim{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45)}
 .about-modal{position:fixed;z-index:60;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
-  background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1rem;
+  width:min(32rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;
   border-radius:.75rem;box-shadow:0 8px 40px rgba(0,0,0,.35);padding:1.25rem 1.25rem 1.5rem}
 .about-head{position:relative;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:.75rem;margin-bottom:.5rem}
 .about-head h2{margin:0;font-size:1.35rem;font-weight:700;color:var(--ink)}

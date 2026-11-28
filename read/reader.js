@@ -284,7 +284,7 @@
        setModal/closeSettings/aboutModal/closeAbout are defined in the sections
        below; the handler only runs on a user keypress, after the IIFE has finished. */
     if (e.key === "Escape" && !aboutModal.hidden) { e.preventDefault(); closeAbout(); return; }
-    if (e.key === "Escape" && !setModal.hidden) { e.preventDefault(); closeSettings(true); return; }
+    if (e.key === "Escape" && !setModal.hidden) { e.preventDefault(); closeSettings(); return; }
     if (e.key === "Escape" && !panel.hidden) { e.preventDefault(); setOpen(false); return; }
     if (!panel.hidden || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
     var t = e.target; if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
@@ -302,8 +302,9 @@
   /* ---- reader settings (aiv-settings) ---- */
   /* Settings modal (Kevin 27 Nov, modelled on the Literal Word settings):
      font size / font / justify, TEXT FEATURES presets + toggles, THEME swatches.
-     Every control applies live and saves to localStorage at once; OK closes,
-     Cancel / X / Escape / scrim revert to the snapshot taken on open. */
+     Every control applies live and saves to localStorage at once, and closing
+     by any means (OK, Cancel, X, Escape, scrim) keeps the settings as they
+     stand — there is no revert, so a change can never be lost on close. */
   var SETTINGS_KEY = "aiv-settings";
   var FEATURE_KEYS = ["verseByVerse", "footnotes", "crossRefs", "asterisks", "redLetters", "masterHeadings", "headings", "verseNumbers"];
   var PRESETS = {
@@ -403,6 +404,14 @@
   sizeCtl.appendChild(sizeMinus); sizeCtl.appendChild(sizeRange); sizeCtl.appendChild(sizePlus);
   sizeRow.appendChild(sizeCtl);
   setBody.appendChild(sizeRow);
+  /* Default size: a reset line under the font size row (Kevin 28 Nov) —
+     tapping Reset returns the type size to the default 100%. */
+  var sizeResetRow = el("div", "set-row indent");
+  sizeResetRow.appendChild(el("span", "set-label", "Default size"));
+  var sizeReset = el("button", "set-reset", "Reset"); sizeReset.type = "button"; sizeReset.setAttribute("aria-label", "Reset font size to default");
+  sizeReset.addEventListener("click", function () { setFontSize(100); });
+  sizeResetRow.appendChild(sizeReset);
+  setBody.appendChild(sizeResetRow);
   /* Font: label + select */
   var fontRow = el("div", "set-row");
   fontRow.appendChild(el("span", "set-label", "Font"));
@@ -419,7 +428,7 @@
     settings.justify = !settings.justify;
     applySettings(); saveSettings(); syncControls();
   });
-  /* Text features: preset segments, then the toggles (eight in state; seven shown — Asterisks hidden, see below) */
+  /* Text features: preset segments, then the toggles (eight in state; six shown — Asterisks and Red Letters hidden, see below) */
   setBody.appendChild(el("h3", "set-sec", "Text Features"));
   var seg = el("div", "set-seg");
   seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Text feature preset");
@@ -451,10 +460,11 @@
   var featureBtns = {};
   FEATURE_LABELS.forEach(function (fl) {
     var sw = switchRow(fl[1], true);
-    /* Asterisks toggle hidden (Kevin 27 Nov — may be needed later): the row is not
-       shown, but the state key, presets, and apply logic still carry it, so
-       restoring it is only a matter of unhiding this row. */
-    if (fl[0] === "asterisks") sw.row.hidden = true;
+    /* Asterisks and Red Letters toggles hidden (Kevin 27 Nov — may be needed
+       later): the rows are not shown, but the state keys, presets, and apply
+       logic still carry them, so restoring one is only a matter of unhiding
+       its row. */
+    if (fl[0] === "asterisks" || fl[0] === "redLetters") sw.row.hidden = true;
     setBody.appendChild(sw.row);
     featureBtns[fl[0]] = sw.btn;
     sw.btn.addEventListener("click", function () {
@@ -486,6 +496,7 @@
   body.appendChild(setScrim); body.appendChild(setModal);
   function syncControls() {
     sizeRange.value = String(settings.fontSize);
+    sizeReset.disabled = settings.fontSize === 100;
     fontSel.value = settings.font;
     setSwitch(justifySw.btn, settings.justify);
     for (var i = 0; i < FEATURE_KEYS.length; i++) setSwitch(featureBtns[FEATURE_KEYS[i]], settings.features[FEATURE_KEYS[i]]);
@@ -513,9 +524,8 @@
     settings.font = fontSel.value;
     applySettings(); saveSettings();
   });
-  var settingsSnapshot = null, settingsReturnFocus = null;
+  var settingsReturnFocus = null;
   function openSettings() {
-    settingsSnapshot = JSON.parse(JSON.stringify(settings));
     settingsReturnFocus = document.activeElement;
     syncControls();
     setScrim.hidden = setModal.hidden = false;
@@ -523,21 +533,19 @@
     panel.setAttribute("inert", ""); scrim.setAttribute("inert", "");
     setClose.focus();
   }
-  function closeSettings(revert) {
-    if (revert && settingsSnapshot) {
-      settings = settingsSnapshot;
-      applySettings(); saveSettings();
-    }
+  /* Closing keeps the settings as they stand (they already applied live and
+     saved); OK, Cancel, X, Escape, and scrim-click all just close. */
+  function closeSettings() {
     setScrim.hidden = setModal.hidden = true;
     body.classList.remove("settings-open");
     panel.removeAttribute("inert"); scrim.removeAttribute("inert");
     if (settingsReturnFocus && settingsReturnFocus.focus) settingsReturnFocus.focus({preventScroll: true});
-    settingsSnapshot = null; settingsReturnFocus = null;
+    settingsReturnFocus = null;
   }
-  setClose.addEventListener("click", function () { closeSettings(true); });
-  setCancel.addEventListener("click", function () { closeSettings(true); });
-  setOk.addEventListener("click", function () { closeSettings(false); });
-  setScrim.addEventListener("click", function () { closeSettings(true); });
+  setClose.addEventListener("click", closeSettings);
+  setCancel.addEventListener("click", closeSettings);
+  setOk.addEventListener("click", closeSettings);
+  setScrim.addEventListener("click", closeSettings);
   /* keep keyboard focus inside the open modal (same pattern as the panel) */
   setModal.addEventListener("keydown", function (e) {
     if (e.key !== "Tab") return;
