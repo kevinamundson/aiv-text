@@ -272,7 +272,7 @@ a.usx{color:#777;text-decoration:underline}
    shares one background; only the layout and the index-only pieces live here. */
 body.index{max-width:52rem;margin:2rem auto;padding:0 1rem;line-height:1.5;font-size:1rem}
 body.index h1{margin-bottom:.2rem}
-body.index h1{display:flex;align-items:center;gap:.6rem}
+body.index h1{display:flex;align-items:center;gap:.6rem;font-weight:600}
 body.index h1 .site-icon{width:1.4em;height:1.4em;flex:none;border-radius:.2em}
 /* Mobile: logo centred on top, title on one line beneath it. The full
    title is 299px at 20px Vollkorn Bold, so the size floors at 1.25rem
