@@ -156,6 +156,16 @@ HEAD = """<!doctype html>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#840000">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aivbible.kevinamundson.me/read/{book}/{chapter}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="https://aivbible.kevinamundson.me/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="Amundson Interpretive Version">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aivbible.kevinamundson.me/social-preview.png">
 <script src="/read/nav-data.js" defer></script>
 <script src="/read/reader.js" defer></script>
 {extra}</head>
@@ -266,6 +276,16 @@ HEAD = """<!doctype html>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#840000">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aivbible.kevinamundson.me/read/{book}/{chapter}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="https://aivbible.kevinamundson.me/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="Amundson Interpretive Version">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aivbible.kevinamundson.me/social-preview.png">
 <script src="/read/nav-data.js" defer></script>
 <script src="/read/reader.js" defer></script>
 {extra}</head>
