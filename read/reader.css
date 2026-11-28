@@ -274,6 +274,13 @@ body.index{max-width:52rem;margin:2rem auto;padding:0 1rem;line-height:1.5;font-
 body.index h1{margin-bottom:.2rem}
 body.index h1{display:flex;align-items:center;gap:.6rem}
 body.index h1 .site-icon{width:1.4em;height:1.4em;flex:none;border-radius:.2em}
+/* Mobile: logo centred on top, title on one line beneath it. The full
+   title is 299px at 20px Vollkorn Bold, so the size floors at 1.25rem
+   to fit a 360px phone (328px content) on one line. */
+@media (max-width:640px){
+body.index h1{flex-direction:column;align-items:center;text-align:center;gap:.5rem;font-size:clamp(1.25rem,5.5vw,1.75rem);white-space:nowrap}
+body.index h1 .site-icon{width:4rem;height:4rem}
+}
 body.index .status{display:inline-block;background:var(--accent);color:#fff;font:600 .8rem "Vollkorn",Georgia,serif;padding:.15rem .5rem;border-radius:3px;letter-spacing:.05em}
 body.index .wip{color:var(--accent)}
 body.index .readlink a{display:inline-block;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:var(--accent);background:var(--surface)}
