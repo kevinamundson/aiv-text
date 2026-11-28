@@ -3,6 +3,34 @@
    Without JavaScript the title links to the book's chapter list and the round buttons are plain links. */
 (function () {
   "use strict";
+  /* Register the service worker (PWA install + offline shell). */
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+  /* Site icon + PWA manifest links. Chapter pages are generated, so the
+     links are injected here until the next reader rebuild carries them
+     in the HTML head (see tools/build_reader.py). */
+  (function () {
+    var head = document.head;
+    var links = [
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/manifest.webmanifest" }
+    ];
+    links.forEach(function (l) {
+      if (!head.querySelector('link[rel="' + l.rel + '"][href="' + l.href + '"]')) {
+        var el = document.createElement("link");
+        el.rel = l.rel; el.href = l.href;
+        if (l.type) el.type = l.type;
+        if (l.sizes) el.sizes = l.sizes;
+        head.appendChild(el);
+      }
+    });
+    if (!head.querySelector('meta[name="theme-color"]')) {
+      var m = document.createElement("meta");
+      m.name = "theme-color"; m.content = "#840000";
+      head.appendChild(m);
+    }
+  })();
   var BOOKS = window.AIV_BOOKS || [];
   var body = document.body, page = document.querySelector(".page");
   var curBook = body.dataset.book || "", curCh = body.dataset.chapter || "";

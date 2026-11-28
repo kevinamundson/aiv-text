@@ -151,6 +151,11 @@ HEAD = """<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&family=Vollkorn+SC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/usfm.css">
 <link rel="stylesheet" href="/read/reader.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#840000">
 <script src="/read/nav-data.js" defer></script>
 <script src="/read/reader.js" defer></script>
 {extra}</head>
@@ -256,6 +261,11 @@ HEAD = """<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&family=Vollkorn+SC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/usfm.css">
 <link rel="stylesheet" href="/read/reader.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#840000">
 <script src="/read/nav-data.js" defer></script>
 <script src="/read/reader.js" defer></script>
 {extra}</head>

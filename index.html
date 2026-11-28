@@ -9,9 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/reader.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#840000">
 </head>
 <body class="index">
-<h1>Amundson Interpretive Version</h1>
+<h1><img class="site-icon" src="/icons/icon-192.png" alt="" width="192" height="192"> Amundson Interpretive Version</h1>
 <p><span class="status">WORK IN PROGRESS</span></p>
 <p class="wip">The Amundson Interpretive Version (AIV) is an English Bible text under active revision. It is not finished, and its wording may change.</p>
 <p class="readlink"><a href="/read/GEN/1">Read the AIV online &rsaquo;</a></p>
@@ -100,5 +105,8 @@
 <p>Amundson Interpretive Version (AIV), based on a public-domain draft published at literalbible.com, with AIV corrections.</p>
 <p>Amundson Interpretive Version (AIV) &copy; 2026 Kevin Amundson. Licensed under the <a href="/LICENSE">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>
 </footer>
+<script>
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+</script>
 </body>
 </html>
