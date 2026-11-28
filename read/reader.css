@@ -283,9 +283,10 @@ body.index h1 .site-icon{width:4rem;height:4rem}
 }
 body.index .status{display:inline-block;background:var(--accent);color:#fff;font:600 .8rem "Vollkorn",Georgia,serif;padding:.15rem .5rem;border-radius:3px;letter-spacing:.05em}
 body.index .wip{color:var(--accent)}
-body.index .readlink a{display:inline-block;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:var(--accent);background:var(--surface)}
+body.index .readlink a{display:inline-flex;align-items:center;gap:.5rem;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:var(--accent);background:var(--surface)}
 body.index .installlink{margin-top:.55rem}
-body.index .installlink a{display:inline-block;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:#f6f3ed;background:var(--accent)}
+body.index .installlink a{display:inline-flex;align-items:center;gap:.5rem;font-size:1.15rem;font-weight:600;padding:.4rem .9rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;color:#f6f3ed;background:var(--accent)}
+body.index .readlink a svg,body.index .installlink a svg{width:1.15em;height:1.15em;flex:none}
 body.index code{font-family:"Vollkorn",Georgia,serif;font-size:.8em;color:#777}
 body.index footer{margin-top:3rem;font-size:.9rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:1rem}
 @media (max-width:600px){body.index ul.books{columns:2;column-gap:.8rem;list-style:none;padding-left:0;font-size:.95em} body.index .usxp{font-size:.7em}}
