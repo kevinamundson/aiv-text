@@ -9,12 +9,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/read/reader.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#840000">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aivbible.kevinamundson.me/">
+<meta property="og:title" content="Amundson Interpretive Version (AIV)">
+<meta property="og:description" content="Amundson Interpretive Version (AIV): a work-in-progress English Bible text, published as USX files.">
+<meta property="og:image" content="https://aivbible.kevinamundson.me/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="Amundson Interpretive Version">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aivbible.kevinamundson.me/social-preview.png">
 </head>
 <body class="index">
-<h1>Amundson Interpretive Version</h1>
+<h1><img class="site-icon" src="/icons/icon-192.png" alt="" width="192" height="192"> Amundson Interpretive Version</h1>
 <p><span class="status">WORK IN PROGRESS</span></p>
 <p class="wip">The Amundson Interpretive Version (AIV) is an English Bible text under active revision. It is not finished, and its wording may change.</p>
-<p class="readlink"><a href="/read/GEN/1">Read the AIV online &rsaquo;</a></p>
+<p class="readlink"><a href="/read/GEN/1"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Read the AIV online</a></p>
+<p class="installlink"><a href="#" id="install-aiv"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Install the AIV Bible</a></p>
 <p>Choose a book below to read it. For Scripture apps and developers, each book is also available as a USX file at <code>/usx/{BOOK}.usx</code>. Translation details are in <a href="/metadata.json">metadata.json</a>, a machine-readable book list is in <a href="/books.json">books.json</a>, and file checksums are in <a href="/manifest.json">manifest.json</a>.</p>
 <h2 id="books">Old Testament</h2>
 <h3>The Law (TORAH)</h3>
@@ -100,5 +116,35 @@
 <p>Amundson Interpretive Version (AIV), based on a public-domain draft published at literalbible.com, with AIV corrections.</p>
 <p>Amundson Interpretive Version (AIV) &copy; 2026 Kevin Amundson. Licensed under the <a href="/LICENSE">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>
 </footer>
+<script>
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+/* "Install the AIV Bible" link: uses the browser install prompt when
+   available (Chrome/Edge/Android/desktop); on iOS Safari shows the
+   Share > Add to Home Screen steps; hidden when already installed. */
+(function () {
+  var link = document.getElementById("install-aiv");
+  if (!link) return;
+  if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
+    link.parentNode.hidden = true;
+    return;
+  }
+  var deferredPrompt = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function () { deferredPrompt = null; });
+    } else if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      alert("To install the AIV Bible: tap Share, then Add to Home Screen.");
+    } else {
+      alert("To install the AIV Bible, use your browser's menu and choose Install.");
+    }
+  });
+})();
+</script>
 </body>
 </html>
