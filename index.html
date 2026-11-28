@@ -30,6 +30,7 @@
 <p><span class="status">WORK IN PROGRESS</span></p>
 <p class="wip">The Amundson Interpretive Version (AIV) is an English Bible text under active revision. It is not finished, and its wording may change.</p>
 <p class="readlink"><a href="/read/GEN/1">Read the AIV online &rsaquo;</a></p>
+<p class="installlink"><a href="#" id="install-aiv">Install the AIV Bible</a></p>
 <p>Choose a book below to read it. For Scripture apps and developers, each book is also available as a USX file at <code>/usx/{BOOK}.usx</code>. Translation details are in <a href="/metadata.json">metadata.json</a>, a machine-readable book list is in <a href="/books.json">books.json</a>, and file checksums are in <a href="/manifest.json">manifest.json</a>.</p>
 <h2 id="books">Old Testament</h2>
 <h3>The Law (TORAH)</h3>
@@ -117,6 +118,33 @@
 </footer>
 <script>
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+/* "Install the AIV Bible" link: uses the browser install prompt when
+   available (Chrome/Edge/Android/desktop); on iOS Safari shows the
+   Share > Add to Home Screen steps; hidden when already installed. */
+(function () {
+  var link = document.getElementById("install-aiv");
+  if (!link) return;
+  if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
+    link.parentNode.hidden = true;
+    return;
+  }
+  var deferredPrompt = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function () { deferredPrompt = null; });
+    } else if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      alert("To install the AIV Bible: tap Share, then Add to Home Screen.");
+    } else {
+      alert("To install the AIV Bible, use your browser's menu and choose Install.");
+    }
+  });
+})();
 </script>
 </body>
 </html>
